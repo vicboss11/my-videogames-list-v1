@@ -1,54 +1,57 @@
-// *** clase Videojuego
+// *** clase Videogame (Videojuego)
 // -> Constructor
-function Videojuego(nombre, desarrollador, editor, plataformas, generos) {
-    this.nombre = nombre;
-    this.desarrollador = desarrollador;
-    this.editor = editor;
-    this.plataformas = plataformas;
-    this.generos = generos;
-    this.valoracion = null;
+function Videogame(name, developer, publisher, platform, year, genre, rating) {
+    this.name = name; // nombre
+    this.developer = developer; // empresa desarrolladora
+    this.publisher = publisher; // empresa editora
+    this.platform = platform; // plataforma/s
+    this.year = year; // año de publicación
+    this.genre = genre; // genero/s
+    this.rating = rating; // calificación de edad
+    this.score = null; // valoracion
 }
 
-Videojuego.prototype.anadirValoracion = function (apartadoJugable, apartadoTecnico,
-    apartadoArtistico, apartadoSonoro, apartadoNarrativo = null, apartadoOnline = null) {
-    this.valoracion = new Valoracion(apartadoJugable, apartadoTecnico, apartadoArtistico,
-        apartadoSonoro, apartadoNarrativo, apartadoOnline);
+Videogame.prototype.addScore = function (gameplay, graphics,
+    art, sound, narrative = null, multiplayer = null) {
+    this.score = new Score(gameplay, graphics, art,
+        sound, narrative, multiplayer);
 }
 
-// *** clase Valoracion
+// *** clase VideogameSectionsScore (Puntuación de los distintos apartados de un videojuego)
 // -> Constructor
-// El apartadoNarrativo y el apartadoOnline son "opcionales" dependiendo del tipo
+// El narrative y el multiplayer son "opcionales" dependiendo del tipo
 // de Videojuego que se vaya a valorar
-function Valoracion(apartadoJugable, apartadoTecnico, apartadoArtistico,
-    apartadoSonoro, apartadoNarrativo = null, apartadoOnline = null) {
-    this.apartadoJugable = apartadoJugable;
-    this.apartadoTecnico = apartadoTecnico;
-    this.apartadoArtistico = apartadoArtistico;
-    this.apartadoSonoro = apartadoSonoro;
-    this.apartadoNarrativo = apartadoNarrativo;
-    this.apartadoOnline = apartadoOnline;
+function VideogameSectionsScore(gameplay, graphics, art,
+    sound, narrative = null, multiplayer = null) {
+    this.gameplay = gameplay; // jugabilidad
+    this.graphics = graphics; // gráficos
+    this.art = art; // apartado artistico
+    this.sound = sound; // sonido
+    this.narrative = narrative; // narrativa
+    this.multiplayer = multiplayer; // multijugador
 }
 
 // -> Métodos
-// Método para calcular la valoración media de un Videojuego
-Valoracion.prototype.calcularValoracionMedia = function () {
-    var suma = 0;
-    var contador = 0;
-    // Se recorre el objeto como si se tratara de un Array. El nombre de cada propiedad
-    // se guarda dentro de la variable propiedad
-    for (let propiedad in this) {
+// Método para calcular la valoración media de un videojuego
+VideogameSectionsScore.prototype.getAvgScore = function () {
+    var sum = 0; // acumulador de sumas
+    var count = 0; // contador
 
-        // Si la propiedad es apartadoNarrativo o apartadoOnline y su valor es null, no se incrementará
-        // ni la variable suma ni el contador
-        if ((propiedad !== "apartadoNarrativo" && this[propiedad] !== null) || (propiedad !== "apartadoOnline" && this[propiedad] !== null)) {
-            suma += this[propiedad];
-            contador++;
+    // Se recorre el objeto como si se tratara de un Array. El nombre de cada propiedad
+    // se guarda dentro de la variable property
+    for (let property in this) {
+
+        // Si la property es narrative o multiplayer y su valor es null, no se incrementará
+        // ni la variable sum ni el count
+        if ((property !== "narrative" && this[property] !== null) || (property !== "multiplayer" && this[property] !== null)) {
+            sum += this[property];
+            count++;
         }
 
     }
 
-    var media = suma / contador;
-    var valoracion = Math.round(media * 10);
+    var avg = sum / count; // nota media
+    var score = Math.round(avg * 10); // puntuación media sobre 100
 
-    return valoracion;
+    return score;
 }
