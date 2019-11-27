@@ -1,14 +1,5 @@
 // *** clase Videojuego
 // -> Constructor
-/**
- *
- *
- * @param {*} nombre
- * @param {*} desarrollador
- * @param {*} editor
- * @param {*} plataformas
- * @param {*} generos
- */
 function Videojuego(nombre, desarrollador, editor, plataformas, generos) {
     this.nombre = nombre;
     this.desarrollador = desarrollador;
