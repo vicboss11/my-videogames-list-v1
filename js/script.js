@@ -1,34 +1,63 @@
 // *** clase Videojuego
-function Videojuego(nombre, desarrollador, editor, plataformas, generos, multijugador) {
+// -> Constructor
+/**
+ *
+ *
+ * @param {*} nombre
+ * @param {*} desarrollador
+ * @param {*} editor
+ * @param {*} plataformas
+ * @param {*} generos
+ */
+function Videojuego(nombre, desarrollador, editor, plataformas, generos) {
     this.nombre = nombre;
     this.desarrollador = desarrollador;
     this.editor = editor;
     this.plataformas = plataformas;
     this.generos = generos;
-    this.multijugador = multijugador;
+    this.valoracion = null;
 }
 
-// Setters
-Videojuego.prototype.setNombre = function (nombre) {
-    this.nombre = nombre;
+Videojuego.prototype.anadirValoracion = function (apartadoJugable, apartadoTecnico,
+    apartadoArtistico, apartadoSonoro, apartadoNarrativo = null, apartadoOnline = null) {
+    this.valoracion = new Valoracion(apartadoJugable, apartadoTecnico, apartadoArtistico,
+        apartadoSonoro, apartadoNarrativo, apartadoOnline);
 }
 
-Videojuego.prototype.setDesarrollador = function (desarrollador) {
-    this.desarrollador = desarrollador;
+// *** clase Valoracion
+// -> Constructor
+// El apartadoNarrativo y el apartadoOnline son "opcionales" dependiendo del tipo
+// de Videojuego que se vaya a valorar
+function Valoracion(apartadoJugable, apartadoTecnico, apartadoArtistico,
+    apartadoSonoro, apartadoNarrativo = null, apartadoOnline = null) {
+    this.apartadoJugable = apartadoJugable;
+    this.apartadoTecnico = apartadoTecnico;
+    this.apartadoArtistico = apartadoArtistico;
+    this.apartadoSonoro = apartadoSonoro;
+    this.apartadoNarrativo = apartadoNarrativo;
+    this.apartadoOnline = apartadoOnline;
 }
 
-Videojuego.prototype.setEditor = function (editor) {
-    this.editor = editor;
-}
+// -> Métodos
+// Método para calcular la valoración media de un Videojuego
+Valoracion.prototype.calcularValoracionMedia = function () {
+    var suma = 0;
+    var contador = 0;
+    // Se recorre el objeto como si se tratara de un Array. El nombre de cada propiedad
+    // se guarda dentro de la variable propiedad
+    for (let propiedad in this) {
 
-Videojuego.prototype.setPlataformas = function (plataformas){
-    this.plataformas = plataformas;
-}
+        // Si la propiedad es apartadoNarrativo o apartadoOnline y su valor es null, no se incrementará
+        // ni la variable suma ni el contador
+        if ((propiedad !== "apartadoNarrativo" && this[propiedad] !== null) || (propiedad !== "apartadoOnline" && this[propiedad] !== null)) {
+            suma += this[propiedad];
+            contador++;
+        }
 
-Videojuego.prototype.setGeneros = function(generos){
-    this.generos = generos;
-}
+    }
 
-Videojuego.prototype.setMultijugador = function(multijugador){
-    this.multijugador = multijugador;
+    var media = suma / contador;
+    var valoracion = Math.round(media * 10);
+
+    return valoracion;
 }
