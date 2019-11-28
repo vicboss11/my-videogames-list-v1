@@ -2,6 +2,29 @@
     font-family: "Titillium Web";
 }
 
+body {
+    min-height: 100vh;
+}
+
+hr {
+    background-color: #595f61;
+}
+
+small {
+    color: #9aa7ab;
+}
+
+a:focus .glyphicon-footer {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
 .navbar-brand {
     color: #fc5769 !important;
 }
@@ -16,6 +39,24 @@
     background-color: #595f61;
 }
 
+.glyphicon-footer {
+    font-size: 30px;
+}
+
+.no-focus:focus {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+#btn-search {
+    color: #ffffff;
+}
+
+#btn-search:hover {
+    color: #fc5769;
+}
 
 /*
     Cambiar el color de la barra vertical del input
@@ -39,17 +80,17 @@ input[type="search"]::-webkit-search-results-decoration {
     Cambiar color del placeholder del input search
 */
 input[type="search"]::-webkit-input-placeholder {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
 
 input[type="search"]::-moz-placeholder {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
 
 input[type="search"]::-ms-placeholder {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
 
 input[type="search"]::placeholder {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
