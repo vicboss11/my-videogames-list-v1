@@ -12,7 +12,7 @@ function Videogame(name, developer, publisher, platform, year, genre, rating) {
 }
 
 Videogame.prototype.addScore = function (gameplay, graphics,
-    art, sound, narrative = null, multiplayer = null) {
+    art, sound, narrative, multiplayer) {
     this.score = new Score(gameplay, graphics, art,
         sound, narrative, multiplayer);
 }
@@ -22,7 +22,7 @@ Videogame.prototype.addScore = function (gameplay, graphics,
 // El narrative y el multiplayer son "opcionales" dependiendo del tipo
 // de Videojuego que se vaya a valorar
 function VideogameSectionsScore(gameplay, graphics, art,
-    sound, narrative = null, multiplayer = null) {
+    sound, narrative, multiplayer) {
     this.gameplay = gameplay; // jugabilidad
     this.graphics = graphics; // gráficos
     this.art = art; // apartado artistico
@@ -41,9 +41,9 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
     // se guarda dentro de la variable property
     for (let property in this) {
 
-        // Si la property es narrative o multiplayer y su valor es null, no se incrementará
+        // Si la property es narrative o multiplayer y su valor es false, no se incrementará
         // ni la variable sum ni el count
-        if ((property !== "narrative" && this[property] !== null) || (property !== "multiplayer" && this[property] !== null)) {
+        if ((property !== "narrative" && !this[property]) || (property !== "multiplayer" && !this[property])) {
             sum += this[property];
             count++;
         }

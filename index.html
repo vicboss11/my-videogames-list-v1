@@ -6,15 +6,63 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Titillium+Web:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,900">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome Glyphicons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
+    <!-- Bootstrap Propio -->
+    <link rel="stylesheet" href="css/styles.css">
 
-    <title>Hello, world!</title>
+    <title>MyGamesList · Bienvenido</title>
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
+    <nav class="fixed-top">
+        <div class="navbar navbar-expand-md navbar-dark bg-dark py-3">
+            <a class="navbar-brand" href="index.html">MyGamesList</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu">
+                <i class="navbar-toggler-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="nav-menu">
+                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mi Biblioteca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="px-4 search-navbar">
+            <form>
+                <div class="form-row">
+                    <div class="col-11">
+                        <input class="form-control col-form-label-sm search-input no-extras" type="search" placeholder="Buscar videojuegos por nombre...">
+                    </div>
+                    <div class="col-1">
+                        <button class="btn float-right clearfix no-extras" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div>
+        lorem*100
+    </div>
+
 
     <!-- JavaScript Opcional -->
     <!-- Primero jQuery, luego Popper.js, después Bootstrap JS -->
@@ -27,6 +75,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <!-- JavaScript Propio -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>

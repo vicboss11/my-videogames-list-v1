@@ -1,0 +1,55 @@
+* {
+    font-family: "Titillium Web";
+}
+
+.navbar-brand {
+    color: #fc5769 !important;
+}
+
+.no-extras {
+    border: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.search-navbar {
+    background-color: #595f61;
+}
+
+
+/*
+    Cambiar el color de la barra vertical del input
+*/
+input[type="search"] {
+    caret-color: #fc5769;
+    color: #ffffff !important;
+}
+
+/*
+    Quitar la "x" para eliminar el contenido del input search
+*/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+/*
+    Cambiar color del placeholder del input search
+*/
+input[type="search"]::-webkit-input-placeholder {
+    color:#ffffff !important;
+}
+
+input[type="search"]::-moz-placeholder {
+    color:#ffffff !important;
+}
+
+input[type="search"]::-ms-placeholder {
+    color:#ffffff !important;
+}
+
+input[type="search"]::placeholder {
+    color:#ffffff !important;
+}
