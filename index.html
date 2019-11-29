@@ -28,9 +28,9 @@
 <body class="d-flex flex-column">
     <div class="main-content flex-grow">
 
-        <header>
-            <nav class="fixed-top">
-                <div class="navbar navbar-expand-md navbar-dark bg-dark py-3">
+        <header class="container-fluid bg-image">
+            <nav>
+                <div class="navbar navbar-expand-md navbar-dark bg-dark py-3 hide-navbar">
                     <a class="navbar-brand" href="index.html">MyGamesList</a>
                     <button class="navbar-toggler no-focus" type="button" data-toggle="collapse"
                         data-target="#nav-menu">
@@ -40,15 +40,16 @@
                     <div class="collapse navbar-collapse" id="nav-menu">
                         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="index.html#main-section">Home <span
+                                        class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Biblioteca</a>
+                                <a class="nav-link" href="biblioteca.html">Biblioteca</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="px-4 search-navbar">
+                <div class="px-4 search-navbar hide-search-navbar">
                     <form>
                         <div class="form-row">
                             <div class="col-11">
@@ -56,7 +57,7 @@
                                     placeholder="Buscar videojuegos por nombre...">
                             </div>
                             <div class="col-1">
-                                <button class="btn float-right clearfix no-extras" id="btn-search" type="submit">
+                                <button class="btn float-right no-extras" id="btn-search" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -64,14 +65,139 @@
                     </form>
                 </div>
             </nav>
+            <div class="py-5 mt-5">
+                <div class="row text-light justify-content-center text-center py-4">
+                    <div class="col-12">
+                        <h1 class="display-4">¡Bienvenid@ a <span class="title">MyGamesList</span>!</h1>
+                    </div>
+                </div>
+                <div class="row text-light justify-content-center text-center py-4">
+                    <div class="col-8 col-sm-6 col-md-4 col-xl-2">
+                        <button
+                            class="btn btn-outline-light btn-block button-starts go-main-section no-focus">EMPEZAR</button>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <section>
-            <article>
+        <section id="main-section">
+            <article class="container">
+                <h1 class="dispaly-5 text-dark">¿Qué es <span class="title">MyVideogamesList</span>?</h1>
+                <div class="row">
+                    <div class="col-12 text-justify">
+                        MyGamesList es un sitio web en el que podrás guardar una lista de tus videojuegos
+                        favoritos, así como de aquellos a los que hayas jugado o simplemente de los
+                        que tengas en tu colección real... ¡Eso depende de ti!
+                        <br>
+                        <br>
+                        Además también podrás valorarlos en función de distintos parámetros (jugabilidad,
+                        gráficos, sonido, etc.) para recordar cómo fue tu experiencia con un videojuego en
+                        concreto. Podrás añadir y borrar cualquier videojuego de tu lista en todo momento para
+                        que ésta se adapte a tus gustos y necesidades.
+                        <br>
+                        <br>
+                        <strong class="title">¡Ahora toca empezar!</strong>
+                    </div>
+                </div>
+            </article>
+
+            <hr>
+
+            <article class="container">
+                <h1 class="dispaly-5 text-dark">Primeros pasos</h1>
+                <div class="row">
+                    <div class="col-12 text-justify">
+                        Para comenzar a añadir videojuegos a tu biblioteca:
+                        <ol>
+                            <li>
+                                Haz click en <span class="badge badge-secondary">Biblioteca</span> en el
+                                menú de navegación para acceder a tu lista de videojuegos.
+                            </li>
+                            <li>
+
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </article>
+
+            <hr>
+
+            <article class="container">
+                <div class="accordion" id="accordion-option">
+                    <div class="card border">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed text-justify btn-expand no-decoration custom-link"
+                                    type="button" data-toggle="collapse" data-target="#collapseOne">
+                                    <i class="far fa-caret-square-down mr-4" id="icon-expand"
+                                        style="font-size: 15px;"></i> ¿Tienes alguna sugerencia o quieres reportar
+                                    alguna incidencia? ¡Contacta con nosotros!
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion-option">
+                            <div class="card-body text-justify">
+                                <form action="" method="GET">
+                                    <fieldset class="p-4">
+                                        <div class="form-group">
+                                            <label for="nombre">Email:</label>
+                                            <input class="form-control" type="text" id="email" name="email" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="for">Tipo de consulta:</label>
+                                            <div class="row">
+                                                <div class="col-12 offset-1 offset-md-0">
+                                                    <div class="row justify-content-around">
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="custom-control custom-radio">
+                                                                <input class="custom-control-input" type="radio"
+                                                                    id="suggestion" name="consulta" value="suggestion"
+                                                                    checked>
+                                                                <label for="suggestion"
+                                                                    class="custom-control-label">sugerencia</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-3">
+                                                            <div class="custom-control custom-radio">
+                                                                <input class="custom-control-input" type="radio"
+                                                                    id="incidence" name="consulta" value="incidence">
+                                                                <label for="incidence"
+                                                                    class="custom-control-label">incidencia</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="consulta">Consulta:</label>
+                                            <textarea class="form-control" id="consulta" rows="3" required>
+                                                    </textarea>
+                                        </div>
+
+                                        <div class="row justify-content-center mt-4 mb-2 pt-2">
+                                            <div class="col-12 col-md-6 p-1 order-md-last">
+                                                <input class="btn btn-outline-primary btn-block btn-md-inline"
+                                                    type="submit" value="Enviar consulta">
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="container pt-2">
 
             </article>
         </section>
-        
+
     </div>
 
     <footer>
@@ -132,7 +258,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
     <!-- JavaScript Propio -->
+    <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
 </body>
 
