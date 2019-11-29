@@ -6,6 +6,14 @@ body {
     min-height: 100vh;
 }
 
+header {
+    margin-bottom: 8rem;
+}
+
+footer {
+    margin-top: 8rem;
+}
+
 hr {
     background-color: #595f61;
 }
