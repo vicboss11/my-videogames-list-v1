@@ -1,3 +1,22 @@
+// ####################################################################################################################
+// Array en el que se guardarán todos los videojuegos
+var videogames_list = new Array();
+
+// Función para comprobar si la lista está o no vacía
+function noEmptyList() {
+    return videogames_list.length > 0;
+}
+
+// Función para dibujar la biblioteca
+function drawLibrary() {
+    if (!noEmptyList) {
+
+    } else {
+
+    }
+}
+
+// ####################################################################################################################
 // *** clase Videogame (Videojuego)
 // -> Constructor
 function Videogame(name, developer, publisher, platform, year, genre, rating) {
@@ -17,6 +36,7 @@ Videogame.prototype.addScore = function (gameplay, graphics,
         sound, narrative, multiplayer);
 }
 
+// ####################################################################################################################
 // *** clase VideogameSectionsScore (Puntuación de los distintos apartados de un videojuego)
 // -> Constructor
 // El narrative y el multiplayer son "opcionales" dependiendo del tipo

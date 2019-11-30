@@ -6,13 +6,6 @@ body {
     min-height: 100vh;
 }
 
-header {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
-}
-
 footer {
     margin-top: 8rem;
 }
@@ -53,6 +46,10 @@ a:focus .glyphicon-footer {
 }
 
 .bg-image {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
     background-image: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/header/tlg-min.jpg);
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(../images/header/tlg-min.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/header/tlg-min.jpg);
@@ -79,12 +76,6 @@ a:focus .glyphicon-footer {
     color: #f04a5d !important;
 }
 
-.button-starts {
-    border-color: #fc5769;
-    border-radius: 35px;
-    color: #fc5769;
-}
-
 .custom-link {
     color: #fc5769 !important;
 }
@@ -97,19 +88,47 @@ a:focus .glyphicon-footer {
     text-decoration: none !important;
 }
 
+.button-starts {
+    border-color: #fc5769;
+    border-radius: 35px;
+    color: #fc5769;
+}
+
+.button-starts:hover,
+.button-starts:active {
+    background-color: #fc5769 !important;
+    border-color: #fc5769 !important;
+    color: #f8f9fa;
+}
+
+.button-starts:focus {
+    border-color: #fc5769 !important;
+    color: #fc5769;
+}
+
+.button-starts:focus:hover {
+    border-color: #fc5769 !important;
+    color: #f8f9fa;
+}
+
 .no-decoration:active,
 .no-decoration:visited {
     text-decoration: none !important;
 }
 
-.button-starts:hover,
-.button-starts:active {
-    background-color: #fc5769;
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
     border-color: #fc5769;
+    background-color: #fc5769;
+    box-shadow: 0 0 1px 3px #f8a5af;
 }
 
-#main-section {
+#main-section-home {
     padding-top: 6rem;
+}
+
+#main-section-videogames {
+    padding-top: 9rem;
 }
 
 #btn-search {
