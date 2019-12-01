@@ -16,13 +16,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Font Awesome Glyphicons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
+
     <!-- Bootstrap Propio -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>MyVideogamesList · Biblioteca</title>
+    <title>MyVideogamesList · Bienvenido</title>
 </head>
 
 <body class="d-flex flex-column">
@@ -88,13 +90,13 @@
 
         <section id="main-section-home">
 
-            <article class="container">
+            <article class="container mt-4">
 
                 <h1 class="dispaly-5 text-dark">¿Qué es <span class="title">MyVideogamesList</span>?</h1>
                 <div class="row pt-3">
                     <div class="col-12 text-justify">
                         MyVideogamesList es un sitio web en el que podrás guardar una lista de tus videojuegos
-                        favoritos, así como de aquellos a los que hayas jugado o simplemente de los
+                        favoritos, de aquellos a los que hayas jugado o simplemente de los
                         que tengas en tu colección real... ¡Eso depende de ti!
                         <br>
                         <br>
@@ -154,20 +156,20 @@
                                 <form action="" method="GET">
                                     <fieldset class="p-4">
                                         <div class="form-group">
-                                            <label for="nombre">Email:</label>
+                                            <label for="emai">Email:</label>
                                             <input class="form-control" type="text" id="email" name="email" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="for">Tipo de consulta:</label>
+                                            <label>Tipo de consulta:</label>
                                             <div class="row">
                                                 <div class="col-12 offset-1 offset-md-0">
                                                     <div class="row justify-content-around">
                                                         <div class="col-12 col-md-3">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
-                                                                    id="suggestion" name="consulta" value="suggestion"
-                                                                    checked>
+                                                                    id="suggestion" name="request-type"
+                                                                    value="suggestion" checked>
                                                                 <label for="suggestion"
                                                                     class="custom-control-label">sugerencia</label>
                                                             </div>
@@ -175,7 +177,7 @@
                                                         <div class="col-12 col-md-3">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input btn-dark"
-                                                                    type="radio" id="incidence" name="consulta"
+                                                                    type="radio" id="incidence" name="request-type"
                                                                     value="incidence">
                                                                 <label for="incidence"
                                                                     class="custom-control-label">incidencia</label>
@@ -187,9 +189,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="consulta">Consulta:</label>
-                                            <textarea class="form-control" id="consulta" rows="3" required>
-                                                    </textarea>
+                                            <label for="request">Consulta:</label>
+                                            <textarea class="form-control" id="request" rows="5"
+                                                placeholder="Escribe aquí tu consulta..." required></textarea>
                                         </div>
 
                                         <div class="row justify-content-center mt-4 mb-2 pt-2">
@@ -205,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </article>
 
         </section>

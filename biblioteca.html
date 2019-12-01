@@ -16,13 +16,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Font Awesome Glyphicons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/v4-shims.css">
+
     <!-- Bootstrap Propio -->
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>MyVideogamesList · Bienvenido</title>
+    <title>MyVideogamesList · Biblioteca</title>
 </head>
 
 <body class="d-flex flex-column">
@@ -68,9 +70,185 @@
         </header>
 
         <section id="main-section-videogames">
-            
-            <article class="container">
-                
+            <aside>
+                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#add-videogame"
+                    data-whatever="@mdo">
+                    <i class="fas fa-plus"></i>
+                </button>
+
+                <div class="modal fade" id="add-videogame" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Nuevo videojuego</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Message:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <article class="container-fluid">
+                <div class="row justify-content-around no-pad" id="output">
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/The Outer Worlds.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>The Outer Worlds</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Bloodborne.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Bloodborne</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/League of Legends.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>League of Legends</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/God of War.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>God of War</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/mgsvtpp.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Metal Gear Solid V The Phantom Pain</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Luigi's Mansion 3-285x380.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Luigi's Mansion 3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Red Dead Redemption 2.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Red Dead Redemption 2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Marvel's Spider-Man.png" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Marvel's Spider-Man</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Dark Souls III.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Dark Souls III</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/God of War III.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>God of War III</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Star Wars Battlefront II.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Star Wars Battlefront II</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/Overwatch.png" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>Overwatch</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/The Legend of Zelda_ Breath of the Wild.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>The Legend of Zelda_ Breath of the Wild</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto my-3">
+                        <div class="videogame-box border rounded">
+                            <div class="videogame-image">
+                                <img src="images/videogames/This War of Mine.jpg" alt="">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <p>This War of Mine</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </article>
 
         </section>
@@ -135,11 +313,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <!-- Más JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
+    <!-- JavaScript UUIDs únicos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
     <!-- JavaScript Propio -->
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>

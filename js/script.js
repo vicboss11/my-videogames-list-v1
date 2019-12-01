@@ -1,10 +1,11 @@
 // ####################################################################################################################
 // Array en el que se guardarán todos los videojuegos
-var videogames_list = new Array();
+var videogamesList = new Array();
 
 // Función para comprobar si la lista está o no vacía
 function noEmptyList() {
-    return videogames_list.length > 0;
+    // Devuelve true si length en mayor que 0, en caso contrario devuelve false
+    return videogamesList.length > 0;
 }
 
 // Función para dibujar la biblioteca
@@ -12,29 +13,81 @@ function drawLibrary() {
     if (!noEmptyList) {
 
     } else {
+        var output = document.getElementById('output');
 
+        videogamesList.forEach((videogame) => {
+            output.innerHTML += '<div class="col-auto my-3">' +
+                '<div class="videogame-box border rounded">' +
+                '<div class="videogame-image">' +
+                '<img src="images/videogames/' + videogame.boxImage + '" alt="Imagen de ' + videogame.name + '">' +
+                '</div>' +
+                '<div class="videogame-info text-dark text-center">' +
+                '<p>' + videogame.name + '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+        });
     }
 }
 
-// ####################################################################################################################
-// *** clase Videogame (Videojuego)
-// -> Constructor
-function Videogame(name, developer, publisher, platform, year, genre, rating) {
-    this.name = name; // nombre
-    this.developer = developer; // empresa desarrolladora
-    this.publisher = publisher; // empresa editora
-    this.platform = platform; // plataforma/s
-    this.year = year; // año de publicación
-    this.genre = genre; // genero/s
-    this.rating = rating; // calificación de edad
-    this.score = null; // valoracion
+// Función para añadir un videojuego a la lista
+function addVideogame(videogame) {
+    // Añade un videojuego al final del array
+    videogamesList.push(videogame);
 }
 
-Videogame.prototype.addScore = function (gameplay, graphics,
-    art, sound, narrative, multiplayer) {
-    this.score = new Score(gameplay, graphics, art,
-        sound, narrative, multiplayer);
+function removeVideogameByID(videogameID) {
+    let i = 0;
+    let found = false;
+    // Si se encuentra el ID en la lista se eliminará el videojuego
+    while (i < videogamesList.length && !found) {
+        if (videogamesList[i].ID === videogameID) {
+            found = true;
+            videogamesList.splice(i, 1);
+        }
+
+        i++;
+    }
 }
+
+// Función para borrar toda la lista
+function deleteEntireList() {
+    // Para borrar el array se vuelve a instanciar
+    videogamesList = new Array();
+}
+
+
+
+// ####################################################################################################################
+// *** clase Piece
+// {Obra} Un videojuego es una obra o un producto si hablamos en términos más generales. Actuará como CLASE PADRE
+// (superclase) de videojuego para hacer uso de la herencia
+// -> Constructor
+function Piece() {
+    this.ID = uuid.v1(); // UUID único
+}
+
+// ####################################################################################################################
+// *** clase Videogame
+// {Videojuego} Será una CLASE HIJA (subclase) de Piece, de la cuál heredará un identificador
+// -> Constructor
+function Videogame(name, developer, publisher, platform, releaseDate, genre, rating, image) {
+    Piece.call(this, ID); // Hereda la propiedad ID de Piece
+    this.name = new String(name); // nombre
+    this.developer = new String(developer); // empresa desarrolladora
+    this.publisher = new String(publisher); // empresa editora
+    this.platform = new String(platform); // plataforma/s
+    this.releaseDate = new Date(Date.parse(releaseDate)); // fecha de lanzamiento
+    this.genre = new String(genre); // genero/s
+    this.rating = new String(rating); // calificación de edad
+    this.boxImage = new Image().src(image);
+    this.score = null; // valoracion
+    this.sinceDate = new Date(); // fecha en la que se añade el videojuego a la biblioteca
+}
+
+// -> Herencia
+Videogame.prototype = Object.create(Piece.prototype)
+Videogame.prototype.constructor = Videogame;
 
 // ####################################################################################################################
 // *** clase VideogameSectionsScore (Puntuación de los distintos apartados de un videojuego)

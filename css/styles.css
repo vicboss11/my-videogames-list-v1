@@ -111,16 +111,56 @@ a:focus .glyphicon-footer {
     color: #f8f9fa;
 }
 
+.custom-btn:hover {
+    color: #fc5769;
+}
+
 .no-decoration:active,
 .no-decoration:visited {
     text-decoration: none !important;
 }
 
 .custom-control-input:checked~.custom-control-label::before {
-    color: #fff;
-    border-color: #fc5769;
     background-color: #fc5769;
+    border-color: #fc5769;
     box-shadow: 0 0 1px 3px #f8a5af;
+    color: #fff;
+}
+
+.videogame-box {
+    box-sizing: content-box;
+    height: 367.33px;
+    width: 200px;
+}
+
+.videogame-image {
+    height: 80%;
+    width: 100%;
+}
+
+.videogame-image img {
+    height: 100%;
+    width: 100%;
+}
+
+.videogame-info {
+    height: 20%;
+    width: 100%;
+    font-size: 17px;
+    padding: 10px 5px;
+}
+
+/*
+    Quitar gutter
+*/
+.row.no-pad {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.no-pad>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 #main-section-home {
