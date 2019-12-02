@@ -71,9 +71,12 @@
 
         <section id="main-section-videogames">
             <aside>
-                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#add-videogame"
-                    data-whatever="@mdo">
+                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#add-videogame">
                     <i class="fas fa-plus"></i>
+                </button>
+
+                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#delete-all">
+                    <i class="fas fa-trash-alt"></i>
                 </button>
 
                 <div class="modal fade" id="add-videogame" tabindex="-1" role="dialog">
@@ -88,18 +91,61 @@
                             <div class="modal-body">
                                 <form>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <label for="videogame-name" class="col-form-label">Nombre:</label>
+                                        <input type="text" class="form-control" id="videogame-name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                        <label for="message-text" class="col-form-label">Genero:</label>
+                                        <input type="text" class="form-control" id="videogame-genre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="videogame-name" class="col-form-label">Desarrolladora:</label>
+                                        <input type="text" class="form-control" id="videogame-developer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Editora:</label>
+                                        <input type="text" class="form-control" id="videogame-publisher">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Plataforma/s:</label>
+                                        <input type="text" class="form-control" id="videogame-platform">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Fecha de salida:</label>
+                                        <input type="text" class="form-control" id="videogame-releaseDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">PEGI:</label>
+                                        <input type="text" class="form-control" id="videogame-rating">
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Añadir
+                                    videojuego</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="delete-all" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Eliminar toda la lista</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">
+                                    ¿Estás seguro de que quieres borrar toda la biblioteca?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar todo</button>
                             </div>
                         </div>
                     </div>

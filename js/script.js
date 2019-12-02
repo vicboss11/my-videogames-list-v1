@@ -15,6 +15,8 @@ function drawLibrary() {
     } else {
         var output = document.getElementById('output');
 
+        output.innerHTML = "";
+
         videogamesList.forEach((videogame) => {
             output.innerHTML += '<div class="col-auto my-3">' +
                 '<div class="videogame-box border rounded">' +
@@ -36,6 +38,7 @@ function addVideogame(videogame) {
     videogamesList.push(videogame);
 }
 
+// Función para eliminar un videojuego indicando su propiedad ID
 function removeVideogameByID(videogameID) {
     let i = 0;
     let found = false;
@@ -56,8 +59,6 @@ function deleteEntireList() {
     videogamesList = new Array();
 }
 
-
-
 // ####################################################################################################################
 // *** clase Piece
 // {Obra} Un videojuego es una obra o un producto si hablamos en términos más generales. Actuará como CLASE PADRE
@@ -71,14 +72,15 @@ function Piece() {
 // *** clase Videogame
 // {Videojuego} Será una CLASE HIJA (subclase) de Piece, de la cuál heredará un identificador
 // -> Constructor
-function Videogame(name, developer, publisher, platform, releaseDate, genre, rating, image) {
+function Videogame(name, genre, developer, publisher, platform, releaseDate, rating, image) {
     Piece.call(this, ID); // Hereda la propiedad ID de Piece
+    this.ID = "VG" + this.ID; // Se sobrescribe el ID heredado añadiendo el String "VG" (VideoGame) al principio
     this.name = new String(name); // nombre
+    this.genre = new String(genre); // genero/s
     this.developer = new String(developer); // empresa desarrolladora
     this.publisher = new String(publisher); // empresa editora
     this.platform = new String(platform); // plataforma/s
     this.releaseDate = new Date(Date.parse(releaseDate)); // fecha de lanzamiento
-    this.genre = new String(genre); // genero/s
     this.rating = new String(rating); // calificación de edad
     this.boxImage = new Image().src(image);
     this.score = null; // valoracion
@@ -90,7 +92,8 @@ Videogame.prototype = Object.create(Piece.prototype)
 Videogame.prototype.constructor = Videogame;
 
 // ####################################################################################################################
-// *** clase VideogameSectionsScore (Puntuación de los distintos apartados de un videojuego)
+// *** clase VideogameSectionsScore
+// Puntuación de los distintos apartados de un videojuego
 // -> Constructor
 // El narrative y el multiplayer son "opcionales" dependiendo del tipo
 // de Videojuego que se vaya a valorar
