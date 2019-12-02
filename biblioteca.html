@@ -30,11 +30,11 @@
 <body class="d-flex flex-column">
     <div class="main-content flex-grow">
 
-        <header>
+        <header class="container-fluid">
             <nav class="fixed-top">
                 <div class="navbar navbar-expand-md navbar-dark bg-dark py-3">
                     <a class="navbar-brand" href="index.html">MyVideogamesList</a>
-                    <button class="navbar-toggler no-focus" type="button" data-toggle="collapse"
+                    <button class="navbar-toggler rounded-0 no-focus" type="button" data-toggle="collapse"
                         data-target="#nav-menu">
                         <i class="navbar-toggler-icon"></i>
                     </button>
@@ -55,11 +55,11 @@
                     <form>
                         <div class="form-row">
                             <div class="col-11">
-                                <input class="form-control col-form-label-sm search-input no-extras" type="search"
-                                    placeholder="Buscar videojuegos por nombre...">
+                                <input class="form-control col-form-label-sm rounded-0 search-input no-extras"
+                                    type="search" placeholder="Buscar videojuegos por nombre...">
                             </div>
                             <div class="col-1">
-                                <button class="btn float-right no-extras" id="btn-search" type="submit">
+                                <button class="btn float-right rounded-0 no-extras" id="btn-search" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -70,59 +70,93 @@
         </header>
 
         <section id="main-section-videogames">
-            <aside>
-                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#add-videogame">
-                    <i class="fas fa-plus"></i>
-                </button>
+            <aside class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-4 offset-md-8 col-lg-3 offset-lg-9 pr-md-4 mb-4">
+                        <div class="btn-group btn-block" role="group">
+                            <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
+                                data-target="#add-videogame" data-backdrop="static" data-keyboard="false"
+                                data-tooltip="tooltip" trigger="hover" data-placement="bottom" title="Nuevo videojuego">
+                                <i class="fas fa-plus"></i>
+                            </button>
 
-                <button type="button" class="btn no-extras custom-btn" data-toggle="modal" data-target="#delete-all">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
+                            <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
+                                data-target="#delete-all" data-tooltip="tooltip" trigger="hover" data-placement="bottom"
+                                title="Eliminar toda la lista">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="modal fade" id="add-videogame" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                <!-- Inicio MODALS -->
+                <div class="modal fade bd-example-modal-lg" id="add-videogame" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content rounded-0">
                             <div class="modal-header">
-                                <h5 class="modal-title">Nuevo videojuego</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h5 class="modal-title title">NUEVO VIDEOJUEGO</h5>
+                                <button type="button" class="close custom-btn no-focus" data-dismiss="modal"
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="videogame-name" class="col-form-label">Nombre:</label>
-                                        <input type="text" class="form-control" id="videogame-name">
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="videogame-name">Nombre:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-name">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <div class="modal-image">
+                                                <img src="" alt="">
+                                            </div>
+                                            <label for="videogame-box">Seleccionar imagen de portada:</label>
+                                            <input type="file" class="form-control-file" id="videogame-box">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Genero:</label>
-                                        <input type="text" class="form-control" id="videogame-genre">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="message-text">Genero:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-genre">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="videogame-name" class="col-form-label">Desarrolladora:</label>
-                                        <input type="text" class="form-control" id="videogame-developer">
+                                    <div class="form-row">
+                                        <div class="form-group col-auto">
+                                            <label for="videogame-name">Desarrolladora:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-developer">
+                                        </div>
+                                        <div class="form-group col-auto">
+                                            <label for="message-text">Editora:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-publisher">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Editora:</label>
-                                        <input type="text" class="form-control" id="videogame-publisher">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="message-text">Plataforma/s:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-platform">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Plataforma/s:</label>
-                                        <input type="text" class="form-control" id="videogame-platform">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="message-text">Fecha de salida:</label>
+                                            <input type="text" class="form-control rounded-0"
+                                                id="videogame-releaseDate">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Fecha de salida:</label>
-                                        <input type="text" class="form-control" id="videogame-releaseDate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">PEGI:</label>
-                                        <input type="text" class="form-control" id="videogame-rating">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="message-text">PEGI:</label>
+                                            <input type="text" class="form-control rounded-0" id="videogame-rating">
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Añadir
+                                <button type="button" class="btn btn-dark rounded-0 no-focus"
+                                    data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-success rounded-0 no-focus"
+                                    data-dismiss="modal">Añadir
                                     videojuego</button>
                             </div>
                         </div>
@@ -130,27 +164,31 @@
                 </div>
 
                 <div class="modal fade" id="delete-all" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content rounded-0">
                             <div class="modal-header">
-                                <h5 class="modal-title">Eliminar toda la lista</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <h5 class="modal-title title">ELIMINAR TODA LA LISTA</h5>
+                                <button type="button" class="close custom-btn no-focus" data-dismiss="modal"
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <p class="text-center">
-                                    ¿Estás seguro de que quieres borrar toda la biblioteca?
+                                    ¿Estás seguro de que quieres eliminar todos los videojuegos guardados?
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar todo</button>
+                                <button type="button" class="btn btn-dark rounded-0 no-focus"
+                                    data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger rounded-0 no-focus"
+                                    data-dismiss="modal">Eliminar todo</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </aside>
+            <!-- Fin MODALS -->
 
             <article class="container-fluid">
                 <div class="row justify-content-around no-pad" id="output">
@@ -350,17 +388,14 @@
 
     <!-- JavaScript Opcional -->
     <!-- Primero jQuery, luego Popper.js, después Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <!-- Más JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery WayPoints -->
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>

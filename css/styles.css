@@ -90,7 +90,6 @@ a:focus .glyphicon-footer {
 
 .button-starts {
     border-color: #fc5769;
-    border-radius: 35px;
     color: #fc5769;
 }
 
@@ -129,7 +128,7 @@ a:focus .glyphicon-footer {
 
 .videogame-box {
     box-sizing: content-box;
-    height: 367.33px;
+    height: 365px;
     width: 200px;
 }
 
@@ -150,6 +149,19 @@ a:focus .glyphicon-footer {
     padding: 10px 5px;
 }
 
+.modal-img{
+    height: 175px;
+    width: 110px;
+}
+
+.modal-img img{
+    height: 100%;
+    width: 100%;
+}
+/*
+110
+175
+*/
 /*
     Quitar gutter
 */
@@ -227,7 +239,7 @@ input[type="search"]::placeholder {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #e9e3e3;
 }
 
 /* Handle */
