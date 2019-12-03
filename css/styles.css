@@ -1,0 +1,259 @@
+* {
+    font-family: "Titillium Web";
+}
+
+body {
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: 8rem;
+}
+
+footer hr {
+    background-color: #595f61;
+}
+
+small {
+    color: #9aa7ab;
+}
+
+a:focus .glyphicon-footer {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+.navbar-brand {
+    color: #fc5769 !important;
+}
+
+.search-navbar {
+    background-color: #595f61;
+}
+
+.hide-navbar {
+    background-color: transparent !important;
+}
+
+.hide-search-navbar {
+    visibility: hidden;
+}
+
+.bg-image {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/header/tlg-min.jpg);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(../images/header/tlg-min.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/header/tlg-min.jpg);
+}
+
+.no-extras {
+    border: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.glyphicon-footer {
+    font-size: 30px;
+}
+
+.no-focus:focus {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.title {
+    color: #f04a5d !important;
+}
+
+.custom-link {
+    color: #fc5769 !important;
+}
+
+.custom-link:hover {
+    color: #f04a5d !important;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
+.button-starts {
+    border-color: #fc5769;
+    color: #fc5769;
+}
+
+.button-starts:hover,
+.button-starts:active {
+    background-color: #fc5769 !important;
+    border-color: #fc5769 !important;
+    color: #f8f9fa;
+}
+
+.button-starts:focus {
+    border-color: #fc5769 !important;
+    color: #fc5769;
+}
+
+.button-starts:focus:hover {
+    border-color: #fc5769 !important;
+    color: #f8f9fa;
+}
+
+.custom-btn:hover {
+    color: #fc5769;
+}
+
+.no-decoration:active,
+.no-decoration:visited {
+    text-decoration: none !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #fc5769;
+    border-color: #fc5769;
+    box-shadow: 0 0 1px 3px #f8a5af;
+    color: #fff;
+}
+
+.videogame-box {
+    box-sizing: content-box;
+    height: 365px;
+    width: 200px;
+}
+
+.videogame-image {
+    height: 80%;
+    width: 100%;
+}
+
+.videogame-image img {
+    height: 100%;
+    width: 100%;
+}
+
+.videogame-info {
+    height: 20%;
+    width: 100%;
+    font-size: 17px;
+    padding: 10px 5px;
+}
+
+.box-img {
+    height: 100%;
+    width: 100%;
+}
+
+.modal-img {
+    height: 175px;
+    width: 120px;
+}
+
+.modal-img img {
+    height: 100%;
+    width: 100%;
+}
+
+/*
+110
+175
+*/
+/*
+    Quitar gutter
+*/
+.row.no-pad {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.no-pad>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#main-section-home {
+    padding-top: 6rem;
+}
+
+#main-section-videogames {
+    padding-top: 9rem;
+}
+
+#btn-search {
+    color: #ffffff;
+}
+
+#btn-search:hover {
+    color: #fc5769;
+}
+
+/*
+    Cambiar el color de la barra vertical del input
+*/
+input[type="search"] {
+    caret-color: #fc5769;
+    color: #ffffff !important;
+}
+
+/*
+    Quitar la "x" para eliminar el contenido del input search
+*/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+/*
+    Cambiar color del placeholder del input search
+*/
+input[type="search"]::-webkit-input-placeholder {
+    color: #ffffff !important;
+}
+
+input[type="search"]::-moz-placeholder {
+    color: #ffffff !important;
+}
+
+input[type="search"]::-ms-placeholder {
+    color: #ffffff !important;
+}
+
+input[type="search"]::placeholder {
+    color: #ffffff !important;
+}
+
+/*
+    Scrollbar
+*/
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #e9e3e3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
