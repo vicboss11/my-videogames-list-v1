@@ -103,51 +103,248 @@
                             <div class="modal-body">
                                 <form>
                                     <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label for="videogame-name">Nombre:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-name">
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <div class="modal-image">
-                                                <img src="" alt="">
+                                        <div class="col-12 col-lg-6">
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="videogame-name">Nombre:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-name">
+                                                </div>
                                             </div>
-                                            <label for="videogame-box">Seleccionar imagen de portada:</label>
-                                            <input type="file" class="form-control-file" id="videogame-box">
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="message-text">Genero/s:</label>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="acción" id="action" name="genre">
+                                                                <label class="form-check-label" for="action">
+                                                                    acción
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="aventuras" id="adventures" name="genre">
+                                                                <label class="form-check-label" for="adventures">
+                                                                    aventuras
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="carreras" id="racing" name="genre">
+                                                                <label class="form-check-label" for="racing">
+                                                                    carreras
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="deportes" id="sport" name="genre">
+                                                                <label class="form-check-label" for="sport">
+                                                                    deportes
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="estrategia" id="tactics" name="genre">
+                                                                <label class="form-check-label" for="tactics">
+                                                                    estrategia
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="FPS" id="fps" name="genre">
+                                                                <label class="form-check-label" for="fps">
+                                                                    FPS
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="infiltración" id="stealth" name="genre">
+                                                                <label class="form-check-label" for="stealth">
+                                                                    infiltración
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="lucha" id="fighting" name="genre">
+                                                                <label class="form-check-label" for="fighting">
+                                                                    lucha
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="MMO" id="mmo" name="genre">
+                                                                <label class="form-check-label" for="mmo">
+                                                                    MMO
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="MOBA" id="moba" name="genre">
+                                                                <label class="form-check-label" for="moba">
+                                                                    MOBA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="plataformas" id="platformers" name="genre">
+                                                                <label class="form-check-label" for="platformers">
+                                                                    plataformas
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="puzles" id="puzzle" name="genre">
+                                                                <label class="form-check-label" for="puzzle">
+                                                                    puzles
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="ritmo/música" id="rythm" name="genre">
+                                                                <label class="form-check-label" for="rythm">
+                                                                    ritmo/música
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="RPG" id="rpg" name="genre">
+                                                                <label class="form-check-label" for="rpg">
+                                                                    RPG
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="RTS" id="rts" name="genre">
+                                                                <label class="form-check-label" for="rts">
+                                                                    RTS
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row pl-4">
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="simulador" id="simulation" name="genre">
+                                                                <label class="form-check-label" for="simulation">
+                                                                    simulador
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="survival" id="survival" name="genre">
+                                                                <label class="form-check-label" for="survival">
+                                                                    survival
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-12 col-lg-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="TPS" id="tps" name="genre">
+                                                                <label class="form-check-label" for="tps">
+                                                                    TPS
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="videogame-name">Desarrolladora:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-developer">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="message-text">Editora:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-publisher">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="message-text">Plataforma/s:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-platform" placeholder="PS4, XONE, Switch, Wii, Nintendo DS, etc.">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="message-text">Fecha de salida:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-releaseDate">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="message-text">PEGI:</label>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        id="videogame-rating">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="message-text">Genero:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-genre">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-auto">
-                                            <label for="videogame-name">Desarrolladora:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-developer">
-                                        </div>
-                                        <div class="form-group col-auto">
-                                            <label for="message-text">Editora:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-publisher">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="message-text">Plataforma/s:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-platform">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="message-text">Fecha de salida:</label>
-                                            <input type="text" class="form-control rounded-0"
-                                                id="videogame-releaseDate">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="message-text">PEGI:</label>
-                                            <input type="text" class="form-control rounded-0" id="videogame-rating">
+                                        <div class="col-12 col-lg-6">
+                                            <!--
+                                        <div class="form-group col-6">
+                                            <div class="form-row">
+                                                <label for="videogame-img-chooser">Imagen de portada:</label>
+
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="box-img">
+                                                    <div class="modal-img border rounded-0 mx-auto d-block">
+                                                        <img id="videogame-img"
+                                                            src="images/videogames/no-image.png"
+                                                            alt="imagen de portada">
+                                                    </div>
+                                                </div>
+                                                <input type="file" class="form-control-file" id="videogame-img-chooser">
+                                            </div>
+
+                                        </div>-->
                                         </div>
                                     </div>
                                 </form>
@@ -182,7 +379,8 @@
                                 <button type="button" class="btn btn-dark rounded-0 no-focus"
                                     data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-danger rounded-0 no-focus"
-                                    data-dismiss="modal">Eliminar todo</button>
+                                    data-dismiss="modal">Eliminar
+                                    todo</button>
                             </div>
                         </div>
                     </div>
@@ -215,7 +413,7 @@
                     <div class="col-auto my-3">
                         <div class="videogame-box border rounded">
                             <div class="videogame-image">
-                                <img src="images/videogames/League of Legends.jpg" alt="">
+                                <img src="images/videogames/no-image.png" alt="">
                             </div>
                             <div class="videogame-info text-dark text-center">
                                 <p>League of Legends</p>

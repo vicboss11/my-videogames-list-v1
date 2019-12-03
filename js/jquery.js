@@ -81,6 +81,24 @@ $(function () {
     });
 
     // ####################################################################################################################
+    // Función para actualizar previsualización de imagen de forma dinámica
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#videogame-img').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#videogame-img-chooser").change(function () {
+        readURL(this);
+    });
+
+    // ####################################################################################################################
     // Activar tooltip de Bootstrap
     $('[data-tooltip="tooltip"]').tooltip();
     // Mostrar tooltipe únicamente en el estado "hover", ocultar aunque el estado sea "focus"

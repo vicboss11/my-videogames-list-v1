@@ -149,15 +149,21 @@ a:focus .glyphicon-footer {
     padding: 10px 5px;
 }
 
-.modal-img{
-    height: 175px;
-    width: 110px;
-}
-
-.modal-img img{
+.box-img {
     height: 100%;
     width: 100%;
 }
+
+.modal-img {
+    height: 175px;
+    width: 120px;
+}
+
+.modal-img img {
+    height: 100%;
+    width: 100%;
+}
+
 /*
 110
 175
