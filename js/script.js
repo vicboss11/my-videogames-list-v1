@@ -160,8 +160,32 @@ function deleteEntireList() {
 // => Formularios
 // Función para crear un videojuego a partir de los datos de su formulario correspondiente
 function addNewVideogameFromDataForm() {
-    let name = getElementById('videogame-name').value;
-    addVideogame(new Videogame(name, genre, developer, publisher, platform, rating, image));
+    let name = document.getElementById('videogame-name').value;
+    let formGenre = document.forms['addVideogameForm'].genre;
+    let genres = new Array();
+
+    for (let i = 0; i < formGenre.length; i++) {
+        if (formGenre[i].checked) {
+            genres.push(formGenre[i].value);
+        }
+    }
+
+    let developer = document.getElementById('videogame-developer').value;
+    let publisher = document.getElementById('videogame-publisher').value;
+    let platform = document.getElementById('videogame-platform').value;
+    let formRating = document.forms['addVideogameForm'].pegi;
+    let rating;
+
+    for (let i = 0; i < formRating.length; i++) {
+        if (formRating[i].checked) {
+            rating = formRating[i].value;
+        }
+    }
+
+    let fileInput = document.getElementById('videogame-img-chooser');
+    let image = fileInput.files[0].name;
+    addVideogame(new Videogame(name, genres, developer, publisher, platform, rating, image));
+    drawLibrary();
 }
 
 // ####################################################################################################################
