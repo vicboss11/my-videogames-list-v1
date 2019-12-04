@@ -1,26 +1,79 @@
 // ####################################################################################################################
-// Array en el que se guardarán todos los videojuegos
-var videogamesList = new Array();
+// ####################################################################################################################
+// => SALIDA HTML
 
-// Función para comprobar si la lista está o no vacía
-function noEmptyList() {
-    // Devuelve true si length en mayor que 0, en caso contrario devuelve false
-    return videogamesList.length > 0;
+// Variable para acceder al elemento del DOM con id="output"
+var output = document.getElementById('output');
+
+// Función para limpiar el elemento con id="output"
+function cleanOutput() {
+    // Se asigna una cadena vacía
+    output.innerHTML = "";
 }
 
-// Función para dibujar la biblioteca
-function drawLibrary() {
-    if (!noEmptyList) {
+// ####################################################################################################################
+// ####################################################################################################################
+// => CLASES
 
+// ####################################################################################################################
+// *** clase VideogamesLibrary
+// {Biblioteca de videojuegos} Clase en la cuál se almacenaran los videojuegos
+// -> Constructor
+function VideogamesLibrary() {
+    this.list = new Array();
+}
+
+// -> Métodos
+// Método para determinar si la biblioteca está o no vacía
+VideogamesLibrary.prototype.isEmpty = function () {
+    return this.list.length == 0;
+}
+
+// Método para añadir un videojuego a la biblioteca
+VideogamesLibrary.prototype.add = function (Videogame) {
+    // Se añade el videojuego a la propiedad list (Array) como último elemento 
+    this.list.push(Videogame);
+}
+
+// Método para eliminar un videojuego de la biblioteca. Recibe como parámetro el ID del videojuego
+VideogamesLibrary.prototype.remove = function (videogameID) {
+    let i = 0;
+    let found = false;
+    // Si se encuentra el ID en la lista se eliminará el videojuego
+    // La busqueda seguirá mientras el contador sea menor que el tamaño del Array 
+    // y no se haya encontrado un videojuego con el ID que recibe por parámetro
+    while (i < this.list.length && !found) {
+        if (this.list[i].ID === videogameID) {
+            found = true;
+            this.list.splice(i, 1);
+        }
+
+        i++;
+    }
+}
+
+// Método para eliminar todos lo videojuegos de la biblioteca
+VideogamesLibrary.prototype.removeAll = function () {
+    this.list.length = 0;
+}
+
+// Método para dibujar en el elemento del DOM con id="output" cada uno de los videojuegos guardados
+// en la biblioteca
+VideogamesLibrary.prototype.draw = function () {
+    if (this.isEmpty()) {
+        output.innerHTML = '<div class="d-flex flex-wrap justify-content-center my-5 mx-auto p-5">' +
+            '<h3 class="text-center">' +
+            'No has añadido ningún videojuego a tu <span class="title">biblioteca</span>' +
+            '</h3>' +
+            '</div>';
     } else {
-        var output = document.getElementById('output');
-
-        output.innerHTML = "";
-
-        videogamesList.forEach((videogame) => {
+        // Se limpia la salida
+        cleanOutput();
+        // Se recorre la lista mediante un forEach
+        this.list.forEach((videogame) => {
             output.innerHTML += '<div class="videogame-box border rounded-0 mx-auto mb-3 m-md-1">' +
                 '<div class="videogame-image" data-toggle="modal" data-target="#' + videogame.ID + '">' +
-                '<img src="images/videogames/' + videogame.boxImage + '" alt="Imagen de ' + videogame.name + '">' +
+                '<img src="images/videogames/' + videogame.image + '" alt="Imagen de ' + videogame.name + '">' +
                 '</div>' +
                 '<div class="videogame-info text-dark text-center">' +
                 '<div class="d-flex flex-row justify-content-center">' +
@@ -99,7 +152,6 @@ function drawLibrary() {
                 '</div>' +
                 '</div>' +
                 '</div>' +
-
                 '<div class="modal fade" id="remove-videogame-' + videogame.ID + '" tabindex="-1" role="dialog">' +
                 '<div class="modal-dialog modal-dialog-centered" role="document">' +
                 '<div class="modal-content rounded-0">' +
@@ -118,7 +170,7 @@ function drawLibrary() {
                 '<button type="button" class="btn btn-dark rounded-0 no-focus" data-dismiss="modal">' +
                 'Cancelar' +
                 '</button>' +
-                '<button type="button" class="btn btn-danger rounded-0 no-focus" data-dismiss="modal">' +
+                '<button type="button" class="btn btn-danger rounded-0 no-focus" data-dismiss="modal" onclick="removeVideogame(\'' + videogame.ID + '\')">' +
                 'Eliminar' +
                 '</button>' +
                 '</div>' +
@@ -129,69 +181,10 @@ function drawLibrary() {
     }
 }
 
-// Función para añadir un videojuego a la lista
-function addVideogame(videogame) {
-    // Añade un videojuego al final del array
-    videogamesList.push(videogame);
-}
-
-// Función para eliminar un videojuego indicando su propiedad ID
-function removeVideogameByID(videogameID) {
-    let i = 0;
-    let found = false;
-    // Si se encuentra el ID en la lista se eliminará el videojuego
-    while (i < videogamesList.length && !found) {
-        if (videogamesList[i].ID === videogameID) {
-            found = true;
-            videogamesList.splice(i, 1);
-        }
-
-        i++;
-    }
-}
-
-// Función para borrar toda la lista
-function deleteEntireList() {
-    // Para borrar el array se vuelve a instanciar
-    videogamesList.length = 0;
-}
-
-// ####################################################################################################################
-// => Formularios
-// Función para crear un videojuego a partir de los datos de su formulario correspondiente
-function addNewVideogameFromDataForm() {
-    let name = document.getElementById('videogame-name').value;
-    let formGenre = document.forms['addVideogameForm'].genre;
-    let genres = new Array();
-
-    for (let i = 0; i < formGenre.length; i++) {
-        if (formGenre[i].checked) {
-            genres.push(formGenre[i].value);
-        }
-    }
-
-    let developer = document.getElementById('videogame-developer').value;
-    let publisher = document.getElementById('videogame-publisher').value;
-    let platform = document.getElementById('videogame-platform').value;
-    let formRating = document.forms['addVideogameForm'].pegi;
-    let rating;
-
-    for (let i = 0; i < formRating.length; i++) {
-        if (formRating[i].checked) {
-            rating = formRating[i].value;
-        }
-    }
-
-    let fileInput = document.getElementById('videogame-img-chooser');
-    let image = fileInput.files[0].name;
-    addVideogame(new Videogame(name, genres, developer, publisher, platform, rating, image));
-    drawLibrary();
-}
-
 // ####################################################################################################################
 // *** clase Piece
-// {Obra} Un videojuego es una obra o un producto si hablamos en términos más generales. Actuará como CLASE PADRE
-// (superclase) de videojuego para hacer uso de la herencia
+// {Obra} Un videojuego es una obra o un producto si hablamos en términos más generales. Actuará 
+// como CLASE PADRE (superclase) de videojuego para hacer uso de la herencia
 // -> Constructor
 function Piece() {
     this.ID = uuidv1(); // UUID único
@@ -201,18 +194,18 @@ function Piece() {
 // *** clase Videogame
 // {Videojuego} Será una CLASE HIJA (subclase) de Piece, de la cuál heredará un identificador
 // -> Constructor
-function Videogame(name, genre, developer, publisher, platform, rating, image) {
+function Videogame(name, genre, developer, publisher, platform, rating, image = "no-image.png") {
     Piece.call(this); // Hereda la propiedad ID de Piece
     this.ID = "VG-" + this.ID; // Se sobrescribe el ID heredado añadiendo el String "VG" (VideoGame) al principio
-    this.name = new String(name); // nombre
-    this.genre = new String(genre); // genero/s
-    this.developer = new String(developer); // empresa desarrolladora
-    this.publisher = new String(publisher); // empresa editora
-    this.platform = new String(platform); // plataforma/s
-    this.rating = new String(rating); // calificación de edad
-    this.boxImage = image;
-    this.score = null; // valoracion
+    this.name = name; // nombre
+    this.genre = genre; // genero/s
+    this.developer = developer; // empresa desarrolladora
+    this.publisher = publisher; // empresa editora
+    this.platform = platform; // plataforma/s
+    this.rating = new Number(rating); // calificación de edad
+    this.image = image; // imagen
     this.sinceDate = new Date(); // fecha en la que se añade el videojuego a la biblioteca
+    this.score = null; // valoracion
 }
 
 // -> Herencia
@@ -259,3 +252,85 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
 
     return score;
 }
+
+// ####################################################################################################################
+// ####################################################################################################################
+// => FORMULARIOS
+
+// Función para añadir un videojuego a partir de los datos de su formulario correspondiente
+function addNewVideogame() {
+    // Crear una variable apuntando al formuario del que se quieren recoger los datos
+    let addForm = document.forms['addVideogameForm'];
+
+    // Obtener el nombre del videojuego
+    let name = addForm.videogameName.value;
+
+    // Obtener el/los genero/s del videojuego
+    // Se obtiene el Array de los checkbox videogameGenre para recorrerlo mediante un bucle for
+    // y guardar aquellos que estén marcados en otro Array
+    let genreArr = addForm.videogameGenre;
+    let genres = new Array();
+
+    for (let i = 0; i < genreArr.length; i++) {
+        if (genreArr[i].checked) {
+            genres.push(genreArr[i].value);
+        }
+    }
+
+    // Obtener el desarrollador y la editora del videojuego
+    let developer = addForm.videogameDeveloper.value;
+    let publisher = addForm.videogamePublisher.value;
+
+    // Obtener la/s plataforma/s del videojuego
+    // Se recibirá una cadena cuyos elementos estarán separados por coma y un espacio ", "
+    let platform = addForm.videogamePlatform.value;
+    // Platform se convierte en una array
+    platform = platform.split(", ");
+
+    // Se obtiene el Array de los radio button videogameRating para recorrerlo mediante 
+    // un bucle for y guardar aquel que esté marcado en una variable
+    let ratingArr = addForm.videogameRating;
+
+    for (let i = 0; i < ratingArr.length; i++) {
+        if (ratingArr[i].checked) {
+            var rating = ratingArr[i].value;
+        }
+    }
+
+    // Se obtiene la imagen seleccionada a través del Array files
+    let fileInput = addForm.videogameImage;
+    if (fileInput.files.length > 0) {
+        var image = fileInput.files[0].name;
+    }
+
+    library.add(new Videogame(name, genres, developer, publisher, platform, rating, image));
+    library.draw();
+}
+
+// ####################################################################################################################
+// ####################################################################################################################
+// => FUNCIONES EVENTOS
+
+// Función para eliminar un videojuego
+function removeVideogame(videogameID) {
+    // Elimina el videojuego y dibuja la biblioteca
+    library.remove(videogameID);
+    library.draw();
+}
+
+// Función para eliminar todos los videojuegos
+function removeAllVideogames() {
+    // Elimina todos los videojuegos y dibuja la biblioteca
+    library.removeAll();
+    library.draw();
+}
+
+function drawVideogamesLibrary() {
+    library.draw();
+}
+
+// ####################################################################################################################
+// ####################################################################################################################
+// => VALORES POR DEFECTO
+
+var library = new VideogamesLibrary();

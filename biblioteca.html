@@ -27,7 +27,7 @@
     <title>MyVideogamesList · Biblioteca</title>
 </head>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column" onload="drawVideogamesLibrary()">
     <div class="main-content flex-grow">
 
         <header class="container-fluid">
@@ -82,7 +82,7 @@
 
                             <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
                                 data-target="#delete-all" data-tooltip="tooltip" trigger="hover" data-placement="bottom"
-                                title="Eliminar toda la lista">
+                                title="Eliminar todos los videojuegos">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -106,9 +106,9 @@
                                         <div class="col-12 col-lg-6">
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="videogame-name">Nombre:</label>
+                                                    <label for="videogameName">Nombre:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        id="videogame-name">
+                                                        name="videogameName" id="videogameName">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -118,7 +118,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="acción" id="action" name="genre">
+                                                                    value="acción" id="action" name="videogameGenre">
                                                                 <label class="form-check-label" for="action">
                                                                     acción
                                                                 </label>
@@ -127,7 +127,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="aventuras" id="adventures" name="genre">
+                                                                    value="aventuras" id="adventures"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="adventures">
                                                                     aventuras
                                                                 </label>
@@ -136,7 +137,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="carreras" id="racing" name="genre">
+                                                                    value="carreras" id="racing" name="videogameGenre">
                                                                 <label class="form-check-label" for="racing">
                                                                     carreras
                                                                 </label>
@@ -147,7 +148,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="deportes" id="sport" name="genre">
+                                                                    value="deportes" id="sport" name="videogameGenre">
                                                                 <label class="form-check-label" for="sport">
                                                                     deportes
                                                                 </label>
@@ -156,7 +157,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="estrategia" id="tactics" name="genre">
+                                                                    value="estrategia" id="tactics"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="tactics">
                                                                     estrategia
                                                                 </label>
@@ -165,7 +167,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="FPS" id="fps" name="genre">
+                                                                    value="FPS" id="fps" name="videogameGenre">
                                                                 <label class="form-check-label" for="fps">
                                                                     FPS
                                                                 </label>
@@ -176,7 +178,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="infiltración" id="stealth" name="genre">
+                                                                    value="infiltración" id="stealth"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="stealth">
                                                                     infiltración
                                                                 </label>
@@ -185,7 +188,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="lucha" id="fighting" name="genre">
+                                                                    value="lucha" id="fighting" name="videogameGenre">
                                                                 <label class="form-check-label" for="fighting">
                                                                     lucha
                                                                 </label>
@@ -194,7 +197,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="MMO" id="mmo" name="genre">
+                                                                    value="MMO" id="mmo" name="videogameGenre">
                                                                 <label class="form-check-label" for="mmo">
                                                                     MMO
                                                                 </label>
@@ -205,7 +208,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="MOBA" id="moba" name="genre">
+                                                                    value="MOBA" id="moba" name="videogameGenre">
                                                                 <label class="form-check-label" for="moba">
                                                                     MOBA
                                                                 </label>
@@ -214,7 +217,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="plataformas" id="platformers" name="genre">
+                                                                    value="plataformas" id="platformers"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="platformers">
                                                                     plataformas
                                                                 </label>
@@ -223,7 +227,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="puzles" id="puzzle" name="genre">
+                                                                    value="puzles" id="puzzle" name="videogameGenre">
                                                                 <label class="form-check-label" for="puzzle">
                                                                     puzles
                                                                 </label>
@@ -234,7 +238,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="ritmo/música" id="rythm" name="genre">
+                                                                    value="ritmo/música" id="rythm"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="rythm">
                                                                     ritmo/música
                                                                 </label>
@@ -243,7 +248,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="RPG" id="rpg" name="genre">
+                                                                    value="RPG" id="rpg" name="videogameGenre">
                                                                 <label class="form-check-label" for="rpg">
                                                                     RPG
                                                                 </label>
@@ -252,7 +257,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="RTS" id="rts" name="genre">
+                                                                    value="RTS" id="rts" name="videogameGenre">
                                                                 <label class="form-check-label" for="rts">
                                                                     RTS
                                                                 </label>
@@ -263,7 +268,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="simulador" id="simulation" name="genre">
+                                                                    value="simulador" id="simulation"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="simulation">
                                                                     simulador
                                                                 </label>
@@ -272,7 +278,8 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="survival" id="survival" name="genre">
+                                                                    value="survival" id="survival"
+                                                                    name="videogameGenre">
                                                                 <label class="form-check-label" for="survival">
                                                                     survival
                                                                 </label>
@@ -281,7 +288,7 @@
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox"
-                                                                    value="TPS" id="tps" name="genre">
+                                                                    value="TPS" id="tps" name="videogameGenre">
                                                                 <label class="form-check-label" for="tps">
                                                                     TPS
                                                                 </label>
@@ -292,36 +299,37 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="videogame-name">Desarrolladora:</label>
+                                                    <label for="videogameDeveloper">Desarrolladora:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        id="videogame-developer">
+                                                        name="videogameDeveloper" id="videogameDeveloper">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="message-text">Editora:</label>
+                                                    <label for="videogamePublisher">Editora:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        id="videogame-publisher">
+                                                        name="videogamePublisher" id="videogamePublisher">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="message-text">Plataforma/s:</label>
+                                                    <label for="videogamePlatform">Plataforma/s:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        id="videogame-platform"
+                                                        name="videogamePlatform" id="videogamePlatform"
                                                         placeholder="PC, PS4, XONE, Switch, Wii U, Nintendo 3DS, etc.">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="message-text">PEGI:</label>
+                                                    <label for="videogameRating">PEGI:</label>
                                                     <div class="row">
                                                         <div class="col-12 offset-1 offset-lg-0">
                                                             <div class="row justify-content-around">
                                                                 <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
-                                                                            id="three" name="pegi" value="3" checked>
+                                                                            id="three" name="videogameRating" value="3"
+                                                                            checked>
                                                                         <label for="three"
                                                                             class="custom-control-label">3</label>
                                                                     </div>
@@ -329,7 +337,7 @@
                                                                 <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
-                                                                            id="seven" name="pegi" value="7">
+                                                                            id="seven" name="videogameRating" value="7">
                                                                         <label for="seven"
                                                                             class="custom-control-label">7</label>
                                                                     </div>
@@ -337,7 +345,8 @@
                                                                 <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
-                                                                            id="twelve" name="pegi" value="12">
+                                                                            id="twelve" name="videogameRating"
+                                                                            value="12">
                                                                         <label for="twelve"
                                                                             class="custom-control-label">12</label>
                                                                     </div>
@@ -345,7 +354,8 @@
                                                                 <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
-                                                                            id="sixteen" name="pegi" value="16">
+                                                                            id="sixteen" name="videogameRating"
+                                                                            value="16">
                                                                         <label for="sixteen"
                                                                             class="custom-control-label">16</label>
                                                                     </div>
@@ -353,7 +363,8 @@
                                                                 <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
-                                                                            id="eighteen" name="pegi" value="18">
+                                                                            id="eighteen" name="videogameRating"
+                                                                            value="18">
                                                                         <label for="eighteen"
                                                                             class="custom-control-label">18</label>
                                                                     </div>
@@ -373,7 +384,7 @@
                                                             id="videogame-img" src="images/videogames/no-image.png"
                                                             alt="imagen de portada">
                                                     </div>
-                                                    <input type="file" class="form-control-file"
+                                                    <input type="file" class="form-control-file" name="videogameImage"
                                                         id="videogame-img-chooser" accept=".jpg, .jpeg, .png">
                                                 </div>
                                             </div>
@@ -384,8 +395,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-dark rounded-0 no-focus"
                                     data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success rounded-0 no-focus"
-                                    data-dismiss="modal" onclick="addNewVideogameFromDataForm()">Añadir
+                                <button type="button" class="btn btn-success rounded-0 no-focus" data-dismiss="modal"
+                                    onclick="addNewVideogame()">Añadir
                                     videojuego
                                 </button>
                             </div>
@@ -397,7 +408,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content rounded-0">
                             <div class="modal-header">
-                                <h5 class="modal-title title">ELIMINAR TODA LA LISTA</h5>
+                                <h5 class="modal-title title">ELIMINAR TODOS LOS VIDEOJUEGOS DE LA BIBLIOTECA</h5>
                                 <button type="button" class="close custom-btn no-focus" data-dismiss="modal"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -405,15 +416,15 @@
                             </div>
                             <div class="modal-body">
                                 <p class="text-center">
-                                    ¿Seguro que quieres eliminar todos los videojuegos de tu lista?
+                                    ¿Seguro que quieres eliminar todos los videojuegos de la biblioteca?
                                 </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-dark rounded-0 no-focus" data-dismiss="modal">
                                     Cancelar
                                 </button>
-                                <button type="button" class="btn btn-danger rounded-0 no-focus" data-dismiss="modal"
-                                    onclick="deleteEntireList()">
+                                <button onclick="removeAllVideogames()" type="button"
+                                    class="btn btn-danger rounded-0 no-focus" data-dismiss="modal">
                                     Eliminar todo
                                 </button>
                             </div>
@@ -426,6 +437,7 @@
             <article class="container-fluid">
                 <div>
                     <div class="d-flex flex-wrap px-1 px-md-0 px-lg-2" id="output">
+
                     </div>
                 </div>
             </article>
