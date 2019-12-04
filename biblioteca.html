@@ -90,7 +90,7 @@
                 </div>
 
                 <!-- Inicio MODALS -->
-                <div class="modal fade bd-example-modal-lg" id="add-videogame" tabindex="-1" role="dialog">
+                <div class="modal fade" id="add-videogame" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content rounded-0">
                             <div class="modal-header">
@@ -308,43 +308,75 @@
                                                 <div class="form-group col-12">
                                                     <label for="message-text">Plataforma/s:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        id="videogame-platform" placeholder="PS4, XONE, Switch, Wii, Nintendo DS, etc.">
+                                                        id="videogame-platform"
+                                                        placeholder="PC, PS4, XONE, Switch, Wii U, Nintendo 3DS, etc.">
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="message-text">Fecha de salida:</label>
-                                                    <input type="text" class="form-control rounded-0"
-                                                        id="videogame-releaseDate">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
+                                                <div class="form-group col-12">
                                                     <label for="message-text">PEGI:</label>
-                                                    <input type="text" class="form-control rounded-0"
-                                                        id="videogame-rating">
+                                                    <div class="row">
+                                                        <div class="col-12 offset-1 offset-lg-0">
+                                                            <div class="row justify-content-around">
+                                                                <div class="col-12 col-lg-auto">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input class="custom-control-input" type="radio"
+                                                                            id="three" name="pegi" value="3" checked>
+                                                                        <label for="three"
+                                                                            class="custom-control-label">3</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-auto">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input class="custom-control-input" type="radio"
+                                                                            id="seven" name="pegi" value="7">
+                                                                        <label for="seven"
+                                                                            class="custom-control-label">7</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-auto">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input class="custom-control-input" type="radio"
+                                                                            id="twelve" name="pegi" value="12">
+                                                                        <label for="twelve"
+                                                                            class="custom-control-label">12</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-auto">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input class="custom-control-input" type="radio"
+                                                                            id="sixteen" name="pegi" value="16">
+                                                                        <label for="sixteen"
+                                                                            class="custom-control-label">16</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-lg-auto">
+                                                                    <div class="custom-control custom-radio">
+                                                                        <input class="custom-control-input" type="radio"
+                                                                            id="eighteen" name="pegi" value="18">
+                                                                        <label for="eighteen"
+                                                                            class="custom-control-label">18</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
-                                            <!--
-                                        <div class="form-group col-6">
                                             <div class="form-row">
-                                                <label for="videogame-img-chooser">Imagen de portada:</label>
-
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="box-img">
-                                                    <div class="modal-img border rounded-0 mx-auto d-block">
-                                                        <img id="videogame-img"
-                                                            src="images/videogames/no-image.png"
+                                                <div class="form-group col-12">
+                                                    <label for="videogame-img-chooser">Imagen de portada:</label>
+                                                    <div class="mb-4">
+                                                        <img class="img-fluid modal-img border rounded-0 mx-auto d-block"
+                                                            id="videogame-img" src="images/videogames/no-image.png"
                                                             alt="imagen de portada">
                                                     </div>
+                                                    <input type="file" class="form-control-file"
+                                                        id="videogame-img-chooser" accept=".jpg, .jpeg, .png">
                                                 </div>
-                                                <input type="file" class="form-control-file" id="videogame-img-chooser">
                                             </div>
-
-                                        </div>-->
                                         </div>
                                     </div>
                                 </form>
@@ -353,8 +385,9 @@
                                 <button type="button" class="btn btn-dark rounded-0 no-focus"
                                     data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-success rounded-0 no-focus"
-                                    data-dismiss="modal">Añadir
-                                    videojuego</button>
+                                    data-dismiss="modal" onclick="">Añadir
+                                    videojuego
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -372,15 +405,17 @@
                             </div>
                             <div class="modal-body">
                                 <p class="text-center">
-                                    ¿Estás seguro de que quieres eliminar todos los videojuegos guardados?
+                                    ¿Seguro que quieres eliminar todos los videojuegos de tu lista?
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-dark rounded-0 no-focus"
-                                    data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-danger rounded-0 no-focus"
-                                    data-dismiss="modal">Eliminar
-                                    todo</button>
+                                <button type="button" class="btn btn-dark rounded-0 no-focus" data-dismiss="modal">
+                                    Cancelar
+                                </button>
+                                <button type="button" class="btn btn-danger rounded-0 no-focus" data-dismiss="modal"
+                                    onclick="deleteEntireList()">
+                                    Eliminar todo
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -389,146 +424,8 @@
             <!-- Fin MODALS -->
 
             <article class="container-fluid">
-                <div class="row justify-content-around no-pad" id="output">
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/The Outer Worlds.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>The Outer Worlds</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Bloodborne.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Bloodborne</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/no-image.png" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>League of Legends</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/God of War.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>God of War</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/mgsvtpp.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Metal Gear Solid V The Phantom Pain</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Luigi's Mansion 3-285x380.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Luigi's Mansion 3</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Red Dead Redemption 2.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Red Dead Redemption 2</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Marvel's Spider-Man.png" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Marvel's Spider-Man</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Dark Souls III.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Dark Souls III</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/God of War III.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>God of War III</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Star Wars Battlefront II.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Star Wars Battlefront II</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/Overwatch.png" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>Overwatch</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/The Legend of Zelda_ Breath of the Wild.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>The Legend of Zelda_ Breath of the Wild</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto my-3">
-                        <div class="videogame-box border rounded">
-                            <div class="videogame-image">
-                                <img src="images/videogames/This War of Mine.jpg" alt="">
-                            </div>
-                            <div class="videogame-info text-dark text-center">
-                                <p>This War of Mine</p>
-                            </div>
-                        </div>
+                <div>
+                    <div class="d-flex flex-wrap px-1 px-md-0 px-lg-2" id="output">
                     </div>
                 </div>
             </article>
@@ -599,7 +496,7 @@
     <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <!-- JavaScript UUIDs únicos -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
+    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
     <!-- JavaScript Propio -->
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
