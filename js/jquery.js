@@ -49,11 +49,9 @@ $(function () {
         if (direction == "down") {
             $('nav').addClass('fixed-top');
             $('.navbar').removeClass('hide-navbar');
-            $('.search-navbar').removeClass('hide-search-navbar');
         } else {
             $('nav').removeClass('fixed-top');
             $('.navbar').addClass('hide-navbar');
-            $('.search-navbar').addClass('hide-search-navbar');
         }
     }, {
         offset: '60px;'

@@ -27,7 +27,7 @@
     <title>MyVideogamesList · Biblioteca</title>
 </head>
 
-<body class="d-flex flex-column" onload="drawVideogamesLibrary()">
+<body class="d-flex flex-column">
     <div class="main-content flex-grow">
 
         <header class="container-fluid">
@@ -52,11 +52,12 @@
                     </div>
                 </div>
                 <div class="px-4 search-navbar">
-                    <form>
+                    <form name="search-by-name-form" onsubmit="searchVideogameByName(); return false">
                         <div class="form-row">
                             <div class="col-11">
                                 <input class="form-control col-form-label-sm rounded-0 search-input no-extras"
-                                    type="search" placeholder="Buscar videojuegos por nombre...">
+                                    type="search" name="searchByNameInput" minlength="2"
+                                    placeholder="Buscar videojuegos por nombre..." autocomplete="off">
                             </div>
                             <div class="col-1">
                                 <button class="btn float-right rounded-0 no-extras" id="btn-search" type="submit">
@@ -76,12 +77,12 @@
                         <div class="btn-group btn-block" role="group">
                             <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
                                 data-target="#add-videogame" data-backdrop="static" data-keyboard="false"
-                                data-tooltip="tooltip" trigger="hover" data-placement="bottom" title="Nuevo videojuego">
+                                data-tooltip="tooltip" data-placement="bottom" title="Nuevo videojuego">
                                 <i class="fas fa-plus"></i>
                             </button>
 
                             <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
-                                data-target="#delete-all" data-tooltip="tooltip" trigger="hover" data-placement="bottom"
+                                data-target="#delete-all" data-tooltip="tooltip" data-placement="bottom"
                                 title="Eliminar todos los videojuegos">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
@@ -101,19 +102,19 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form name="addVideogameForm">
+                                <form name="add-videogame-form">
                                     <div class="form-row">
                                         <div class="col-12 col-lg-6">
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogameName">Nombre:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        name="videogameName" id="videogameName">
+                                                        name="videogameName" id="videogameName" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="message-text">Genero/s:</label>
+                                                    <label>Genero/s:</label>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
                                                             <div class="form-check">
@@ -321,7 +322,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <label for="videogameRating">PEGI:</label>
+                                                    <label>PEGI:</label>
                                                     <div class="row">
                                                         <div class="col-12 offset-1 offset-lg-0">
                                                             <div class="row justify-content-around">

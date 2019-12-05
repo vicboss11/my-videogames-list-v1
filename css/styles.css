@@ -45,10 +45,6 @@ a:focus .glyphicon-footer {
     background-color: transparent !important;
 }
 
-.hide-search-navbar {
-    visibility: hidden;
-}
-
 .bg-image {
     background-size: cover;
     background-position: center;
@@ -156,6 +152,7 @@ a:focus .glyphicon-footer {
     font-size: 16px;
     padding: 10px 5px;
 }
+
 .videogame-options button {
     width: 40px;
 }
@@ -211,6 +208,11 @@ a:focus .glyphicon-footer {
 input[type="search"] {
     caret-color: #fc5769;
     color: #ffffff !important;
+    height: 100%;
+}
+
+datalist {
+    display: none;
 }
 
 /*
