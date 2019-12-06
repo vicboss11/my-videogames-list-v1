@@ -49,16 +49,42 @@ VideogamesLibrary.prototype.removeAll = function () {
 // Recibe por parámetro un string
 // Devuelve un objeto de la clase VideogamesLibrary que contiene las coincidencias encontradas
 VideogamesLibrary.prototype.searchByName = function (string) {
+    // Se fuerza a que el parámetro recibido sea un string
     let txt = new String(string);
+
+    // Se instancia un objeto de la clase VideogamesLibrary()
     let libraryCoincidences = new VideogamesLibrary();
 
+    // Se recorre la biblioteca
     for (var i = 0; i < this.list.length; i++) {
+        // Si el nombre de un videojuego contiene el string que se recibe por parámetro, se añade el videojuego
+        // a la nueva biblioteca previamente instanciada
+        // (Se convierten a mayúsculas tanto la propiedad del objeto como el string recibido)
         if (this.list[i].name.toUpperCase().includes(txt.toUpperCase())) {
             libraryCoincidences.list.push(this.list[i]);
         }
     }
 
+    // Se retorna la nueva biblioteca con las coincidencias encontradas
     return libraryCoincidences;
+}
+
+// Método para ordenar la biblioteca por nombre
+VideogamesLibrary.prototype.sortByName = function () {
+    // Para comparar los objetos dentro de un Array pasamos al método sort una función de apoyo por parámetro
+    // Dicha función comparará dos objetos del array en cada llamada
+    this.list.sort(function (a, b) { // {Función anónima}
+        // Primero forzamos que las propiedades name sean String
+        let nameA = new String(a.name);
+        let nameB = new String(b.name);
+        // Como resultado la función devolverá...
+        // ... un valor positivo si el primer valor es superior al segundo
+        // ... un valor negativo si el primer valor es inferior al segundo
+        // ... un valor cero si los dos valores son iguales o equivalentes para la ordenación.
+        // Para comparar los String name de la clase Videogame utilizaré la función String.prototype.localCompare()
+        // para evitar problemas con los caracteres especiales. Además no hará distinción entre mayúsculas y minúsculas
+        return nameA.localeCompare(nameB);
+    });
 }
 
 // ####################################################################################################################
@@ -67,7 +93,7 @@ VideogamesLibrary.prototype.searchByName = function (string) {
 // como CLASE PADRE (superclase) de videojuego para hacer uso de la herencia
 // -> Constructor
 function Piece() {
-    this.ID = uuidv1(); // UUID único
+    this.ID = uuidv1(); // ID único (Plugin: "http://wzrd.in/standalone/uuid%2Fv1@latest")
 }
 
 // ####################################################################################################################
@@ -185,6 +211,7 @@ function addNewVideogame() {
     }
 
     library.add(new Videogame(name, genres, developer, publisher, platform, rating, image));
+    sort = false;
     saveData();
     start();
 }
@@ -198,7 +225,12 @@ function searchVideogameByName() {
 
     let librarySearch = library.searchByName(search);
 
+    // Se comprueba que la longitud de search sea mayor que 2
     if (search.length > 1) {
+        // Operador condicional (ternario)
+        // condición ? expresión1 : expresión2
+        // Si "condición" devuelve true se ejecuta "expresión1" en caso de que devuelva false
+        // se ejecuta "expresión2"
         librarySearch.isEmpty() ? showNoNamesCoincidencesMessage(search) : drawVideogamesLibrary(librarySearch);
     }
 }
@@ -209,12 +241,22 @@ function searchVideogameByName() {
 
 // Función con la que comenzará el html
 function start() {
+    // sort es una variable global para determinar si es necesario ordenar el Array
+    if (!sort) {
+        library.sortByName();
+        sort = true;
+    }
+
+    // Operador condicional (ternario)
+    // condición ? expresión1 : expresión2
+    // Si "condición" devuelve true se ejecuta "expresión1" en caso de que devuelva false
+    // se ejecuta "expresión2"
     library.isEmpty() ? showEmptyLibraryMessage() : drawVideogamesLibrary(library);
 }
 
 // Función para eliminar un videojuego
 function removeVideogame(videogameID) {
-    // Elimina el videojuego y dibuja la biblioteca
+    // Elimina el videojuego, guarda el estado y dibuja la biblioteca
     library.remove(videogameID);
     saveData();
     start();
@@ -222,7 +264,7 @@ function removeVideogame(videogameID) {
 
 // Función para eliminar todos los videojuegos
 function removeAllVideogames() {
-    // Elimina todos los videojuegos y dibuja la biblioteca
+    // Elimina todos los videojuegos
     library.removeAll();
     saveData();
     start();
@@ -379,20 +421,28 @@ function showNoNamesCoincidencesMessage(name) {
 
 // ####################################################################################################################
 // ####################################################################################################################
-// => FUNCIONES PERSISTENCIA DE DATOS CON JSON
+// => FUNCIONES ALMACENAMIENTO DE DATOS (LOCAL STORSGE) CON JSON
 
 function saveData() {
     localStorage.setItem("list", JSON.stringify(library.list));
+    localStorage.setItem("sort", sort)
 }
 
 function loadData() {
     library.list = JSON.parse(localStorage.getItem("list"));
+    localStorage.getItem("sort");
 }
 
 // ####################################################################################################################
 // ####################################################################################################################
 // => VALORES POR DEFECTO
 
+// variable global sort
+// Inicialmente es "true", se modificará el valor a "false" cuando se añada un videojuego
+// y volverá a ser "true" cuando se ordene la biblioteca, con el objetivo de evitar 
+// ordenar la biblioteca cuando no sea necesario
+var sort = false;
+// variable global library (VideogamesLibrary)
 var library = new VideogamesLibrary();
 
 if (JSON.parse(localStorage.getItem("list"))) {
