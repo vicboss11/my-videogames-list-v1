@@ -46,7 +46,7 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+                                <a class="nav-link" href="library.html">Biblioteca</a>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +54,6 @@
             </nav>
 
             <div class="py-5 mt-5">
-
                 <div class="row text-light justify-content-center text-center py-4">
                     <div class="col-12">
                         <h1 class="display-5">¡Bienvenido a <span class="title">MyVideogamesList</span>!</h1>
@@ -76,7 +75,6 @@
         <section id="main-section-home">
 
             <article class="container">
-
                 <h1 class="dispaly-5 text-dark">¿Qué es <span class="title">MyVideogamesList</span>?</h1>
                 <div class="row pt-3">
                     <div class="col-12 text-justify">
@@ -94,13 +92,11 @@
                         <strong class="title">¡Ahora toca empezar!</strong>
                     </div>
                 </div>
-
             </article>
 
             <hr class="my-5 pb-5">
 
             <article class="container">
-
                 <h1 class="dispaly-5 text-dark">Primeros pasos</h1>
                 <div class="row pt-3">
                     <div class="col-12 text-justify">
@@ -113,7 +109,7 @@
                             </li>
                             <li class="my-3">
                                 En la esquina superior derecha (debajo del menú de navegación) pulsa sobre el icono
-                                <i class="far fa-plus-square"></i> y ante ti aparecerá un
+                                <i class="fas fa-plus"></i> y ante ti aparecerá un
                                 formulario en el cuál podrás especificar ciertos datos sobre el videojuego que quieras
                                 añadir (<span class="fas fa-exclamation-circle text-danger"></span> El nombre del
                                 videojuego es <strong class="text-danger">obligatorio</strong>).
@@ -133,8 +129,8 @@
                             <br>
                             <br>
                             Cuando te hayas aburrido de tu colección siempre puedes borrarla por completo haciendo click
-                            en el icono <i class="fas fa-trash-alt"></i> junto al botón de
-                            añadir (esquina superior derecha).
+                            en el icono <i class="fas fa-trash-alt"></i> junto al icono de
+                            añadir <i class="fas fa-plus"></i> (esquina superior derecha).
                         </p>
 
                         <h5 class="mt-5 mb-1">¿Cómo puedo valorar un videojuego?</h5>
@@ -145,20 +141,18 @@
                             <br>
                             <br>
                             Pulsando el botón ver o "clickando" sobre la imagen de portada podrás
-                            observar toda la información que introdujiste al añadir un videojuego a la biblioteca.
+                            observar toda la información que introdujiste al añadir el videojuego a la biblioteca.
                             Además también encontrarás un menú desplegable en el cuál podrás valorar los distintos
                             aspectos de los que consta un videojuego: jugabilidad, gráficos, apartado artístico, sonido,
                             narrativa y experiencia multijugador.
                         </p>
                     </div>
                 </div>
-
             </article>
 
             <hr class="my-5 pb-5">
 
             <article class="container">
-
                 <div class="accordion pt-3" id="accordion-option">
                     <div class="card border">
                         <div class="card-header" id="headingOne">
@@ -174,12 +168,16 @@
 
                         <div id="collapseOne" class="collapse" data-parent="#accordion-option">
                             <div class="card-body text-justify">
-                                <form action="" method="GET">
+                                <form method="GET" onsubmit="sendRequest()" name="request-form">
                                     <fieldset class="p-4">
+                                        <div class="form-group">
+                                            <label for="name">Nombre:</label>
+                                            <input class="form-control rounded-0" type="text" id="name" name="name">
+                                        </div>
                                         <div class="form-group">
                                             <label for="email">Email:</label>
                                             <input class="form-control rounded-0" type="text" id="email" name="email"
-                                                placeholder="example@email.com" required>
+                                                placeholder="example@email.com">
                                         </div>
 
                                         <div class="form-group">
@@ -190,8 +188,8 @@
                                                         <div class="col-12 col-md-3">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
-                                                                    id="suggestion" name="request-type"
-                                                                    value="suggestion" checked>
+                                                                    id="suggestion" name="requestType"
+                                                                    value="sugerencia" checked>
                                                                 <label for="suggestion"
                                                                     class="custom-control-label">sugerencia</label>
                                                             </div>
@@ -199,8 +197,8 @@
                                                         <div class="col-12 col-md-3">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
-                                                                    id="incidence" name="request-type"
-                                                                    value="incidence">
+                                                                    id="incidence" name="requestType" value="incidencia"
+                                                                    required="false">
                                                                 <label for="incidence"
                                                                     class="custom-control-label">incidencia</label>
                                                             </div>
@@ -211,26 +209,25 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="request">Consulta:</label>
-                                            <textarea class="form-control rounded-0" id="request" rows="5"
-                                                placeholder="Escribe aquí tu consulta..." required></textarea>
+                                            <label for="requestMessage">Consulta:</label>
+                                            <textarea class="form-control rounded-0" id="requestMessage"
+                                                name="requestMessage" rows="5"
+                                                placeholder="Escribe aquí tu consulta... (No incluyas saltos de línea)"></textarea>
                                         </div>
 
                                         <div class="row justify-content-center mt-4 mb-2 pt-2">
                                             <div class="col-12 col-sm-8 col-md-4 col-xl-3 p-1">
                                                 <input
                                                     class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus"
-                                                    type="submit" value="Enviar consulta">
+                                                    type="submit" id="submit" value="Enviar consulta">
                                             </div>
                                         </div>
-
                                     </fieldset>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </article>
 
         </section>
@@ -302,10 +299,9 @@
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
-    <!-- JavaScript UUIDs únicos -->
-    <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
     <!-- JavaScript Propio -->
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery.script.js"></script>
+    <script src="js/index.script.js"></script>
 </body>
 
 </html>

@@ -46,13 +46,13 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+                                <a class="nav-link" href="library.html">Biblioteca</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="px-4 search-navbar">
-                    <form name="search-by-name-form" onsubmit="searchVideogameByName(); return false">
+                    <form name="search-by-name-form" onsubmit="searchVideogames(); return false">
                         <div class="form-row">
                             <div class="col-11">
                                 <input class="form-control col-form-label-sm rounded-0 search-input no-extras"
@@ -397,8 +397,8 @@
                                 <button type="button" class="btn btn-dark rounded-0 no-focus"
                                     data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-success rounded-0 no-focus" data-dismiss="modal"
-                                    onclick="addNewVideogame()">Añadir
-                                    videojuego
+                                    onclick="newVideogame()">
+                                    Añadir videojuego
                                 </button>
                             </div>
                         </div>
@@ -511,8 +511,8 @@
     <!-- JavaScript UUIDs únicos -->
     <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
     <!-- JavaScript Propio -->
-    <script src="js/jquery.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/jquery.script.js"></script>
+    <script src="js/library.script.js"></script>
 </body>
 
 </html>

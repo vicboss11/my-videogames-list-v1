@@ -164,9 +164,9 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
 // ####################################################################################################################
 // => FORMULARIOS
 
-// Función para añadir un videojuego a partir de los datos de su formulario correspondiente
-function addNewVideogame() {
-    // Variable apuntando al formuario del que se quieren recoger los datos
+// Función necesaria para añadir un videojuego a partir de los datos de su formulario correspondiente
+function newVideogame() {
+    // Variable apuntando al formulario del que se quieren recoger los datos
     let addForm = document.forms['add-videogame-form'];
 
     // Obtener el nombre del videojuego
@@ -216,17 +216,20 @@ function addNewVideogame() {
     start();
 }
 
-function searchVideogameByName() {
+// Función necesaria para buscar un videojuego a partir de la cadena introducida en la barra de búsqueda
+function searchVideogames() {
     // Variable apuntando al formuario del que se quieren recoger los datos
     let searchForm = document.forms['search-by-name-form'];
 
     // Se obtiene el string a buscar
     let search = searchForm.searchByNameInput.value;
 
-    let librarySearch = library.searchByName(search);
-
     // Se comprueba que la longitud de search sea mayor que 2
-    if (search.length > 1) {
+    if (search.length > 2) {
+        // Se obtiene un nuevo objeto de la clase VideogamesLibrary con una lista de videojuegos
+        // que contengan en su propiedad name el string search
+        let librarySearch = library.searchByName(search);
+
         // Operador condicional (ternario)
         // condición ? expresión1 : expresión2
         // Si "condición" devuelve true se ejecuta "expresión1" en caso de que devuelva false

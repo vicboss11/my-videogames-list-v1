@@ -1,0 +1,5 @@
+Añadir contador de videojuegos
+Validar formulario index.html
+Implementar formulario valoración de videojuego
+
+// Si tengo tiempo añadir opción para ordenar por valoración
