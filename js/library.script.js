@@ -45,10 +45,28 @@ VideogamesLibrary.prototype.removeAll = function () {
     this.list.length = 0;
 }
 
+VideogamesLibrary.prototype.searchByID = function (videogameID) {
+    let i = 0;
+    let found = false;
+    // Si se encuentra el ID en la lista se eliminará el videojuego
+    // La busqueda seguirá mientras el contador sea menor que el tamaño del Array 
+    // y no se haya encontrado un videojuego con el ID que recibe por parámetro
+    while (i < this.list.length && !found) {
+        if (this.list[i].ID === videogameID) {
+            found = true;
+            var videogame = this.list[i];
+        }
+
+        i++;
+    }
+
+    return videogame;
+}
+
 // Método para buscar videojuegos por nombre
 // Recibe por parámetro un string
 // Devuelve un objeto de la clase VideogamesLibrary que contiene las coincidencias encontradas
-VideogamesLibrary.prototype.searchByName = function (string) {
+VideogamesLibrary.prototype.searchGroupByName = function (string) {
     // Se fuerza a que el parámetro recibido sea un string
     let txt = new String(string);
 
@@ -119,6 +137,7 @@ function Videogame(name, genre, developer, publisher, platform, rating, image = 
 Videogame.prototype = Object.create(Piece.prototype)
 Videogame.prototype.constructor = Videogame;
 
+
 // ####################################################################################################################
 // *** clase VideogameSectionsScore
 // Puntuación de los distintos apartados de un videojuego
@@ -127,11 +146,21 @@ Videogame.prototype.constructor = Videogame;
 // de Videojuego que se vaya a valorar
 function VideogameSectionsScore(gameplay, graphics, art,
     sound, narrative, multiplayer) {
-    this.gameplay = gameplay; // jugabilidad
-    this.graphics = graphics; // gráficos
-    this.art = art; // apartado artistico
-    this.sound = sound; // sonido
+    this.gameplay = parseFloat(new Number(gameplay).toFixed(2)); // jugabilidad
+    this.graphics = parseFloat(new Number(graphics).toFixed(2)); // apartado técnico
+    this.art = parseFloat(new Number(art).toFixed(2)); // apartado artistico
+    this.sound = parseFloat(new Number(sound).toFixed(2)); // sonido
+
+    if (typeof narrative !== 'boolean') {
+        narrative = parseFloat(new Number(narrative).toFixed(2));
+    }
+
     this.narrative = narrative; // narrativa
+
+    if (typeof multiplayer !== 'boolean') {
+        multiplayer = parseFloat(new Number(multiplayer).toFixed(2));
+    }
+
     this.multiplayer = multiplayer; // multijugador
 }
 
@@ -141,17 +170,15 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
     var sum = 0; // acumulador de sumas
     var count = 0; // contador
 
+    var properties = Object.values(this);
     // Se recorre el objeto como si se tratara de un Array. El nombre de cada propiedad
     // se guarda dentro de la variable property
-    for (let property in this) {
+    for (let i = 0; i < properties.length; i++) {
 
-        // Si la property es narrative o multiplayer y su valor es false, no se incrementará
-        // ni la variable sum ni el count
-        if ((property !== "narrative" && !this[property]) || (property !== "multiplayer" && !this[property])) {
-            sum += this[property];
+        if (properties[i] !== false) {
+            sum += properties[i];
             count++;
         }
-
     }
 
     var avg = sum / count; // nota media
@@ -216,6 +243,48 @@ function newVideogame() {
     start();
 }
 
+function newVideogameScore(videogameID) {
+    // Variable apuntando al formulario del que se quieren recoger los datos
+    let scoreForm = document.forms['score-form-' + videogameID];
+
+    let videogameTypeArr = scoreForm.videogameType;
+    for (let i = 0; i < videogameTypeArr.length; i++) {
+        if (videogameTypeArr[i].checked) {
+            var videogameType = videogameTypeArr[i].value;
+        }
+    }
+    // Obtener el nombre del videojuego
+    let gameplay = scoreForm.gameplayScore.value;
+
+    let graphics = scoreForm.graphicsScore.value
+
+    let art = scoreForm.artScore.value;
+
+    let sound = scoreForm.soundScore.value;
+
+    var narrative;
+    var multiplayer;
+
+    if (videogameType == "narrative") {
+        narrative = scoreForm.narrativeScore.value;
+        multiplayer = false;
+    } else if (videogameType == "multiplayer") {
+        multiplayer = scoreForm.multiplayerScore.value;
+        narrative = false;
+    } else {
+        narrative = scoreForm.narrativeScore.value;
+        multiplayer = scoreForm.multiplayerScore.value;
+    }
+
+    var videogame = library.searchByID(videogameID);
+    videogame.score = new VideogameSectionsScore(gameplay, graphics, art, sound, narrative, multiplayer);
+
+    localStorage.setItem("score-" + videogame.ID, JSON.stringify(videogame.score));
+    saveData();
+
+    drawScoreBox(videogame)
+}
+
 // Función necesaria para buscar un videojuego a partir de la cadena introducida en la barra de búsqueda
 function searchVideogames() {
     // Variable apuntando al formuario del que se quieren recoger los datos
@@ -228,7 +297,7 @@ function searchVideogames() {
     if (search.length > 2) {
         // Se obtiene un nuevo objeto de la clase VideogamesLibrary con una lista de videojuegos
         // que contengan en su propiedad name el string search
-        let librarySearch = library.searchByName(search);
+        let librarySearch = library.searchGroupByName(search);
 
         // Operador condicional (ternario)
         // condición ? expresión1 : expresión2
@@ -277,7 +346,7 @@ function removeAllVideogames() {
 // ####################################################################################################################
 // => SALIDA HTML
 
-// Variable para acceder al elemento del DOM con id="output"
+// Variable global para acceder al elemento del DOM con id="output"
 var output = document.getElementById('output');
 
 // Función para limpiar el elemento con id="output"
@@ -296,80 +365,214 @@ function drawVideogamesLibrary(VideogamesLibrary) {
     // Se recorre la lista mediante un forEach
     VideogamesLibrary.list.forEach((videogame) => {
         output.innerHTML += '<div class="videogame-box border rounded-0 mx-auto mb-3 m-md-1">' +
-            '<div class="videogame-image" data-toggle="modal" data-target="#' + videogame.ID + '">' +
+            '<div class="videogame-image" data-toggle="modal" data-target="#modal-' + videogame.ID + '">' +
             '<img src="images/videogames/' + videogame.image + '" alt="Imagen de ' + videogame.name + '">' +
             '</div>' +
             '<div class="videogame-info text-dark text-center">' +
             '<div class="d-flex flex-row justify-content-center">' +
-            '<div class="text-truncate">' +
-            videogame.name +
-            '</div>' +
+            '<div class="text-truncate">' + videogame.name + '</div>' +
             '</div>' +
             '<div class="d-flex flex-row justify-content-around videogame-options pt-2 px-4">' +
             '<div>' +
-            '<button type="button" class="btn border rounded custom-btn no-focus"' +
-            'data-toggle="modal" data-target="#' + videogame.ID + '" data-tooltip="tooltip" trigger="hover"' +
-            'data-placement="bottom" title="Ver">' +
+            '<button type="button" class="btn border rounded custom-btn no-focus" ' +
+            'data-toggle="modal" data-target="#modal-' + videogame.ID + '" data-tooltip="tooltip" ' +
+            'trigger="hover" data-placement="bottom" title="Ver">' +
             '<i class="far fa-eye"></i>' +
             '</button>' +
             '</div>' +
             '<div>' +
-            '<button type="button" class="btn border rounded custom-btn no-focus"' +
-            'data-toggle="modal" data-target="#remove-videogame-' + videogame.ID + '" data-tooltip="tooltip" trigger="hover" data-placement="bottom" title="Eliminar">' +
+            '<button type="button" class="btn border rounded custom-btn no-focus" ' +
+            'data-toggle="modal" data-target="#remove-videogame-' + videogame.ID + '" ' +
+            'data-tooltip="tooltip" trigger="hover" data-placement="bottom" ' +
+            'title="Eliminar">' +
             '<i class="far fa-trash-alt"></i>' +
             '</button>' +
             '</div>' +
             '</div>' +
             '</div>' +
             '</div>' +
-            '<div class="modal fade" id="' + videogame.ID + '" tabindex="-1" role="dialog">' +
-            '<div class="modal-dialog modal-dialog-centered" role="document">' +
+            '<div class="modal fade" id="modal-' + videogame.ID + '" tabindex="-1" role="dialog">' +
+            '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">' +
             '<div class="modal-content rounded-0">' +
             '<div class="modal-header">' +
-            '<h5 class="modal-title title">' + videogame.name + '</h5>' +
-            '<button type="button" class="close custom-btn no-focus" data-dismiss="modal" aria-label="Close">' +
+            '<div class="modal-title">' +
+            '<h5 class="title">' + videogame.name + '</h5>' +
+            '<span class="text-muted">En tu colección desde el ' +
+            '<em><time>' + videogame.sinceDate + '</time></em>' +
+            '</span>' +
+            '</div>' +
+            '<button type="button" class="close custom-btn no-focus" data-dismiss="modal" ' +
+            'aria-label="Close">' +
             '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div>' +
             '<div class="modal-body">' +
-            '<div class="row justify-content-center">' +
+            '<div class="container-fluid row m-0">' +
+            '<div class="col-12 col-lg-6 mt-2 pt-4 pb-3 px-4">' +
             '<div class="col-12">' +
+            '<div>' +
+            '<img class="img-fluid modal-img border rounded-0 mx-auto d-block" ' +
+            'id="videogame-img" src="images/videogames/' + videogame.image + '" alt="imagen de ' + videogame.name + '">' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-12 col-lg-6 py-3 px-4 px-lg-1">' +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
             '<strong>Nombre:</strong> ' + videogame.name +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12">' +
-            '<strong>Genero/s:</strong> ' + videogame.genre +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
+            '<strong>Genero/s:</strong> ' + videogame.genre.join(", ") +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12">' +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
             '<strong>Desarrollador:</strong> ' + videogame.developer +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12">' +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
             '<strong>Editora:</strong> ' + videogame.publisher +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12">' +
-            '<strong>Platamorma/s:</strong> ' + videogame.platform +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
+            '<strong>Platamorma/s:</strong> ' + videogame.platform.join(", ") +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12">' +
+            '<div class="row justify-content-center my-1">' +
+            '<div class="col">' +
             '<strong>PEGI:</strong> ' + videogame.rating +
             '</div>' +
             '</div>' +
-            '<div class="row justify-content-center">' +
-            '<div class="col-12 lead">' +
-            'En tu colección desde el ' + videogame.sinceDate +
+            '<div id="output-properties-' + videogame.ID + '"></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="container-fluid mb-4">' +
+            '<div class="accordion pt-3" id="accordion-option-' + videogame.ID + '">' +
+            '<div class="card border">' +
+            '<div class="card-header">' +
+            '<h2 class="mb-0">' +
+            '<button ' +
+            'class="btn btn-link collapsed text-justify btn-expand no-decoration custom-link-2" ' +
+            'type="button" data-toggle="collapse" ' +
+            'data-target="#collapseScoreSettings-' + videogame.ID + '">' +
+            '<i class="far fa-caret-square-down mr-4" id="icon-expand" ' +
+            'style="font-size: 15px;"></i>' +
+            'Valorar ' + videogame.name +
+            '</button>' +
+            '</h2>' +
+            '</div>' +
+            '<div id="collapseScoreSettings-' + videogame.ID + '" class="collapse" ' +
+            'data-parent="#accordion-option-' + videogame.ID + '">' +
+            '<div class="card-body text-justify">' +
+            '<form method="GET" name="score-form-' + videogame.ID + '">' +
+            '<fieldset class="p-4">' +
+            '<div class="form-group">' +
+            '<label>Tipo de videojuego:</label>' +
+            '<div class="form row">' +
+            '<div class="col-12 offset-1 offset-lg-0">' +
+            '<div class="row justify-content-around my-2">' +
+            '<div class="col-12 col-lg-auto my-2">' +
+            '<div class="custom-control custom-radio">' +
+            '<input class="custom-control-input" ' +
+            'type="radio" ' +
+            'id="narrativeVideogame-' + videogame.ID + '" ' +
+            'name="videogameType" ' +
+            'value="narrative" checked>' +
+            '<label for="narrativeVideogame-' + videogame.ID + '" class="custom-control-label">Narrativo</label>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-12 col-lg-auto my-2">' +
+            '<div class="custom-control custom-radio">' +
+            '<input class="custom-control-input" ' +
+            'type="radio" ' +
+            'id="onlineVideogame-' + videogame.ID + '" ' +
+            'name="videogameType" ' +
+            'value="multiplayer">' +
+            '<label for="onlineVideogame-' + videogame.ID + '" class="custom-control-label">Multijugador Online</label>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-12 col-lg-auto my-2">' +
+            '<div class="custom-control custom-radio">' +
+            '<input class="custom-control-input" ' +
+            'type="radio" ' +
+            'id="bothType-' + videogame.ID + '" ' +
+            'name="videogameType" ' +
+            'value="narrative/multiplayer">' +
+            '<label for="bothType-' + videogame.ID + '" class="custom-control-label">Narrativo/Online</label>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="form row">' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="gameplayScore-' + videogame.ID + '">Jugabilidad:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="gameplayScore-' + videogame.ID + '" ' +
+            'name="gameplayScore" placeholder="0-10" ' +
+            'required>' +
+            '</div>' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="graphicsScore-' + videogame.ID + '">Gráficos:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="graphicsScore-' + videogame.ID + '" ' +
+            'name="graphicsScore" placeholder="0-10" ' +
+            'required>' +
+            '</div>' +
+            '</div>' +
+            '<div class="form row">' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="artScore-' + videogame.ID + '">Apartado artístico:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="artScore-' + videogame.ID + '" name="artScore" ' +
+            'placeholder="0-10" required>' +
+            '</div>' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="soundScore-' + videogame.ID + '">Sonido:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="soundScore-' + videogame.ID + '" ' +
+            'name="soundScore" placeholder="0-10" ' +
+            'required>' +
+            '</div>' +
+            '</div>' +
+            '<div class="form row">' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="narrativeScore-' + videogame.ID + '">Narrativa:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="narrativeScore-' + videogame.ID + '" ' +
+            'name="narrativeScore" placeholder="0-10" ' +
+            'required>' +
+            '</div>' +
+            '<div class="form-group col-12 col-sm-6">' +
+            '<label for="multiplayerScore-' + videogame.ID + '">Multijugador:</label>' +
+            '<input class="form-control rounded-0" ' +
+            'type="number" id="multiplayerScore-' + videogame.ID + '" ' +
+            'name="multiplayerScore" placeholder="0-10" ' +
+            'required>' +
+            '</div>' +
+            '</div>' +
+            '<div class="form row justify-content-center mt-4 mb-2 pt-2">' +
+            '<div class="col-12 col-md-8 col-lg-6 col-xl-3 p-1">' +
+            '<input class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus" ' +
+            'type="button" value="Valorar" onclick="newVideogameScore(\'' + videogame.ID + '\')">' +
+            '</div>' +
+            '</div>' +
+            '</fieldset>' +
+            '</form>' +
+            '</div>' +
+            '</div>' +
             '</div>' +
             '</div>' +
             '</div>' +
             '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-dark rounded-0 no-focus" data-dismiss="modal">' +
+            '<button type="button" class="btn btn-dark rounded-0 no-focus" ' +
+            'data-dismiss="modal">' +
             'Salir' +
             '</button>' +
             '</div>' +
@@ -380,7 +583,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<div class="modal-dialog modal-dialog-centered" role="document">' +
             '<div class="modal-content rounded-0">' +
             '<div class="modal-header">' +
-            '<h5 class="modal-title title">ELIMINAR ' + videogame.name + '</h5>' +
+            '<h5 class="modal-title title">ELIMINAR " ' + videogame.name + '"</h5>' +
             '<button type="button" class="close custom-btn no-focus" data-dismiss="modal" aria-label="Close">' +
             '<span aria-hidden="true">&times;</span>' +
             '</button>' +
@@ -400,8 +603,42 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '</div>' +
             '</div>' +
             '</div>' +
-            '</div>'
+            '</div>';
+
+        if (localStorage.getItem('score-' + videogame.ID)) {
+            var tempScore = JSON.parse(localStorage.getItem('score-' + videogame.ID));
+
+            if (tempScore !== null) {
+                videogame.score = new VideogameSectionsScore(tempScore.gameplay, tempScore.graphics, tempScore.art, tempScore.sound, tempScore.narrative, tempScore.multiplayer);
+
+                drawScoreBox(videogame);
+            }
+        }
+
     });
+}
+
+function drawScoreBox(Videogame) {
+    var outputScore = document.getElementById('output-properties-' + Videogame.ID);
+
+    outputScore.innerHTML = '<div class="row justify-content-center mt-4 mb-0 my-lg-3 mx-2 mr-lg-4 p-4 border">' +
+        '<div class="col-12">' +
+        '<strong>Valoración:</strong>' +
+        '</div>' +
+        '<div class="col-auto align-self-center pt-1">' +
+        '<div class="container">' +
+        '<div class="score-box rounded">' + Videogame.score.getAvgScore() + '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="row px-1 pt-3 justify-content-between">' +
+        '<div class="col-6">Jugabilidad: ' + Videogame.score.gameplay + '</div>' +
+        '<div class="col-6">Gráficos: ' + Videogame.score.graphics + '</div>' +
+        '<div class="col-6">Arte: ' + Videogame.score.art + '</div>' +
+        '<div class="col-6">Sonido: ' + Videogame.score.sound + '</div>' +
+        '<div class="col-6">Narrativa: ' + Videogame.score.narrative + '</div>' +
+        '<div class="col-6">Online: ' + Videogame.score.multiplayer + '</div>' +
+        '</div>' +
+        '</div>';
 }
 
 // Mensaje en caso de que no haya ningún videojuego en la biblioteca
@@ -448,7 +685,7 @@ var sort = false;
 // variable global library (VideogamesLibrary)
 var library = new VideogamesLibrary();
 
-if (JSON.parse(localStorage.getItem("list"))) {
+if (localStorage.getItem("list")) {
     loadData();
 } else {
     library.add(new Videogame("Metal Gear Solid V Ground Zeroes", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V Ground Zeroes-min.jpg"));

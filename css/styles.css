@@ -85,6 +85,14 @@ a:focus .glyphicon-footer {
     color: #f04a5d !important;
 }
 
+.custom-link-2 {
+    color: #2E4272 !important;
+}
+
+.custom-link-2:hover {
+    color: #07122F !important;
+}
+
 .no-decoration {
     text-decoration: none !important;
 }
@@ -174,6 +182,19 @@ a:focus .glyphicon-footer {
 .modal-img img {
     height: 100%;
     width: 100%;
+}
+
+.score-box {
+    background-color: #6c3;
+    color: #ffffff;
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0px;
+    margin: 0;
 }
 
 .row.no-pad {

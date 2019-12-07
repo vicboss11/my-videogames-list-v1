@@ -170,22 +170,22 @@
                             <div class="card-body text-justify">
                                 <form method="GET" onsubmit="sendRequest()" name="request-form">
                                     <fieldset class="p-4">
-                                        <div class="form-group">
+                                        <div class="form-group my-4">
                                             <label for="name">Nombre:</label>
                                             <input class="form-control rounded-0" type="text" id="name" name="name">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group my-4">
                                             <label for="email">Email:</label>
                                             <input class="form-control rounded-0" type="text" id="email" name="email"
                                                 placeholder="example@email.com">
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group my-4">
                                             <label>Tipo de consulta:</label>
-                                            <div class="row">
+                                            <div class="form row">
                                                 <div class="col-12 offset-1 offset-md-0">
-                                                    <div class="row justify-content-around">
-                                                        <div class="col-12 col-md-3">
+                                                    <div class="row justify-content-around my-2">
+                                                        <div class="col-12 col-md-3 my-2">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
                                                                     id="suggestion" name="requestType"
@@ -194,11 +194,11 @@
                                                                     class="custom-control-label">sugerencia</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 col-md-3">
+                                                        <div class="col-12 col-md-3 my-2">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
-                                                                    id="incidence" name="requestType" value="incidencia"
-                                                                    required="false">
+                                                                    id="incidence" name="requestType"
+                                                                    value="incidencia">
                                                                 <label for="incidence"
                                                                     class="custom-control-label">incidencia</label>
                                                             </div>
@@ -208,7 +208,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group my-4">
                                             <label for="requestMessage">Consulta:</label>
                                             <textarea class="form-control rounded-0" id="requestMessage"
                                                 name="requestMessage" rows="5"

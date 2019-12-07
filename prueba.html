@@ -105,14 +105,14 @@
                                 <form name="add-videogame-form">
                                     <div class="form-row">
                                         <div class="col-12 col-lg-6">
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogameName">Nombre:</label>
                                                     <input type="text" class="form-control rounded-0"
                                                         name="videogameName" id="videogameName" required>
                                                 </div>
                                             </div>
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label>Genero/s:</label>
                                                     <div class="form-row pl-4">
@@ -298,21 +298,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogameDeveloper">Desarrolladora:</label>
                                                     <input type="text" class="form-control rounded-0"
                                                         name="videogameDeveloper" id="videogameDeveloper">
                                                 </div>
                                             </div>
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogamePublisher">Editora:</label>
                                                     <input type="text" class="form-control rounded-0"
                                                         name="videogamePublisher" id="videogamePublisher">
                                                 </div>
                                             </div>
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogamePlatform">Plataforma/s:</label>
                                                     <input type="text" class="form-control rounded-0"
@@ -320,13 +320,13 @@
                                                         placeholder="PC, PS4, XONE, Switch, Wii U, Nintendo 3DS, etc.">
                                                 </div>
                                             </div>
-                                            <div class="form-row mt-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label>PEGI:</label>
-                                                    <div class="form row">
+                                                    <div class="row">
                                                         <div class="col-12 offset-1 offset-lg-0">
-                                                            <div class="row justify-content-around my-2">
-                                                                <div class="col-12 col-lg-auto my-2">
+                                                            <div class="row justify-content-around">
+                                                                <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
                                                                             id="three" name="videogameRating" value="3"
@@ -335,7 +335,7 @@
                                                                             class="custom-control-label">3</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-lg-auto my-2">
+                                                                <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
                                                                             id="seven" name="videogameRating" value="7">
@@ -343,7 +343,7 @@
                                                                             class="custom-control-label">7</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-lg-auto my-2">
+                                                                <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
                                                                             id="twelve" name="videogameRating"
@@ -352,7 +352,7 @@
                                                                             class="custom-control-label">12</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-lg-auto my-2">
+                                                                <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
                                                                             id="sixteen" name="videogameRating"
@@ -361,7 +361,7 @@
                                                                             class="custom-control-label">16</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12 col-lg-auto mt-2">
+                                                                <div class="col-12 col-lg-auto">
                                                                     <div class="custom-control custom-radio">
                                                                         <input class="custom-control-input" type="radio"
                                                                             id="eighteen" name="videogameRating"
@@ -377,7 +377,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
-                                            <div class="form-row my-3">
+                                            <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="videogame-img-chooser">Imagen de portada:</label>
                                                     <div class="mb-4">
@@ -437,8 +437,271 @@
 
             <article class="container-fluid">
                 <div>
-                    <div class="d-flex flex-wrap px-1 px-md-0 px-lg-2" id="output">
+                    <div class="d-flex flex-wrap px-1 px-md-0 px-lg-2">
+                        <div class="videogame-box border rounded-0 mx-auto mb-3 m-md-1">
+                            <div class="videogame-image" data-toggle="modal" data-target="#videogameID">
+                                <img src="images/videogames/  videogame.image  " alt="Imagen de   videogame.name  ">
+                            </div>
+                            <div class="videogame-info text-dark text-center">
+                                <div class="d-flex flex-row justify-content-center">
+                                    <div class="text-truncate"> videogame.name
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-around videogame-options pt-2 px-4">
+                                    <div>
+                                        <button type="button" class="btn border rounded custom-btn no-focus"
+                                            data-toggle="modal" data-target="#videogameID" data-tooltip="tooltip"
+                                            trigger="hover" data-placement="bottom" title="Ver">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn border rounded custom-btn no-focus"
+                                            data-toggle="modal" data-target="#remove-videogame-  videogame.ID  "
+                                            data-tooltip="tooltip" trigger="hover" data-placement="bottom"
+                                            title="Eliminar">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="videogameID" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content rounded-0">
+                                    <div class="modal-header">
+                                        <div class="modal-title">
+                                            <h5 class="title">The Last of Us</h5>
+                                            <span class="text-muted">En tu colección desde el
+                                                <strong><time>videogame.sinceDate</time></strong>
+                                            </span>
+                                        </div>
+                                        <button type="button" class="close custom-btn no-focus" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container-fluid row m-0">
+                                            <div class="col-12 col-lg-6 mt-2 pt-4 pb-3 px-4">
+                                                <div class="col-12">
+                                                    <div>
+                                                        <img class="img-fluid modal-img border rounded-0 mx-auto d-block"
+                                                            id="videogame-img" src="images/videogames/videogame.image"
+                                                            alt="imagen de videogame.name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 py-3 px-4 px-lg-1">
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>Nombre:</strong> videogame.name
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>Genero/s:</strong> videogame.genre
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>Desarrollador:</strong> videogame.developer
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>Editora:</strong> videogame.publisher
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>Platamorma/s:</strong> videogame.platform
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center my-1">
+                                                    <div class="col">
+                                                        <strong>PEGI:</strong> videogame.rating
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center mt-4 mb-0 my-lg-3 mx-2 mr-lg-5 p-4 border">
+                                                    <div class="col-12" id="scoreVideogame-videogameID">
+                                                        <strong>Valoración:</strong>
+                                                    </div>
+                                                    <div class="col-auto align-self-center pt-1">
+                                                        <div class="container">
+                                                            <div class="score-box rounded">
+                                                                84
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row px-4 pl-5 pt-3 px-lg-0 pl-lg-3 justify-content-around">
+                                                        <div class="col-6">
+                                                            Jugabilidad: 8
+                                                        </div>
+                                                        <div class="col-6">
+                                                            Gráficos: 10
+                                                        </div>
+                                                        <div class="col-6">
+                                                            Arte: 9
+                                                        </div>
+                                                        <div class="col-6">
+                                                            Sonido: 10
+                                                        </div>
+                                                        <div class="col-6">
+                                                            Narrativa: 7
+                                                        </div>
+                                                        <div class="col-6">
+                                                            Online: -
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid mb-4">
+                                        <div class="accordion pt-3" id="accordion-option">
+                                            <div class="card border">
+                                                <div class="card-header" id="headingOne">
+                                                    <h2 class="mb-0">
+                                                        <button
+                                                            class="btn btn-link collapsed text-justify btn-expand no-decoration custom-link-2"
+                                                            type="button" data-toggle="collapse"
+                                                            data-target="#collapseScoreSettings">
+                                                            <i class="far fa-caret-square-down mr-4" id="icon-expand"
+                                                                style="font-size: 15px;"></i>
+                                                            Valorar videogame.name
+                                                        </button>
+                                                    </h2>
+                                                </div>
 
+                                                <div id="collapseScoreSettings" class="collapse"
+                                                    data-parent="#accordion-option">
+                                                    <div class="card-body text-justify">
+                                                        <form method="GET" onsubmit="sendRequest()" name="score-form-">
+                                                            <fieldset class="p-4">
+                                                                <div class="form-group">
+                                                                    <label>Tipo de videojuego:</label>
+                                                                    <div class="form row">
+                                                                        <div class="col-12 offset-1 offset-lg-0">
+                                                                            <div class="row justify-content-around">
+                                                                                <div class="col-12 col-lg-3">
+                                                                                    <div
+                                                                                        class="custom-control custom-radio">
+                                                                                        <input
+                                                                                            class="custom-control-input"
+                                                                                            type="radio"
+                                                                                            id="narrativeVideogame"
+                                                                                            name="videogameType"
+                                                                                            value="narrative" checked>
+                                                                                        <label for="narrativeVideogame"
+                                                                                            class="custom-control-label">Narrativo</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-lg-3">
+                                                                                    <div
+                                                                                        class="custom-control custom-radio">
+                                                                                        <input
+                                                                                            class="custom-control-input"
+                                                                                            type="radio"
+                                                                                            id="multiplayerVideogame"
+                                                                                            name="videogameType"
+                                                                                            value="multiplayer">
+                                                                                        <label for="multiplayerVideogame"
+                                                                                            class="custom-control-label">Multijugador
+                                                                                            Online</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-lg-3">
+                                                                                    <div
+                                                                                        class="custom-control custom-radio">
+                                                                                        <input
+                                                                                            class="custom-control-input"
+                                                                                            type="radio"
+                                                                                            id="bothVideogame"
+                                                                                            name="videogameType"
+                                                                                            value="narrative/online">
+                                                                                        <label for="bothVideogame"
+                                                                                            class="custom-control-label">Narrativo/Online</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form row">
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label for="gameplayScore">Jugabilidad:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="gameplayScore"
+                                                                            name="gameplayScore" placeholder="0-10"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label for="graphicsScore">Gráficos:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="graphicsScore"
+                                                                            name="graphicsScore" placeholder="0-10"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form row">
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label for="artScore">Apartado
+                                                                            artístico:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="artScore" name="artScore"
+                                                                            placeholder="0-10" required>
+                                                                    </div>
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label for="soundScore">Sonido:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="soundScore"
+                                                                            name="soundScore" placeholder="0-10"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form row">
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label for="narrativeScore">Narrativa:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="narrativeScore"
+                                                                            name="narrativeScore" placeholder="0-10"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group col-12 col-sm-6">
+                                                                        <label
+                                                                            for="multiplayerScore">Multijugador:</label>
+                                                                        <input class="form-control rounded-0"
+                                                                            type="number" id="multiplayerScore"
+                                                                            name="multiplayerScore" placeholder="0-10"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="form row justify-content-center mt-4 mb-2 pt-2">
+                                                                    <div class="col-12 col-md-8 col-lg-6 col-xl-3 p-1">
+                                                                        <input
+                                                                            class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus"
+                                                                            type="button" value="Valorar">
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark rounded-0 no-focus"
+                                            data-dismiss="modal">
+                                            Salir
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </article>
