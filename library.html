@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="px-4 search-navbar">
-                    <form name="search-by-name-form" onsubmit="searchVideogames(); return false">
+                    <form name="search-by-name-form" onsubmit="searchVideogames(); return false;">
                         <div class="form-row">
                             <div class="col-11">
                                 <input class="form-control col-form-label-sm rounded-0 search-input no-extras"
@@ -76,8 +76,8 @@
                     <div class="col-12 col-md-4 offset-md-8 col-lg-3 offset-lg-9 pr-md-4 mb-4">
                         <div class="btn-group btn-block" role="group">
                             <button type="button" class="btn border rounded-0 custom-btn no-focus" data-toggle="modal"
-                                data-target="#add-videogame" data-backdrop="static" data-keyboard="false"
-                                data-tooltip="tooltip" data-placement="bottom" title="Nuevo videojuego">
+                                data-target="#add-videogame" data-keyboard="false" data-tooltip="tooltip"
+                                data-placement="bottom" title="Nuevo videojuego">
                                 <i class="fas fa-plus"></i>
                             </button>
 
@@ -92,7 +92,7 @@
 
                 <!-- Inicio MODALS -->
                 <div class="modal fade" id="add-videogame" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                         <div class="modal-content rounded-0">
                             <div class="modal-header">
                                 <h5 class="modal-title title">NUEVO VIDEOJUEGO</h5>
@@ -101,15 +101,17 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <form name="add-videogame-form">
+
+                            <form name="add-videogame-form" onsubmit="newVideogame(); return false">
+                                <div class="modal-body">
                                     <div class="form-row">
-                                        <div class="col-12 col-lg-6">
+                                        <div class="col-12 col-lg-7 col-xl-6 px-4 px-lg-4 px-xl-4">
                                             <div class="form-row my-3">
                                                 <div class="form-group col-12">
                                                     <label for="videogameName">Nombre:</label>
                                                     <input type="text" class="form-control rounded-0"
-                                                        name="videogameName" id="videogameName" required>
+                                                        name="videogameName" id="videogameName" autocomplete="off"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="form-row my-3">
@@ -117,29 +119,29 @@
                                                     <label>Genero/s:</label>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="acción" id="action" name="videogameGenre">
-                                                                <label class="form-check-label" for="action">
+                                                                <label class="custom-control-label" for="action">
                                                                     acción
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="aventuras" id="adventures"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="adventures">
+                                                                <label class="custom-control-label" for="adventures">
                                                                     aventuras
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="carreras" id="racing" name="videogameGenre">
-                                                                <label class="form-check-label" for="racing">
+                                                                <label class="custom-control-label" for="racing">
                                                                     carreras
                                                                 </label>
                                                             </div>
@@ -147,29 +149,29 @@
                                                     </div>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="deportes" id="sport" name="videogameGenre">
-                                                                <label class="form-check-label" for="sport">
+                                                                <label class="custom-control-label" for="sport">
                                                                     deportes
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="estrategia" id="tactics"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="tactics">
+                                                                <label class="custom-control-label" for="tactics">
                                                                     estrategia
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="FPS" id="fps" name="videogameGenre">
-                                                                <label class="form-check-label" for="fps">
+                                                                <label class="custom-control-label" for="fps">
                                                                     FPS
                                                                 </label>
                                                             </div>
@@ -177,29 +179,29 @@
                                                     </div>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="infiltración" id="stealth"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="stealth">
+                                                                <label class="custom-control-label" for="stealth">
                                                                     infiltración
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="lucha" id="fighting" name="videogameGenre">
-                                                                <label class="form-check-label" for="fighting">
+                                                                <label class="custom-control-label" for="fighting">
                                                                     lucha
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="MMO" id="mmo" name="videogameGenre">
-                                                                <label class="form-check-label" for="mmo">
+                                                                <label class="custom-control-label" for="mmo">
                                                                     MMO
                                                                 </label>
                                                             </div>
@@ -207,29 +209,29 @@
                                                     </div>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="MOBA" id="moba" name="videogameGenre">
-                                                                <label class="form-check-label" for="moba">
+                                                                <label class="custom-control-label" for="moba">
                                                                     MOBA
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="plataformas" id="platformers"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="platformers">
+                                                                <label class="custom-control-label" for="platformers">
                                                                     plataformas
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="puzles" id="puzzle" name="videogameGenre">
-                                                                <label class="form-check-label" for="puzzle">
+                                                                <label class="custom-control-label" for="puzzle">
                                                                     puzles
                                                                 </label>
                                                             </div>
@@ -237,29 +239,29 @@
                                                     </div>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="ritmo/música" id="rythm"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="rythm">
+                                                                <label class="custom-control-label" for="rythm">
                                                                     ritmo/música
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="RPG" id="rpg" name="videogameGenre">
-                                                                <label class="form-check-label" for="rpg">
+                                                                <label class="custom-control-label" for="rpg">
                                                                     RPG
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="RTS" id="rts" name="videogameGenre">
-                                                                <label class="form-check-label" for="rts">
+                                                                <label class="custom-control-label" for="rts">
                                                                     RTS
                                                                 </label>
                                                             </div>
@@ -267,30 +269,30 @@
                                                     </div>
                                                     <div class="form-row pl-4">
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="simulador" id="simulation"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="simulation">
+                                                                <label class="custom-control-label" for="simulation">
                                                                     simulador
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="survival" id="survival"
                                                                     name="videogameGenre">
-                                                                <label class="form-check-label" for="survival">
+                                                                <label class="custom-control-label" for="survival">
                                                                     survival
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-12 col-lg-4">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox"
                                                                     value="TPS" id="tps" name="videogameGenre">
-                                                                <label class="form-check-label" for="tps">
+                                                                <label class="custom-control-label" for="tps">
                                                                     TPS
                                                                 </label>
                                                             </div>
@@ -317,7 +319,8 @@
                                                     <label for="videogamePlatform">Plataforma/s:</label>
                                                     <input type="text" class="form-control rounded-0"
                                                         name="videogamePlatform" id="videogamePlatform"
-                                                        placeholder="PC, PS4, XONE, Switch, Wii U, Nintendo 3DS, etc.">
+                                                        placeholder="PC, PS4, XONE, Switch, Wii U, Nintendo 3DS, etc."
+                                                        autocomplete="off">
                                                 </div>
                                             </div>
                                             <div class="form-row mt-3">
@@ -376,7 +379,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-6">
+                                        <div class="col-12 col-lg-5 col-xl-6 px-4 px-lg-2 px-xl-4">
                                             <div class="form-row my-3">
                                                 <div class="form-group col-12">
                                                     <label for="videogame-img-chooser">Imagen de portada:</label>
@@ -391,16 +394,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark rounded-0 no-focus"
-                                    data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success rounded-0 no-focus" data-dismiss="modal"
-                                    onclick="newVideogame()">
-                                    Añadir videojuego
-                                </button>
-                            </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="d-flex flew-wrap">
+                                        <button type="button"
+                                            class="btn btn-dark rounded-0 no-focus mx-auto mx-sm-1"
+                                            data-dismiss="modal">
+                                            Cancelar
+                                        </button>
+                                        <button type="button"
+                                            class="btn btn-info rounded-0 no-focus mx-auto mx-sm-1"
+                                            onclick="resetForm(document.forms['add-videogame-form'])">
+                                            Reiniciar campos
+                                        </button>
+                                        <input type="submit"
+                                            class="btn btn-success rounded-0 no-focus ml-auto ml-sm-1"
+                                            value="Añadir videojuego">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -421,13 +434,16 @@
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-dark rounded-0 no-focus" data-dismiss="modal">
-                                    Cancelar
-                                </button>
-                                <button onclick="removeAllVideogames()" type="button"
-                                    class="btn btn-danger rounded-0 no-focus" data-dismiss="modal">
-                                    Eliminar todo
-                                </button>
+                                <div class="d-flex flew-wrap">
+                                    <button type="button" class="btn btn-dark rounded-0 no-focus mx-auto mx-sm-1"
+                                        data-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                    <button type="button" class="btn btn-danger rounded-0 no-focus ml-auto ml-sm-1"
+                                        onclick="removeAllVideogames()">
+                                        Eliminar todo
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

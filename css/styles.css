@@ -197,12 +197,12 @@ a:focus .glyphicon-footer {
     margin: 0;
 }
 
-.row.no-pad {
+.no-pad {
     margin-right: 0;
     margin-left: 0;
 }
 
-.row.no-pad>[class*='col-'] {
+.no-pad>[class*='col-'] {
     padding-right: 0;
     padding-left: 0;
 }

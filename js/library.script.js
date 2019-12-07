@@ -239,7 +239,12 @@ function newVideogame() {
 
     library.add(new Videogame(name, genres, developer, publisher, platform, rating, image));
     sort = false;
+
     saveData();
+
+    // Reseteo del formuario
+    resetForm(addForm);
+
     start();
 }
 
@@ -248,11 +253,13 @@ function newVideogameScore(videogameID) {
     let scoreForm = document.forms['score-form-' + videogameID];
 
     let videogameTypeArr = scoreForm.videogameType;
+
     for (let i = 0; i < videogameTypeArr.length; i++) {
         if (videogameTypeArr[i].checked) {
             var videogameType = videogameTypeArr[i].value;
         }
     }
+
     // Obtener el nombre del videojuego
     let gameplay = scoreForm.gameplayScore.value;
 
@@ -265,10 +272,10 @@ function newVideogameScore(videogameID) {
     var narrative;
     var multiplayer;
 
-    if (videogameType == "narrative") {
+    if (videogameType == "single") {
         narrative = scoreForm.narrativeScore.value;
         multiplayer = false;
-    } else if (videogameType == "multiplayer") {
+    } else if (videogameType == "multi") {
         multiplayer = scoreForm.multiplayerScore.value;
         narrative = false;
     } else {
@@ -281,6 +288,8 @@ function newVideogameScore(videogameID) {
 
     localStorage.setItem("score-" + videogame.ID, JSON.stringify(videogame.score));
     saveData();
+
+    resetForm(scoreForm);
 
     drawScoreBox(videogame)
 }
@@ -304,6 +313,14 @@ function searchVideogames() {
         // Si "condición" devuelve true se ejecuta "expresión1" en caso de que devuelva false
         // se ejecuta "expresión2"
         librarySearch.isEmpty() ? showNoNamesCoincidencesMessage(search) : drawVideogamesLibrary(librarySearch);
+    }
+}
+
+function resetForm(form) {
+    form.reset();
+
+    if (form === document.forms['add-videogame-form']) {
+        $('#videogame-img').attr('src', "images/videogames/no-image-min.png");
     }
 }
 
@@ -364,6 +381,20 @@ function drawVideogamesLibrary(VideogamesLibrary) {
     cleanOutput();
     // Se recorre la lista mediante un forEach
     VideogamesLibrary.list.forEach((videogame) => {
+
+        let genres = new Array;
+        genres = videogame.genre;
+
+        let genresOutput = "";
+        let openTag = '<span class="badge badge-secondary">';
+        let closeTag = '</span> '
+
+        if (genres.length > 0) {
+            for (let i = 0; i < genres.length; i++) {
+                genresOutput += openTag + genres[i] + closeTag;
+            }
+        }
+
         output.innerHTML += '<div class="videogame-box border rounded-0 mx-auto mb-3 m-md-1">' +
             '<div class="videogame-image" data-toggle="modal" data-target="#modal-' + videogame.ID + '">' +
             '<img src="images/videogames/' + videogame.image + '" alt="Imagen de ' + videogame.name + '">' +
@@ -424,7 +455,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '</div>' +
             '<div class="row justify-content-center my-1">' +
             '<div class="col">' +
-            '<strong>Genero/s:</strong> ' + videogame.genre.join(", ") +
+            '<strong>Genero/s:</strong> ' + genresOutput +
             '</div>' +
             '</div>' +
             '<div class="row justify-content-center my-1">' +
@@ -480,20 +511,20 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<div class="custom-control custom-radio">' +
             '<input class="custom-control-input" ' +
             'type="radio" ' +
-            'id="narrativeVideogame-' + videogame.ID + '" ' +
+            'id="singleVideogame-' + videogame.ID + '" ' +
             'name="videogameType" ' +
-            'value="narrative" checked>' +
-            '<label for="narrativeVideogame-' + videogame.ID + '" class="custom-control-label">Narrativo</label>' +
+            'value="single" checked>' +
+            '<label for="singleVideogame-' + videogame.ID + '" class="custom-control-label">Un jugador</label>' +
             '</div>' +
             '</div>' +
             '<div class="col-12 col-lg-auto my-2">' +
             '<div class="custom-control custom-radio">' +
             '<input class="custom-control-input" ' +
             'type="radio" ' +
-            'id="onlineVideogame-' + videogame.ID + '" ' +
+            'id="multiplayerVideogame-' + videogame.ID + '" ' +
             'name="videogameType" ' +
-            'value="multiplayer">' +
-            '<label for="onlineVideogame-' + videogame.ID + '" class="custom-control-label">Multijugador Online</label>' +
+            'value="multi">' +
+            '<label for="multiplayerVideogame-' + videogame.ID + '" class="custom-control-label">Multijugador</label>' +
             '</div>' +
             '</div>' +
             '<div class="col-12 col-lg-auto my-2">' +
@@ -502,8 +533,8 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             'type="radio" ' +
             'id="bothType-' + videogame.ID + '" ' +
             'name="videogameType" ' +
-            'value="narrative/multiplayer">' +
-            '<label for="bothType-' + videogame.ID + '" class="custom-control-label">Narrativo/Online</label>' +
+            'value="campaign/multi">' +
+            '<label for="bothType-' + videogame.ID + '" class="custom-control-label">Campaña/Multijugador</label>' +
             '</div>' +
             '</div>' +
             '</div>' +
@@ -554,7 +585,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<input class="form-control rounded-0" ' +
             'type="number" id="multiplayerScore-' + videogame.ID + '" ' +
             'name="multiplayerScore" placeholder="0-10" ' +
-            'required>' +
+            'required disabled>' +
             '</div>' +
             '</div>' +
             '<div class="form row justify-content-center mt-4 mb-2 pt-2">' +
@@ -621,13 +652,35 @@ function drawVideogamesLibrary(VideogamesLibrary) {
 function drawScoreBox(Videogame) {
     var outputScore = document.getElementById('output-properties-' + Videogame.ID);
 
+    let avgScore = Videogame.score.getAvgScore();
+    let bgColor;
+
+    if (avgScore < 50) {
+        bgColor = "#ff0000";
+    } else if (avgScore >= 80) {
+        bgColor = "#6c3";
+    } else {
+        bgColor = "#ffcc33";
+    }
+
+    let narrativeScore = Videogame.score.narrative;
+    let multiplayerScore = Videogame.score.multiplayer;
+
+    if (narrativeScore === false) {
+        narrativeScore = "-";
+    }
+
+    if (multiplayerScore === false) {
+        multiplayerScore = "-"
+    }
+
     outputScore.innerHTML = '<div class="row justify-content-center mt-4 mb-0 my-lg-3 mx-2 mr-lg-4 p-4 border">' +
         '<div class="col-12">' +
         '<strong>Valoración:</strong>' +
         '</div>' +
         '<div class="col-auto align-self-center pt-1">' +
         '<div class="container">' +
-        '<div class="score-box rounded">' + Videogame.score.getAvgScore() + '</div>' +
+        '<div class="score-box rounded" style="background-color: ' + bgColor + ';">' + avgScore + '</div>' +
         '</div>' +
         '</div>' +
         '<div class="row px-1 pt-3 justify-content-between">' +
@@ -635,8 +688,8 @@ function drawScoreBox(Videogame) {
         '<div class="col-6">Gráficos: ' + Videogame.score.graphics + '</div>' +
         '<div class="col-6">Arte: ' + Videogame.score.art + '</div>' +
         '<div class="col-6">Sonido: ' + Videogame.score.sound + '</div>' +
-        '<div class="col-6">Narrativa: ' + Videogame.score.narrative + '</div>' +
-        '<div class="col-6">Online: ' + Videogame.score.multiplayer + '</div>' +
+        '<div class="col-6">Narrativa: ' + narrativeScore + '</div>' +
+        '<div class="col-6">Multijugador: ' + multiplayerScore + '</div>' +
         '</div>' +
         '</div>';
 }

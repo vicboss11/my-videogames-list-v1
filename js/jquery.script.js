@@ -103,4 +103,30 @@ $(function () {
     $('[data-tooltip="tooltip"]').on('focus', function () {
         $(this).tooltip('hide');
     });
+
+    /*
+    '<input class="custom-control-input" ' +
+            'type="radio" ' +
+            'id="onlineVideogame-' + videogame.ID + '" ' +
+            'name="videogameType" ' +
+            'value="multiplayer">' +
+            '<label for="onlineVideogame-' + videogame.ID + '" class="custom-control-label">Multijugador Online</label>' +
+            '</div>' +
+    */
+
+    // Habilitar/Deshabilitar campos del formulario de valoración
+    $('input[value="single"]').click(function () {
+        $('input[name="narrativeScore"').removeAttr('disabled');
+        $('input[name="multiplayerScore"').attr('disabled', "");
+    });
+
+    $('input[value="multi"]').click(function () {
+        $('input[name="narrativeScore"').attr('disabled', "");
+        $('input[name="multiplayerScore"').removeAttr('disabled');
+    });
+
+    $('input[value="campaign/multi"]').click(function () {
+        $('input[name="narrativeScore"').removeAttr('disabled');
+        $('input[name="multiplayerScore"').removeAttr('disabled');
+    });
 });
