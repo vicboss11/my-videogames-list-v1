@@ -46,40 +46,24 @@
                                         class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+                                <a class="nav-link" href="library.html">Biblioteca</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="px-4 search-navbar hide-search-navbar">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-11">
-                                <input class="form-control col-form-label-sm rounded-0 search-input no-extras" type="search"
-                                    placeholder="Buscar videojuegos por nombre...">
-                            </div>
-                            <div class="col-1">
-                                <button class="btn float-right no-extras no-focus" id="btn-search" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </nav>
 
             <div class="py-5 mt-5">
-
                 <div class="row text-light justify-content-center text-center py-4">
                     <div class="col-12">
-                        <h1 class="display-4">¡Bienvenido a <span class="title">MyVideogamesList</span>!</h1>
+                        <h1 class="display-5">¡Bienvenido a <span class="title">MyVideogamesList</span>!</h1>
                     </div>
                 </div>
 
                 <div class="row text-light justify-content-center text-center py-4">
                     <div class="col-8 col-sm-6 col-md-4 col-xl-2">
-                        <button class="btn btn-outline-light btn-block rounded-pill button-starts go-main-section-home no-focus">
+                        <button
+                            class="btn btn-outline-light btn-block rounded-pill button-starts go-main-section-home no-focus">
                             Let's start
                         </button>
                     </div>
@@ -90,62 +74,145 @@
 
         <section id="main-section-home">
 
-            <article class="container mt-4">
-
+            <article class="container">
                 <h1 class="dispaly-5 text-dark">¿Qué es <span class="title">MyVideogamesList</span>?</h1>
-                <div class="row pt-3">
+                <div class="row pt-3 px-4">
                     <div class="col-12 text-justify">
-                        MyVideogamesList es un sitio web en el que podrás guardar una lista de tus videojuegos
-                        favoritos, de aquellos a los que hayas jugado o simplemente de los
-                        que tengas en tu colección real... ¡Eso depende de ti!
-                        <br>
-                        <br>
-                        Además también podrás valorarlos en función de distintos parámetros (jugabilidad,
-                        gráficos, sonido, etc.) para recordar cómo fue tu experiencia con un videojuego en
-                        concreto. Podrás añadir y borrar cualquier videojuego de tu lista en todo momento para
-                        que ésta se adapte a tus gustos y necesidades.
-                        <br>
-                        <br>
-                        <strong class="title">¡Ahora toca empezar!</strong>
+                        <p>
+                            MyVideogamesList es un sitio web en el que podrás guardar una lista de tus videojuegos
+                            favoritos, de aquellos a los que hayas jugado o simplemente de los
+                            que tengas en tu colección real... ¡Eso depende de ti!
+                        </p>
+                        <p>
+                            Además también podrás valorarlos en función de distintos parámetros (jugabilidad,
+                            gráficos, sonido, etc.) para recordar cómo fue tu experiencia con un videojuego en
+                            concreto. Podrás añadir y borrar cualquier videojuego de tu lista en todo momento para
+                            que ésta se adapte a tus gustos y necesidades.
+                        </p>
+                        <p>
+                            <strong class="title">¡Ahora toca empezar!</strong>
+                        </p>
                     </div>
                 </div>
-
             </article>
 
             <hr class="my-5 pb-5">
 
             <article class="container">
-
                 <h1 class="dispaly-5 text-dark">Primeros pasos</h1>
                 <div class="row pt-3">
                     <div class="col-12 text-justify">
-                        Para comenzar a añadir videojuegos a tu biblioteca:
-                        <ol>
-                            <li>
-                                Haz click en <span class="badge badge-secondary">Biblioteca</span> en el
-                                menú de navegación para acceder a tu lista de videojuegos.
-                            </li>
-                            <li>
+                        <h5 class="mb-4 text-info">Para comenzar a añadir videojuegos a tu biblioteca:</h5>
+                        <div class="pb-4 ml-3 mr-5">
+                            <ol>
+                                <li class="my-3">
+                                    Haz click en <span class="badge badge-secondary">Biblioteca</span> en el
+                                    menú de navegación para acceder a tu lista de videojuegos. Como podrás observar la
+                                    biblioteca está vacía <i class="far fa-sad-tear title"></i>.
+                                </li>
+                                <li class="my-3">
+                                    En la esquina superior derecha (debajo del menú de navegación) pulsa sobre el icono
+                                    <i class="fas fa-plus"></i> y ante ti aparecerá un
+                                    formulario en el cuál podrás especificar ciertos datos sobre el videojuego que
+                                    quieras
+                                    añadir (<span class="fas fa-exclamation-circle text-danger"></span> El nombre del
+                                    videojuego es <strong class="text-danger">obligatorio</strong>).
+                                </li>
+                                <li class="my-3">
+                                    Una vez hayas completado el formulario con los datos que te interesen pulsa el botón
+                                    <span class="badge badge-success">Añadir videojuego</span> y... ¡ENHORABUENA! Habrás
+                                    añadido tu primer videojuego a la biblioteca.
+                                </li>
+                            </ol>
+                        </div>
 
-                            </li>
-                        </ol>
+                        <h5 class="mt-5 mb-1 text-info">¿Y ahora qué?</h5>
+                        <div class="p-4">
+                            <p>
+                                Ahora que ya sabes añadir videojuegos a tu biblioteca puedes añadir más o
+                                probar a eliminar un videojuego de forma individual (en la caja del videojuego:
+                                <i class="far fa-trash-alt"></i>).
+                            </p>
+                            <p>
+                                Cuando te hayas aburrido de tu colección siempre puedes borrarla por completo haciendo
+                                click
+                                en el icono <i class="fas fa-trash-alt"></i> junto al icono de
+                                añadir <i class="fas fa-plus"></i> (esquina superior derecha).
+                            </p>
+                        </div>
+
+                        <h5 class="mt-5 mb-1 text-info">¿Cómo puedo valorar un videojuego?</h5>
+                        <div class="p-4">
+                            <p>
+                                Cuando añades un videojuego a tu biblioteca, éste se representa mediante una caja
+                                formada
+                                por la imagen de portada del videojuego, su nombre y dos botones: ver
+                                <i class="far fa-eye"></i> y eliminar <i class="far fa-trash-alt"></i>.
+                                <br>
+                                <br>
+                                Pulsando el botón ver o "clickando" sobre la imagen de portada podrás
+                                observar toda la información que introdujiste al añadir el videojuego a la biblioteca.
+                                Además también encontrarás un menú desplegable en el cuál podrás valorar los distintos
+                                aspectos de los que consta un videojuego: jugabilidad, gráficos, apartado artístico,
+                                sonido,
+                                narrativa y experiencia multijugador.
+                            </p>
+                        </div>
+
+                        <h5 class="mt-5 mb-1 text-info">¿Cómo se calcula la puntuación de cada videojuego?</h5>
+                        <div class="p-4">
+                            <p>
+                                Cuando valoras un videojuego se muestra una puntuación media sobre cien (Ejemplo: 98),
+                                calculada a partir de los parámetros solicitados al usuario, que deberá introducir
+                                valores
+                                positivos entre 0 y 10 (permitidos hasta 2 decimales).
+                                Pero para poder puntuar un videojuego es necesario seleccionar el tipo de videojuego que
+                                se
+                                está valorando.
+                            </p>
+                            <p>
+                                Hay tres opciones:
+                                <ul class="mx-3">
+                                    <li class="mt-1 mb-3">
+                                        Un jugador
+                                    </li>
+                                    <li class="my-3">
+                                        Multijugador
+                                    </li>
+                                    <li class="my-3">
+                                        Campaña/Multijugador
+                                    </li>
+                                </ul>
+                            </p>
+                            <p>
+                                Por defecto la opción seleccionada será "Un jugador" y la media se calculará sin tener
+                                en cuenta el parámetro 'Multijugador'.
+                                Por el contrario, si se selecciona "Multijugador"
+                                no se tendrá en cuenta el parámetro 'Narrativa' debido a que se trata de videojuegos
+                                orientados al multijugador online.
+                                Y por último, si la opción elegida es "Campaña/Multijugador", se tendrán en cuenta todos
+                                los parámetros.
+                            </p>
+                            <p>
+                                De todas formas, dependiendo de la opción seleccionada solo estarán habilitados los
+                                campos que sean necesarios. <i class="far fa-grin-beam-sweat title"></i>
+                            </p>
+                        </div>
                     </div>
                 </div>
-
             </article>
 
             <hr class="my-5 pb-5">
 
             <article class="container">
-
                 <div class="accordion pt-3" id="accordion-option">
                     <div class="card border">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed text-justify btn-expand no-decoration custom-link"
                                     type="button" data-toggle="collapse" data-target="#collapseOne">
-                                    <i class="far fa-caret-square-down mr-4" id="icon-expand"
-                                        style="font-size: 15px;"></i> ¿Tienes alguna sugerencia o quieres reportar
+                                    <i class="far fa-caret-square-down mr-4 icon-expand" style="font-size: 15px;"></i>
+                                    ¿Tienes alguna sugerencia o quieres reportar
                                     alguna incidencia? ¡Contacta con nosotros!
                                 </button>
                             </h2>
@@ -153,32 +220,37 @@
 
                         <div id="collapseOne" class="collapse" data-parent="#accordion-option">
                             <div class="card-body text-justify">
-                                <form action="" method="GET">
+                                <form method="GET" onsubmit="sendRequest(); return false;" name="request-form">
                                     <fieldset class="p-4">
-                                        <div class="form-group">
-                                            <label for="emai">Email:</label>
-                                            <input class="form-control rounded-0" type="text" id="email" name="email" placeholder="example@email.com" required>
+                                        <div class="form-group my-4">
+                                            <label for="name">Nombre:</label>
+                                            <input class="form-control rounded-0" type="text" id="name" name="name">
+                                        </div>
+                                        <div class="form-group my-4">
+                                            <label for="email">Email:</label>
+                                            <input class="form-control rounded-0" type="text" id="email" name="email"
+                                                placeholder="example@email.com">
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group my-4">
                                             <label>Tipo de consulta:</label>
-                                            <div class="row">
+                                            <div class="form row">
                                                 <div class="col-12 offset-1 offset-md-0">
-                                                    <div class="row justify-content-around">
-                                                        <div class="col-12 col-md-3">
+                                                    <div class="row justify-content-around my-2">
+                                                        <div class="col-12 col-md-3 my-2">
                                                             <div class="custom-control custom-radio">
                                                                 <input class="custom-control-input" type="radio"
-                                                                    id="suggestion" name="request-type"
-                                                                    value="suggestion" checked>
+                                                                    id="suggestion" name="requestType"
+                                                                    value="sugerencia" checked>
                                                                 <label for="suggestion"
                                                                     class="custom-control-label">sugerencia</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12 col-md-3">
+                                                        <div class="col-12 col-md-3 my-2">
                                                             <div class="custom-control custom-radio">
-                                                                <input class="custom-control-input"
-                                                                    type="radio" id="incidence" name="request-type"
-                                                                    value="incidence">
+                                                                <input class="custom-control-input" type="radio"
+                                                                    id="incidence" name="requestType"
+                                                                    value="incidencia">
                                                                 <label for="incidence"
                                                                     class="custom-control-label">incidencia</label>
                                                             </div>
@@ -188,26 +260,26 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="request">Consulta:</label>
-                                            <textarea class="form-control rounded-0" id="request" rows="5"
-                                                placeholder="Escribe aquí tu consulta..." required></textarea>
+                                        <div class="form-group my-4">
+                                            <label for="requestMessage">Consulta:</label>
+                                            <textarea class="form-control rounded-0" id="requestMessage"
+                                                name="requestMessage" rows="5"
+                                                placeholder="Escribe aquí tu consulta... (No incluyas saltos de línea)"></textarea>
                                         </div>
 
                                         <div class="row justify-content-center mt-4 mb-2 pt-2">
                                             <div class="col-12 col-sm-8 col-md-4 col-xl-3 p-1">
-                                                <input class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus"
-                                                    type="submit" value="Enviar consulta">
+                                                <input
+                                                    class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus"
+                                                    type="submit" id="submit" value="Enviar consulta">
                                             </div>
                                         </div>
-
                                     </fieldset>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </article>
 
         </section>
@@ -265,7 +337,7 @@
 
     </footer>
 
-    <!-- JavaScript Opcional -->
+    <!-- JavaScript Bootstrap -->
     <!-- Primero jQuery, luego Popper.js, después Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -280,8 +352,8 @@
     <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <!-- JavaScript Propio -->
-    <script src="js/jquery.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/jquery.script.js"></script>
+    <script src="js/index.request-form.script.js"></script>
 </body>
 
 </html>
