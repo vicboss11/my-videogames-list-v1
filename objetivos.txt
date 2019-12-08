@@ -1,3 +1,0 @@
-Añadir contador de videojuegos
-
-// Si tengo tiempo añadir opción para ordenar por valoración

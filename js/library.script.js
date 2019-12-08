@@ -191,7 +191,7 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
 // ####################################################################################################################
 // => FORMULARIOS
 
-// Función necesaria para añadir un videojuego a partir de los datos de su formulario correspondiente
+// Función necesaria para añadir un videojuego a partir de los datos obtenidos de un formulario
 function newVideogame() {
     // Variable apuntando al formulario del que se quieren recoger los datos
     let addForm = document.forms['add-videogame-form'];
@@ -491,7 +491,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             'class="btn btn-link collapsed text-justify btn-expand no-decoration custom-link-2" ' +
             'type="button" data-toggle="collapse" ' +
             'data-target="#collapseScoreSettings-' + videogame.ID + '">' +
-            '<i class="far fa-caret-square-down mr-4" id="icon-expand" ' +
+            '<i class="far fa-caret-square-down mr-4 icon-expand" ' +
             'style="font-size: 15px;"></i>' +
             'Valorar ' + videogame.name +
             '</button>' +
@@ -500,7 +500,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<div id="collapseScoreSettings-' + videogame.ID + '" class="collapse" ' +
             'data-parent="#accordion-option-' + videogame.ID + '">' +
             '<div class="card-body text-justify">' +
-            '<form method="GET" name="score-form-' + videogame.ID + '">' +
+            '<form method="GET" onsubmit="newVideogameScore(\'' + videogame.ID + '\'); return false;" name="score-form-' + videogame.ID + '">' +
             '<fieldset class="p-4">' +
             '<div class="form-group">' +
             '<label>Tipo de videojuego:</label>' +
@@ -547,14 +547,14 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<input class="form-control rounded-0" ' +
             'type="number" id="gameplayScore-' + videogame.ID + '" ' +
             'name="gameplayScore" placeholder="0-10" ' +
-            'required>' +
+            'min="0" max="10" step=".01" required>' +
             '</div>' +
             '<div class="form-group col-12 col-sm-6">' +
             '<label for="graphicsScore-' + videogame.ID + '">Gráficos:</label>' +
             '<input class="form-control rounded-0" ' +
             'type="number" id="graphicsScore-' + videogame.ID + '" ' +
             'name="graphicsScore" placeholder="0-10" ' +
-            'required>' +
+            'min="0" max="10" step=".01" required>' +
             '</div>' +
             '</div>' +
             '<div class="form row">' +
@@ -562,14 +562,14 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<label for="artScore-' + videogame.ID + '">Apartado artístico:</label>' +
             '<input class="form-control rounded-0" ' +
             'type="number" id="artScore-' + videogame.ID + '" name="artScore" ' +
-            'placeholder="0-10" required>' +
+            'placeholder="0-10" min="0" max="10" step=".01" required>' +
             '</div>' +
             '<div class="form-group col-12 col-sm-6">' +
             '<label for="soundScore-' + videogame.ID + '">Sonido:</label>' +
             '<input class="form-control rounded-0" ' +
             'type="number" id="soundScore-' + videogame.ID + '" ' +
             'name="soundScore" placeholder="0-10" ' +
-            'required>' +
+            'min="0" max="10" step=".01" required>' +
             '</div>' +
             '</div>' +
             '<div class="form row">' +
@@ -578,20 +578,20 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<input class="form-control rounded-0" ' +
             'type="number" id="narrativeScore-' + videogame.ID + '" ' +
             'name="narrativeScore" placeholder="0-10" ' +
-            'required>' +
+            'min="0" max="10" step=".01" required>' +
             '</div>' +
             '<div class="form-group col-12 col-sm-6">' +
             '<label for="multiplayerScore-' + videogame.ID + '">Multijugador:</label>' +
             '<input class="form-control rounded-0" ' +
             'type="number" id="multiplayerScore-' + videogame.ID + '" ' +
             'name="multiplayerScore" placeholder="0-10" ' +
-            'required disabled>' +
+            'min="0" max="10" step=".01" required disabled>' +
             '</div>' +
             '</div>' +
             '<div class="form row justify-content-center mt-4 mb-2 pt-2">' +
             '<div class="col-12 col-md-8 col-lg-6 col-xl-3 p-1">' +
-            '<input class="btn btn-outline-dark btn-block btn-md-inline rounded-0 no-focus" ' +
-            'type="button" value="Valorar" onclick="newVideogameScore(\'' + videogame.ID + '\')">' +
+            '<input class="btn btn-outline-info btn-block btn-md-inline rounded-0 no-focus" ' +
+            'type="submit" value="Valorar" name="score-submit">' +
             '</div>' +
             '</div>' +
             '</fieldset>' +
@@ -614,14 +614,14 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<div class="modal-dialog modal-dialog-centered" role="document">' +
             '<div class="modal-content rounded-0">' +
             '<div class="modal-header">' +
-            '<h5 class="modal-title title">ELIMINAR " ' + videogame.name + '"</h5>' +
+            '<h5 class="modal-title title">ELIMINAR "' + videogame.name + '"</h5>' +
             '<button type="button" class="close custom-btn no-focus" data-dismiss="modal" aria-label="Close">' +
             '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div>' +
             '<div class="modal-body">' +
             '<p class="text-center">' +
-            '¿Seguro que quieres eliminar ' + videogame.name + ' de tu lista?' +
+            '¿Seguro que quieres eliminar "' + videogame.name + '" de tu lista?' +
             '</p>' +
             '</div>' +
             '<div class="modal-footer">' +
@@ -812,9 +812,9 @@ if (localStorage.getItem("list")) {
     library.add(new Videogame("The Legend of Zelda The Wind Waker HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda The Wind Waker HD-min.jpg"));
     library.add(new Videogame("The Legend of Zelda Twilight Princess HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda Twilight Princess HD-min.jpg"));
     library.add(new Videogame("The Order 1886", ["acción", "TPS"], "Ready at Dawn, SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "The Order 1886-min.jpg"));
-    library.add(new Videogame("The Witcher Enhanced Edition", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher Enhanced Edition-min.jpg"));
+    library.add(new Videogame("The Witcher Enhanced Edition", ["acción", "aventuras", "RPG"], "CD Project RED", "Atari", ["PC"], 18, "The Witcher Enhanced Edition-min.jpg"));
     library.add(new Videogame("The Witcher 2 Assassins of Kings", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 2 Assassins of Kings-min.jpg"));
-    library.add(new Videogame("The Witcher 3 Wild Hunt", ["acción", "aventuras", "RPG"], "CD Project RED", "Atari", ["PC"], 18, "The Witcher 3 Wild Hunt-min.jpg"));
+    library.add(new Videogame("The Witcher 3 Wild Hunt", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 3 Wild Hunt-min.jpg"));
     library.add(new Videogame("The Wonderful 101", ["acción", "aventuras"], "Platinum Games", "Nintendo", ["Wii U"], 12, "The Wonderful 101-min.jpg"));
     library.add(new Videogame("This War of Mine", ["acción", "aventuras"], "11 bit studios", "Deep Silver", ["PC", "PS4"], 12, "This War of Mine-min.jpg"));
     library.add(new Videogame("Tom Clancy's Splinter Cell Blacklist", ["acción", "infiltración", "TPS"], "Ubisoft", "Ubisoft", ["PC", "Wii U"], 18, "Tom Clancy's Splinter Cell Blacklist-min.jpg"));

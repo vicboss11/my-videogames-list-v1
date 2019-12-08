@@ -70,12 +70,18 @@ $(function () {
     // Cambiar el icono al pulsar un botón dependiendo del último estado de éste
     $('.btn-expand').click(function () {
         if ($('.fa-caret-square-down').length) {
-            $('#icon-expand').removeClass('fa-caret-square-down');
-            $('#icon-expand').addClass('fa-caret-square-up');
+            $('.icon-expand').removeClass('fa-caret-square-down');
+            $('.icon-expand').addClass('fa-caret-square-up');
         } else {
-            $('#icon-expand').removeClass('fa-caret-square-up');
-            $('#icon-expand').addClass('fa-caret-square-down');
+            $('.icon-expand').removeClass('fa-caret-square-up');
+            $('.icon-expand').addClass('fa-caret-square-down');
         }
+    });
+
+    // Restablecer icono cuando el modal está inactivo
+    $('.modal').blur(function () {
+        $('.icon-expand').removeClass('fa-caret-square-up');
+        $('.icon-expand').addClass('fa-caret-square-down');
     });
 
     // ####################################################################################################################
@@ -103,16 +109,6 @@ $(function () {
     $('[data-tooltip="tooltip"]').on('focus', function () {
         $(this).tooltip('hide');
     });
-
-    /*
-    '<input class="custom-control-input" ' +
-            'type="radio" ' +
-            'id="onlineVideogame-' + videogame.ID + '" ' +
-            'name="videogameType" ' +
-            'value="multiplayer">' +
-            '<label for="onlineVideogame-' + videogame.ID + '" class="custom-control-label">Multijugador Online</label>' +
-            '</div>' +
-    */
 
     // Habilitar/Deshabilitar campos del formulario de valoración
     $('input[value="single"]').click(function () {

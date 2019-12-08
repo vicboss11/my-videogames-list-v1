@@ -57,7 +57,7 @@
                             <div class="col-11">
                                 <input class="form-control col-form-label-sm rounded-0 search-input no-extras"
                                     type="search" name="searchByNameInput" minlength="3"
-                                    placeholder="Buscar videojuegos por nombre..." autocomplete="off">
+                                    placeholder="Buscar videojuegos..." autocomplete="off">
                             </div>
                             <div class="col-1">
                                 <button class="btn float-right rounded-0 no-extras" id="btn-search" type="submit">
@@ -398,18 +398,15 @@
 
                                 <div class="modal-footer">
                                     <div class="d-flex flew-wrap">
-                                        <button type="button"
-                                            class="btn btn-dark rounded-0 no-focus mx-auto mx-sm-1"
+                                        <button type="button" class="btn btn-dark rounded-0 no-focus mx-auto mx-sm-1"
                                             data-dismiss="modal">
                                             Cancelar
                                         </button>
-                                        <button type="button"
-                                            class="btn btn-info rounded-0 no-focus mx-auto mx-sm-1"
+                                        <button type="button" class="btn btn-info rounded-0 no-focus mx-auto mx-sm-1"
                                             onclick="resetForm(document.forms['add-videogame-form'])">
                                             Reiniciar campos
                                         </button>
-                                        <input type="submit"
-                                            class="btn btn-success rounded-0 no-focus ml-auto ml-sm-1"
+                                        <input type="submit" class="btn btn-success rounded-0 no-focus ml-auto ml-sm-1"
                                             value="Añadir videojuego">
                                     </div>
                                 </div>
@@ -440,7 +437,7 @@
                                         Cancelar
                                     </button>
                                     <button type="button" class="btn btn-danger rounded-0 no-focus ml-auto ml-sm-1"
-                                        onclick="removeAllVideogames()">
+                                        data-dismiss="modal" onclick="removeAllVideogames()">
                                         Eliminar todo
                                     </button>
                                 </div>
@@ -509,7 +506,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Opcional -->
+    <!-- JavaScript Bootstrap -->
     <!-- Primero jQuery, luego Popper.js, después Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
