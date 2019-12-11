@@ -151,12 +151,16 @@ function VideogameSectionsScore(gameplay, graphics, art,
     this.art = parseFloat(new Number(art).toFixed(2)); // apartado artistico
     this.sound = parseFloat(new Number(sound).toFixed(2)); // sonido
 
+    // Si el parámetro narrative recibido es distinto
+    // de boolean (false) se aplica el formato para que sea un número
     if (typeof narrative !== 'boolean') {
         narrative = parseFloat(new Number(narrative).toFixed(2));
     }
 
     this.narrative = narrative; // narrativa
 
+    // Si el parámetro multiplayer recibido es distinto
+    // de boolean (false) se aplica el formato para que sea un número
     if (typeof multiplayer !== 'boolean') {
         multiplayer = parseFloat(new Number(multiplayer).toFixed(2));
     }
@@ -170,11 +174,10 @@ VideogameSectionsScore.prototype.getAvgScore = function () {
     var sum = 0; // acumulador de sumas
     var count = 0; // contador
 
+    // Se crea un array con las propiedades de la clase...
     var properties = Object.values(this);
-    // Se recorre el objeto como si se tratara de un Array. El nombre de cada propiedad
-    // se guarda dentro de la variable property
+    //... y se recorre para calcular la media de la valoración
     for (let i = 0; i < properties.length; i++) {
-
         if (properties[i] !== false) {
             sum += properties[i];
             count++;
@@ -245,13 +248,17 @@ function newVideogame() {
     // Reseteo del formuario
     resetForm(addForm);
 
-    start();
+    printLibrary();
 }
 
+// Función necesaria para añadir una valoración a un videojuego a partir
+// de los datos obtenidos de un formulario
 function newVideogameScore(videogameID) {
     // Variable apuntando al formulario del que se quieren recoger los datos
     let scoreForm = document.forms['score-form-' + videogameID];
 
+    // Se obtiene el Array de los radio button del tipo de videojuego para recorrerlo mediante 
+    // un bucle for y guardar aquel que esté marcado en una variable
     let videogameTypeArr = scoreForm.videogameType;
 
     for (let i = 0; i < videogameTypeArr.length; i++) {
@@ -260,7 +267,7 @@ function newVideogameScore(videogameID) {
         }
     }
 
-    // Obtener el nombre del videojuego
+    // Obtener la valoración de la jugabilidad, gráficos, arte y  sonido respectivamente
     let gameplay = scoreForm.gameplayScore.value;
 
     let graphics = scoreForm.graphicsScore.value
@@ -269,28 +276,41 @@ function newVideogameScore(videogameID) {
 
     let sound = scoreForm.soundScore.value;
 
-    var narrative;
-    var multiplayer;
+
+    // En el caso de la narrativa y el multijugador su valor variará en función
+    // del tipo de videojuego del que se trate
+    var narrative, multiplayer;
 
     if (videogameType == "single") {
+        // Si el tipo es "single" se obtiene el valor de narrative del formulario y
+        // a multiplayer se le asigna false
         narrative = scoreForm.narrativeScore.value;
         multiplayer = false;
     } else if (videogameType == "multi") {
+        // Si el tipo es "multi" se obtiene el valor de multiplayer del formulario y
+        // a narrative se le asigna false
         multiplayer = scoreForm.multiplayerScore.value;
         narrative = false;
     } else {
+        // Si el tipo es "campaign/multi" se obtienen el valor de narrative y multiplayer
+        // del formulario
         narrative = scoreForm.narrativeScore.value;
         multiplayer = scoreForm.multiplayerScore.value;
     }
 
+    // Se obtinene el videojuego de la biblioteca mediante su id
+    // y se le asgina una valoración a los distintos apartados del videojuego
     var videogame = library.searchByID(videogameID);
     videogame.score = new VideogameSectionsScore(gameplay, graphics, art, sound, narrative, multiplayer);
 
+    // Se guardan los cambios en el Local Storage
     localStorage.setItem("score-" + videogame.ID, JSON.stringify(videogame.score));
     saveData();
 
+    // Se resetea el formulario
     resetForm(scoreForm);
 
+    // Se dibuja el cuadro de valoración en el videojuego correspondiente
     drawScoreBox(videogame)
 }
 
@@ -316,9 +336,11 @@ function searchVideogames() {
     }
 }
 
+// Función para resetear el formulario
 function resetForm(form) {
     form.reset();
 
+    // Si el formulario coincide con el pasado por parámetro se reinicia la imagen
     if (form === document.forms['add-videogame-form']) {
         $('#videogame-img').attr('src', "images/videogames/no-image-min.png");
     }
@@ -326,11 +348,36 @@ function resetForm(form) {
 
 // ####################################################################################################################
 // ####################################################################################################################
-// => FUNCIONES EVENTOS
+// => FUNCIONES ASOCIADAS A EVENTOS
+
+// Función para eliminar un videojuego
+function removeVideogame(videogameID) {
+    // Elimina el videojuego, guarda el estado y dibuja la biblioteca
+    library.remove(videogameID);
+    // Se guardan los cambios en el Local Storage
+    saveData();
+    // Se muestra la biblioteca
+    printLibrary();
+}
+
+// Función para eliminar todos los videojuegos
+function removeAllVideogames() {
+    // Elimina todos los videojuegos
+    library.removeAll();
+    // Se guardan los cambios en el Local Storage
+    saveData();
+    // Se muestra la biblioteca
+    printLibrary();
+}
+
+// ####################################################################################################################
+// ####################################################################################################################
+// => SALIDA HTML
 
 // Función con la que comenzará el html
-function start() {
+function printLibrary() {
     // sort es una variable global para determinar si es necesario ordenar el Array
+    // si la bibioteca no está ordenada se ordena y el valor de sort cambia a true
     if (!sort) {
         library.sortByName();
         sort = true;
@@ -343,26 +390,6 @@ function start() {
     library.isEmpty() ? showEmptyLibraryMessage() : drawVideogamesLibrary(library);
 }
 
-// Función para eliminar un videojuego
-function removeVideogame(videogameID) {
-    // Elimina el videojuego, guarda el estado y dibuja la biblioteca
-    library.remove(videogameID);
-    saveData();
-    start();
-}
-
-// Función para eliminar todos los videojuegos
-function removeAllVideogames() {
-    // Elimina todos los videojuegos
-    library.removeAll();
-    saveData();
-    start();
-}
-
-// ####################################################################################################################
-// ####################################################################################################################
-// => SALIDA HTML
-
 // Variable global para acceder al elemento del DOM con id="output"
 var output = document.getElementById('output');
 
@@ -374,14 +401,14 @@ function cleanOutput() {
 
 // Función para dibujar una biblioteca
 // Debe recibir un objeto de la clase VideogamesLibrary por parámetro
-// Dibuja en el elemento del DOM con id="output" cada uno de los videojuegos
+// Dibuja en el elemento HTML con id="output" cada uno de los videojuegos
 // guardados en la biblioteca pasada por parámetro
 function drawVideogamesLibrary(VideogamesLibrary) {
     // Se limpia la salida
     cleanOutput();
     // Se recorre la lista mediante un forEach
-    VideogamesLibrary.list.forEach((videogame) => {
-
+    VideogamesLibrary.list.forEach(function (videogame) {
+        // Se obtienen los géneros obtenidos del videojuego
         let genres = new Array;
         genres = videogame.genre;
 
@@ -389,12 +416,14 @@ function drawVideogamesLibrary(VideogamesLibrary) {
         let openTag = '<span class="badge badge-secondary">';
         let closeTag = '</span> '
 
+        // Se guardan en una variable que los pintará usando el componente badge de Bootstrap
         if (genres.length > 0) {
             for (let i = 0; i < genres.length; i++) {
                 genresOutput += openTag + genres[i] + closeTag;
             }
         }
 
+        // Se dibuja en el HTML la lista de videojuegos completa
         output.innerHTML += '<div class="videogame-box border rounded-0 mx-auto mb-3 m-md-1">' +
             '<div class="videogame-image" data-toggle="modal" data-target="#modal-' + videogame.ID + '">' +
             '<img src="images/videogames/' + videogame.image + '" alt="Imagen de ' + videogame.name + '">' +
@@ -636,6 +665,8 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '</div>' +
             '</div>';
 
+        // Si el videojuego ya tiene una valoración en el Local Storage 
+        // se "revive" el objeto de la clase score asociado al videojuego
         if (localStorage.getItem('score-' + videogame.ID)) {
             var tempScore = JSON.parse(localStorage.getItem('score-' + videogame.ID));
 
@@ -649,10 +680,17 @@ function drawVideogamesLibrary(VideogamesLibrary) {
     });
 }
 
+// Dibujar el cuadro de puntuación
 function drawScoreBox(Videogame) {
+    // Se obtiene el elemento del HTML del videojuego en cuestión
     var outputScore = document.getElementById('output-properties-' + Videogame.ID);
 
+    // Se obtiene la valoración media del videojuego a partir de los
+    // datos obtenidos de su propiedad score (puntuación)
     let avgScore = Videogame.score.getAvgScore();
+
+    // Se crea una variable bgColor en la cuál se guardará un color en hexadecimal
+    // en función de la valoración media
     let bgColor;
 
     if (avgScore < 50) {
@@ -663,9 +701,13 @@ function drawScoreBox(Videogame) {
         bgColor = "#ffcc33";
     }
 
+    // Se obtiene el valor de las propiedades narrativa y multijugador
+    // del objeto score que es a su vez un objeto de la clase Videogame
     let narrativeScore = Videogame.score.narrative;
     let multiplayerScore = Videogame.score.multiplayer;
 
+    // En caso de que el valor obtenido de dichas propiedades 
+    // sea false se cambia su valor al de un guión (String)
     if (narrativeScore === false) {
         narrativeScore = "-";
     }
@@ -674,6 +716,7 @@ function drawScoreBox(Videogame) {
         multiplayerScore = "-"
     }
 
+    // Se muestra un cuadro de valor personalizado en función de los datos obtenidos previamente
     outputScore.innerHTML = '<div class="row justify-content-center mt-4 mb-0 my-lg-3 mx-2 mr-lg-4 p-4 border">' +
         '<div class="col-12">' +
         '<strong>Valoración:</strong>' +
@@ -716,11 +759,13 @@ function showNoNamesCoincidencesMessage(name) {
 // ####################################################################################################################
 // => FUNCIONES ALMACENAMIENTO DE DATOS (LOCAL STORSGE) CON JSON
 
+// Guardar la biblioteca y el valor de la variable sort en el Local Storage
 function saveData() {
     localStorage.setItem("list", JSON.stringify(library.list));
     localStorage.setItem("sort", sort)
 }
 
+// Cargar la biblioteca y el valor de la variable sort con datos obtenidos del Local Storage
 function loadData() {
     library.list = JSON.parse(localStorage.getItem("list"));
     localStorage.getItem("sort");
@@ -730,17 +775,19 @@ function loadData() {
 // ####################################################################################################################
 // => VALORES POR DEFECTO
 
-// variable global sort
-// Inicialmente es "true", se modificará el valor a "false" cuando se añada un videojuego
-// y volverá a ser "true" cuando se ordene la biblioteca, con el objetivo de evitar 
-// ordenar la biblioteca cuando no sea necesario
+// Variable global sort:
+// inicialmente es "false", se modificará el valor a "true" cuando ordene la lista
+// y volverá a ser "false" cuando se añada un videojuego, con el objetivo de evitar 
+// ordenar la biblioteca de forma innecesaria
 var sort = false;
 // variable global library (VideogamesLibrary)
 var library = new VideogamesLibrary();
 
+// Si hay datos guardados en el Local Storage se cargan
 if (localStorage.getItem("list")) {
     loadData();
 } else {
+    /*
     library.add(new Videogame("Metal Gear Solid V Ground Zeroes", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V Ground Zeroes-min.jpg"));
     library.add(new Videogame("Metal Gear Solid V The Phantom Pain", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V The Phantom Pain-min.jpg"));
     library.add(new Videogame("Metal Gear Solid", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid-min.jpg"));
@@ -836,6 +883,8 @@ if (localStorage.getItem("list")) {
     library.add(new Videogame("Mario & Luigi Viaje al centro de Bowser", ["aventuras", "plataformas", "puzles", "RPG"], "AlphaDream", "Nintendo", ["Nintendo 3DS"], 3, "Mario & Luigi Bowser's Inside Story-min.jpg"));
     library.add(new Videogame("Mario Kart 7", ["carreras"], "Nintendo", "Nintendo", ["Nintendo 3DS"], 3, "Mario Kart 7-min.jpg"));
     library.add(new Videogame("Mario Kart 8", ["carreras"], "Nintendo", "Nintendo", ["Wii U"], 3, "Mario Kart 8-min.jpg"));
+    */
 }
 
-start();
+// Se muestra la biblioteca
+printLibrary();
