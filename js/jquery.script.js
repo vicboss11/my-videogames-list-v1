@@ -78,12 +78,16 @@ $(function () {
         }
     });
 
-    // Restablecer icono cuando el modal está inactivo
-    $('.modal').blur(function () {
+    /*
+    // Restablecer componentes cuando el modal está inactivo
+    $('body').focus(function () {
         $('.icon-expand').removeClass('fa-caret-square-up');
         $('.icon-expand').addClass('fa-caret-square-down');
+        $('.collapse').removeClass('show');
+        $('.btn-expand').addClass('collapsed');
+        $('.btn-expand').attr('aria-expanded', "false");
     });
-
+    */
     // ####################################################################################################################
     // Función para actualizar previsualización de imagen de forma dinámica
     function readURL(input) {
@@ -112,17 +116,17 @@ $(function () {
 
     // Habilitar/Deshabilitar campos del formulario de valoración
     $('input[value="single"]').click(function () {
-        $('input[name="narrativeScore"').removeAttr('disabled');
-        $('input[name="multiplayerScore"').attr('disabled', "");
+        $('input[name="narrativeScore"]').removeAttr('disabled');
+        $('input[name="multiplayerScore"]').attr('disabled', "");
     });
 
     $('input[value="multi"]').click(function () {
-        $('input[name="narrativeScore"').attr('disabled', "");
-        $('input[name="multiplayerScore"').removeAttr('disabled');
+        $('input[name="narrativeScore"]').attr('disabled', "");
+        $('input[name="multiplayerScore"]').removeAttr('disabled');
     });
 
     $('input[value="campaign/multi"]').click(function () {
-        $('input[name="narrativeScore"').removeAttr('disabled');
-        $('input[name="multiplayerScore"').removeAttr('disabled');
+        $('input[name="narrativeScore"]').removeAttr('disabled');
+        $('input[name="multiplayerScore"]').removeAttr('disabled');
     });
 });

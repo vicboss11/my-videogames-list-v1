@@ -111,7 +111,7 @@ VideogamesLibrary.prototype.sortByName = function () {
 // como CLASE PADRE (superclase) de videojuego para hacer uso de la herencia
 // -> Constructor
 function Piece() {
-    this.ID = uuidv1(); // ID único (Plugin: "http://wzrd.in/standalone/uuid%2Fv1@latest")
+    this.ID = Math.random().toString(36).substr(2, 9);
 }
 
 // ####################################################################################################################
@@ -510,7 +510,6 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '<div id="output-properties-' + videogame.ID + '"></div>' +
             '</div>' +
             '</div>' +
-            '</div>' +
             '<div class="container-fluid mb-4">' +
             '<div class="accordion pt-3" id="accordion-option-' + videogame.ID + '">' +
             '<div class="card border">' +
@@ -625,6 +624,7 @@ function drawVideogamesLibrary(VideogamesLibrary) {
             '</div>' +
             '</fieldset>' +
             '</form>' +
+            '</div>' +
             '</div>' +
             '</div>' +
             '</div>' +
@@ -768,7 +768,7 @@ function saveData() {
 // Cargar la biblioteca y el valor de la variable sort con datos obtenidos del Local Storage
 function loadData() {
     library.list = JSON.parse(localStorage.getItem("list"));
-    localStorage.getItem("sort");
+    sort = localStorage.getItem("sort");
 }
 
 // ####################################################################################################################
@@ -786,105 +786,104 @@ var library = new VideogamesLibrary();
 // Si hay datos guardados en el Local Storage se cargan
 if (localStorage.getItem("list")) {
     loadData();
-} else {
-    /*
-    library.add(new Videogame("Metal Gear Solid V Ground Zeroes", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V Ground Zeroes-min.jpg"));
-    library.add(new Videogame("Metal Gear Solid V The Phantom Pain", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V The Phantom Pain-min.jpg"));
-    library.add(new Videogame("Metal Gear Solid", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid-min.jpg"));
-    library.add(new Videogame("Metal Gear Solid 2 Sons of Liberty", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid 2 Sons of Liberty-min.jpg"));
-    library.add(new Videogame("Metal Gear Solid 3 Snake Eater", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3", "Nintendo 3DS"], 18, "Metal Gear Solid 3 Snake Eater-min.jpg"));
-    library.add(new Videogame("Metal Gear Solid 4 Guns of the Patriots", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid 4 Guns of the Patriots-min.jpg"));
-    library.add(new Videogame("Metal Gear", ["acción", "infiltración"], "Kojima Productions", "Konami", ["PS3"], 12, "Metal Gear-min.jpg"));
-    library.add(new Videogame("Metal Gear 2 Solid Snake", ["acción", "infiltración"], "Kojima Productions", "Konami", ["PS3"], 12, "Metal Gear 2 Solid Snake-min.jpg"));
-    library.add(new Videogame("A Way Out", ["acción", "aventuras", "puzles"], "Hazelight Studios", "Electronic Arts", ["PS4"], 18, "A Way Out-min.jpg"));
-    library.add(new Videogame("Assassin's Creed III", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["Wii U"], 18, "Assassin's Creed III-min.jpg"));
-    library.add(new Videogame("Assassin's Creed IV Black Flag", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed IV Black Flag-min.jpg"));
-    library.add(new Videogame("Assassin's Creed Rogue", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed Rogue-min.jpg"));
-    library.add(new Videogame("Assassin's Creed Unity", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed Unity-min.jpg"));
-    library.add(new Videogame("Astral Chain", ["acción", "puzles"], "Platinum Games", "Nintendo", ["Switch"], 16, "Astral Chain-min.jpg"));
-    library.add(new Videogame("Bayonetta", ["acción"], "Platinum Games", "Sega, Nintendo", ["Wii U"], 18, "Bayonetta-min.jpg"));
-    library.add(new Videogame("Bayonetta 2", ["acción"], "Platinum Games", "Sega, Nintendo", ["Wii U"], 18, "Bayonetta 2-min.jpg"));
-    library.add(new Videogame("Batman Arkham Asylum", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC"], 16, "Batman Arkham Asylum-min.jpg"));
-    library.add(new Videogame("Batman Arkham City", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC", "Wii U"], 16, "Batman Arkham City-min.jpg"));
-    library.add(new Videogame("Batman Arkham Knight", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC", "PS4"], 16, "Batman Arkham Knight-min.jpg"));
-    library.add(new Videogame("Batman Arkham Origins", ["acción", "infiltración"], "WB Games Montreal", "Warner Bros. Interactive Entertainment", ["Wii U"], 16, "Batman Arkham Origins-min.png"));
-    library.add(new Videogame("Battlefield 4", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Battlefield 4-min.png"));
-    library.add(new Videogame("Battlefield 1", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Battlefield 1-min.jpg"));
-    library.add(new Videogame("Heavy Rain", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Heavy Rain-min.jpg"));
-    library.add(new Videogame("Beyond Two Souls", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Beyond Two Souls-min.jpg"));
-    library.add(new Videogame("Detroit Become Human", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Detroit Become Human-min.png"));
-    library.add(new Videogame("Bloodborne", ["acción", "RPG"], "From Software", "SCE Japan Studio, Sony Interactive Entertainment", ["PS4"], 18, "Bloodborne-min.jpg"));
-    library.add(new Videogame("Sekiro Shadows Die Twice", ["acción", "RPG"], "From Software", "Activision", ["PS4"], 18, "Sekiro Shadows Die Twice-min.jpg"));
-    library.add(new Videogame("Call of Duty Black Ops II", ["acción", "FPS"], "Treyarch", "Activision", ["Wii U"], 18, "Call of Duty Black Ops II-min.jpg"));
-    library.add(new Videogame("Call of Duty Black Ops III", ["acción", "FPS"], "Treyarch", "Activision", ["PS4"], 18, "Call of Duty Black Ops III-min.jpg"));
-    library.add(new Videogame("Call of Duty Ghosts", ["acción", "FPS"], "Infinity Ward", "Activision", ["Wii U"], 18, "Call of Duty Ghosts-min.jpg"));
-    library.add(new Videogame("Castlevania Lords of Shadow", ["acción"], "MercurySteam", "Konami", ["PC"], 18, "Castlevania Lords of Shadow-min.jpg"));
-    library.add(new Videogame("Castlevania Lords of Shadow - Mirror of Fate", ["acción"], "MercurySteam", "Konami", ["PC, Nintendo 3DS"], 18, "Castlevania Lords of Shadow Mirror of Fate-min.png"));
-    library.add(new Videogame("Dishonored", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored-min.jpg"));
-    library.add(new Videogame("Dishonored 2", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored 2-min.png"));
-    library.add(new Videogame("Dishonored La Muerte del Forastero", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored Death of the Outsider-min.jpg"));
-    library.add(new Videogame("Fallout 4", ["acción", "aventuras", "RPG"], "Bethesda Game Studios", "Bethesda Softworks", ["PS4"], 18, "Fallout 4-min.jpg"));
-    library.add(new Videogame("Far Cry 4", ["acción", "aventuras", "FPS"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Far Cry 4-min.jpg"));
-    library.add(new Videogame("Final Fantasy X/X-2 HD Remaster", ["aventuras", "RPG"], "Square", "Square Enix", ["PS4"], 12, "Final Fantasy X_X-2 HD Remaster-min.jpg"));
-    library.add(new Videogame("Game of Thrones A Telltale Games Stories", ["acción", "aventuras"], "Telltale Games", "HBO", ["PS4"], 18, "Game of Thrones A Telltale Games Stories-min.jpg"));
-    library.add(new Videogame("God of War", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War I-min.jpg"));
-    library.add(new Videogame("God of War II", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War II-min.png"));
-    library.add(new Videogame("God of War III", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War III-min.jpg"));
-    library.add(new Videogame("God of War Chains of Olympus", ["acción", "aventuras"], "Ready at Dawn Studios", "Sony Computer Entertainment", ["PS4"], 18, "God of War Chains of Olympus-min.png"));
-    library.add(new Videogame("God of War Ghost of Sparta", ["acción", "aventuras"], "Ready at Dawn Studios, SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War Ghost of Sparta-min.jpg"));
-    library.add(new Videogame("God of War", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War-min.jpg"));
-    library.add(new Videogame("God of War Ascension", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War Acension-min.jpg"));
-    library.add(new Videogame("La Tierra Media: Sombras de Mordor", ["acción", "aventuras"], "Monolith Productions", "Warner Bros. Interactive Entertainment", ["PS4"], 18, "Middle-earth Shadow of Mordor-min.jpg"));
-    library.add(new Videogame("Monster Hunter 3 Ultimate", ["acción", "RPG"], "Capcom", "Capcom", ["Wii U"], 12, "Monster Hunter 3 Ultimate-min.jpg"));
-    library.add(new Videogame("New Super Mario Bros. U", ["plataformas"], "Nintendo", "Nintendo", ["Wii U"], 18, "New Super Mario Bros. U-min.jpg"));
-    library.add(new Videogame("Ni no Kuni II El Renacer de un Reino", ["aventuras", "RPG"], "Level-5", "Bandai Namco Entertainment", ["PS4"], 12, "Ni no Kuni II Revenant Kingdom-min.jpg"));
-    library.add(new Videogame("NieR Automata", ["acción", "RPG"], "Platinum Games", "Square Enix", ["PS4"], 18, "NieR Automata-min.jpg"));
-    library.add(new Videogame("Overwatch", ["acción", "FPS"], "Blizzard Entertainment", "Blizzard Entertainment", ["PC"], 12, "Overwatch-min.png"));
-    library.add(new Videogame("Pillars of Eternity", ["RPG"], "Obsidian Entertainment", "Paradox Interactive", ["PC"], 16, "Pillars of Eternity-min.jpg"));
-    library.add(new Videogame("Red Dead Redemption", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS3"], 18, "Red Dead Redemption-min.jpg"));
-    library.add(new Videogame("Red Dead Redemption 2", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS4"], 18, "Red Dead Redemption 2-min.jpg"));
-    library.add(new Videogame("Ryse Son of Rome", ["acción", "aventuras"], "Crytek", "Microsoft Game Studios, Deep Silver", ["PC"], 18, "Ryse Son of Rome-min.jpg"));
-    library.add(new Videogame("Spec Ops The Line", ["acción", "TPS"], "	Yager Development", "2K Games, Take-Two Interactive", ["PC"], 18, "Spec Ops The Line-min.jpg"));
-    library.add(new Videogame("The Evil Within", ["acción", "survival", "TPS"], "Tango Gameworks", "Bethesda Softworks", ["PS4"], 18, "The Evil Within-min.jpg"));
-    library.add(new Videogame("Splatoon", ["acción", "TPS"], "Nintendo", "Nintendo", ["Wii U"], 7, "Splatoon-min.jpg"));
-    library.add(new Videogame("Star Wars Battlefront", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Star Wars Battlefront-min.jpg"));
-    library.add(new Videogame("Star Wars Battlefront II", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Star Wars Battlefront II-min.jpg"));
-    library.add(new Videogame("Super Mario 3D Land", ["plataformas"], "Nintendo", "Nintendo", ["Nintendo 3DS"], 3, "Super Mario 3D Land-min.jpg"));
-    library.add(new Videogame("Super Mario 3D World", ["plataformas"], "Nintendo", "Nintendo", ["Wii U"], 3, "Super Mario 3D World-min.jpg"));
-    library.add(new Videogame("Super Mario Odyssey", ["plataformas"], "Nintendo", "Nintendo", ["Switch"], 7, "Super Mario Odyssey-min.jpg"));
-    library.add(new Videogame("Super Smash Bros. for Wii U", ["acción", "lucha"], "Sora Ltd., Bandai Namco Studios", "Nintendo", ["Wii U"], 18, "Super Smash Bros. for Wii U-min.jpg"));
-    library.add(new Videogame("The Last Guardian", ["acción", "aventuras"], "SCE Japan Studio", "Sony Computer Entertainment", ["PS4"], 18, "The Last Guardian-min.jpg"));
-    library.add(new Videogame("The Last of Us Remastered", ["acción", "survival"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "The Last of Us Remastered-min.jpg"));
-    library.add(new Videogame("The Legend of Zelda Breath of the Wild", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda Breath of the Wild-min.jpg"));
-    library.add(new Videogame("The Legend of Zelda The Wind Waker HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda The Wind Waker HD-min.jpg"));
-    library.add(new Videogame("The Legend of Zelda Twilight Princess HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda Twilight Princess HD-min.jpg"));
-    library.add(new Videogame("The Order 1886", ["acción", "TPS"], "Ready at Dawn, SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "The Order 1886-min.jpg"));
-    library.add(new Videogame("The Witcher Enhanced Edition", ["acción", "aventuras", "RPG"], "CD Project RED", "Atari", ["PC"], 18, "The Witcher Enhanced Edition-min.jpg"));
-    library.add(new Videogame("The Witcher 2 Assassins of Kings", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 2 Assassins of Kings-min.jpg"));
-    library.add(new Videogame("The Witcher 3 Wild Hunt", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 3 Wild Hunt-min.jpg"));
-    library.add(new Videogame("The Wonderful 101", ["acción", "aventuras"], "Platinum Games", "Nintendo", ["Wii U"], 12, "The Wonderful 101-min.jpg"));
-    library.add(new Videogame("This War of Mine", ["acción", "aventuras"], "11 bit studios", "Deep Silver", ["PC", "PS4"], 12, "This War of Mine-min.jpg"));
-    library.add(new Videogame("Tom Clancy's Splinter Cell Blacklist", ["acción", "infiltración", "TPS"], "Ubisoft", "Ubisoft", ["PC", "Wii U"], 18, "Tom Clancy's Splinter Cell Blacklist-min.jpg"));
-    library.add(new Videogame("Uncharted El Tesoro de Drake", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted Drake's Fortune-min.jpg"));
-    library.add(new Videogame("Uncharted 2 El Reino de los Ladrones", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 2 Among Thieves-min.jpg"));
-    library.add(new Videogame("Uncharted 3 La Traición de Drake", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 3 Drake's Deception-min.jpg"));
-    library.add(new Videogame("Uncharted 4 El Desenlace del Ladrón", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 4 A Thief's End-min.jpg"));
-    library.add(new Videogame("Uncharted EL Legado Perdido", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted The Lost Legacy-min.png"));
-    library.add(new Videogame("Until Dawn", ["acción", "aventuras", "survival"], "Supermassive Games", "Sony Computer Entertainment", ["PS4"], 18, "Until Dawn-min.jpg"));
-    library.add(new Videogame("Valiant Hearts The Great War", ["aventuras"], "Ubisoft Montpellier", "Ubisoft", ["PS4"], 12, "Valiant Hearts The Great War-min.jpg"));
-    library.add(new Videogame("Watch Dogs", ["acción", "aventuras"], "Ubisoft", "Ubisoft", ["PC"], 18, "Watch Dogs-min.jpg"));
-    library.add(new Videogame("Wolfenstein The New Order", ["acción", "FPS"], "	MachineGames", "Bethesda Softworks", ["PS4"], 18, "Wolfenstein The New Order-min.jpg"));
-    library.add(new Videogame("Zombi U", ["acción", "survival"], "Ubisoft Montpellier", "Ubisoft", ["Wii U"], 18, "Zombi-min.jpg"));
-    library.add(new Videogame("Pikmin 3", ["aventuras", "RTS"], "Nintendo", "Nintendo", ["Wii U"], 7, "Pikmin 3-min.jpg"));
-    library.add(new Videogame("Grand Theft Auto V", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS4"], 18, "Grand Theft Auto V-min.jpg"));
-    library.add(new Videogame("Hyrule Warriors", ["acción", "aventuras"], "Omega Force, Team Ninja", "Koei Tecmo", ["Wii U"], 12, "Hyrule Warriors-min.jpg"));
-    library.add(new Videogame("Life is Strange", ["aventuras"], "Dontnod Entertainment", "Square Enix", ["PS4"], 16, "Life is Strange-min.jpg"));
-    library.add(new Videogame("Mafia III", ["acción", "aventuras", "TPS"], "Hangar 13", "2K Games", ["PS4"], 18, "Mafia III-min.jpg"));
-    library.add(new Videogame("Mario & Luigi Viaje al centro de Bowser", ["aventuras", "plataformas", "puzles", "RPG"], "AlphaDream", "Nintendo", ["Nintendo 3DS"], 3, "Mario & Luigi Bowser's Inside Story-min.jpg"));
-    library.add(new Videogame("Mario Kart 7", ["carreras"], "Nintendo", "Nintendo", ["Nintendo 3DS"], 3, "Mario Kart 7-min.jpg"));
-    library.add(new Videogame("Mario Kart 8", ["carreras"], "Nintendo", "Nintendo", ["Wii U"], 3, "Mario Kart 8-min.jpg"));
-    */
 }
+//  else {
+//     library.add(new Videogame("Metal Gear Solid V Ground Zeroes", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V Ground Zeroes-min.jpg"));
+//     library.add(new Videogame("Metal Gear Solid V The Phantom Pain", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS4"], 18, "Metal Gear Solid V The Phantom Pain-min.jpg"));
+//     library.add(new Videogame("Metal Gear Solid", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid-min.jpg"));
+//     library.add(new Videogame("Metal Gear Solid 2 Sons of Liberty", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid 2 Sons of Liberty-min.jpg"));
+//     library.add(new Videogame("Metal Gear Solid 3 Snake Eater", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3", "Nintendo 3DS"], 18, "Metal Gear Solid 3 Snake Eater-min.jpg"));
+//     library.add(new Videogame("Metal Gear Solid 4 Guns of the Patriots", ["acción", "infiltración", "TPS"], "Kojima Productions", "Konami", ["PS3"], 18, "Metal Gear Solid 4 Guns of the Patriots-min.jpg"));
+//     library.add(new Videogame("Metal Gear", ["acción", "infiltración"], "Kojima Productions", "Konami", ["PS3"], 12, "Metal Gear-min.jpg"));
+//     library.add(new Videogame("Metal Gear 2 Solid Snake", ["acción", "infiltración"], "Kojima Productions", "Konami", ["PS3"], 12, "Metal Gear 2 Solid Snake-min.jpg"));
+//     library.add(new Videogame("A Way Out", ["acción", "aventuras", "puzles"], "Hazelight Studios", "Electronic Arts", ["PS4"], 18, "A Way Out-min.jpg"));
+//     library.add(new Videogame("Assassin's Creed III", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["Wii U"], 18, "Assassin's Creed III-min.jpg"));
+//     library.add(new Videogame("Assassin's Creed IV Black Flag", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed IV Black Flag-min.jpg"));
+//     library.add(new Videogame("Assassin's Creed Rogue", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed Rogue-min.jpg"));
+//     library.add(new Videogame("Assassin's Creed Unity", ["acción", "aventuras", "infiltración"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Assassin's Creed Unity-min.jpg"));
+//     library.add(new Videogame("Astral Chain", ["acción", "puzles"], "Platinum Games", "Nintendo", ["Switch"], 16, "Astral Chain-min.jpg"));
+//     library.add(new Videogame("Bayonetta", ["acción"], "Platinum Games", "Sega, Nintendo", ["Wii U"], 18, "Bayonetta-min.jpg"));
+//     library.add(new Videogame("Bayonetta 2", ["acción"], "Platinum Games", "Sega, Nintendo", ["Wii U"], 18, "Bayonetta 2-min.jpg"));
+//     library.add(new Videogame("Batman Arkham Asylum", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC"], 16, "Batman Arkham Asylum-min.jpg"));
+//     library.add(new Videogame("Batman Arkham City", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC", "Wii U"], 16, "Batman Arkham City-min.jpg"));
+//     library.add(new Videogame("Batman Arkham Knight", ["acción", "infiltración"], "Rocksteady Studios", "Warner Bros. Interactive Entertainment", ["PC", "PS4"], 16, "Batman Arkham Knight-min.jpg"));
+//     library.add(new Videogame("Batman Arkham Origins", ["acción", "infiltración"], "WB Games Montreal", "Warner Bros. Interactive Entertainment", ["Wii U"], 16, "Batman Arkham Origins-min.png"));
+//     library.add(new Videogame("Battlefield 4", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Battlefield 4-min.png"));
+//     library.add(new Videogame("Battlefield 1", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Battlefield 1-min.jpg"));
+//     library.add(new Videogame("Heavy Rain", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Heavy Rain-min.jpg"));
+//     library.add(new Videogame("Beyond Two Souls", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Beyond Two Souls-min.jpg"));
+//     library.add(new Videogame("Detroit Become Human", ["acción"], "Quantic Dream", "Sony Computer Entertainment", ["PS4"], 18, "Detroit Become Human-min.png"));
+//     library.add(new Videogame("Bloodborne", ["acción", "RPG"], "From Software", "SCE Japan Studio, Sony Interactive Entertainment", ["PS4"], 18, "Bloodborne-min.jpg"));
+//     library.add(new Videogame("Sekiro Shadows Die Twice", ["acción", "RPG"], "From Software", "Activision", ["PS4"], 18, "Sekiro Shadows Die Twice-min.jpg"));
+//     library.add(new Videogame("Call of Duty Black Ops II", ["acción", "FPS"], "Treyarch", "Activision", ["Wii U"], 18, "Call of Duty Black Ops II-min.jpg"));
+//     library.add(new Videogame("Call of Duty Black Ops III", ["acción", "FPS"], "Treyarch", "Activision", ["PS4"], 18, "Call of Duty Black Ops III-min.jpg"));
+//     library.add(new Videogame("Call of Duty Ghosts", ["acción", "FPS"], "Infinity Ward", "Activision", ["Wii U"], 18, "Call of Duty Ghosts-min.jpg"));
+//     library.add(new Videogame("Castlevania Lords of Shadow", ["acción"], "MercurySteam", "Konami", ["PC"], 18, "Castlevania Lords of Shadow-min.jpg"));
+//     library.add(new Videogame("Castlevania Lords of Shadow - Mirror of Fate", ["acción"], "MercurySteam", "Konami", ["PC, Nintendo 3DS"], 18, "Castlevania Lords of Shadow Mirror of Fate-min.png"));
+//     library.add(new Videogame("Dishonored", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored-min.jpg"));
+//     library.add(new Videogame("Dishonored 2", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored 2-min.png"));
+//     library.add(new Videogame("Dishonored La Muerte del Forastero", ["acción", "aventuras", "infiltración"], "Arkane Studios", "Bethesda Softworks", ["PS4"], 18, "Dishonored Death of the Outsider-min.jpg"));
+//     library.add(new Videogame("Fallout 4", ["acción", "aventuras", "RPG"], "Bethesda Game Studios", "Bethesda Softworks", ["PS4"], 18, "Fallout 4-min.jpg"));
+//     library.add(new Videogame("Far Cry 4", ["acción", "aventuras", "FPS"], "Ubisoft", "Ubisoft", ["PS4"], 18, "Far Cry 4-min.jpg"));
+//     library.add(new Videogame("Final Fantasy X/X-2 HD Remaster", ["aventuras", "RPG"], "Square", "Square Enix", ["PS4"], 12, "Final Fantasy X_X-2 HD Remaster-min.jpg"));
+//     library.add(new Videogame("Game of Thrones A Telltale Games Stories", ["acción", "aventuras"], "Telltale Games", "HBO", ["PS4"], 18, "Game of Thrones A Telltale Games Stories-min.jpg"));
+//     library.add(new Videogame("God of War", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War I-min.jpg"));
+//     library.add(new Videogame("God of War II", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War II-min.png"));
+//     library.add(new Videogame("God of War III", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War III-min.jpg"));
+//     library.add(new Videogame("God of War Chains of Olympus", ["acción", "aventuras"], "Ready at Dawn Studios", "Sony Computer Entertainment", ["PS4"], 18, "God of War Chains of Olympus-min.png"));
+//     library.add(new Videogame("God of War Ghost of Sparta", ["acción", "aventuras"], "Ready at Dawn Studios, SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War Ghost of Sparta-min.jpg"));
+//     library.add(new Videogame("God of War", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War-min.jpg"));
+//     library.add(new Videogame("God of War Ascension", ["acción", "aventuras"], "SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "God of War Acension-min.jpg"));
+//     library.add(new Videogame("La Tierra Media: Sombras de Mordor", ["acción", "aventuras"], "Monolith Productions", "Warner Bros. Interactive Entertainment", ["PS4"], 18, "Middle-earth Shadow of Mordor-min.jpg"));
+//     library.add(new Videogame("Monster Hunter 3 Ultimate", ["acción", "RPG"], "Capcom", "Capcom", ["Wii U"], 12, "Monster Hunter 3 Ultimate-min.jpg"));
+//     library.add(new Videogame("New Super Mario Bros. U", ["plataformas"], "Nintendo", "Nintendo", ["Wii U"], 18, "New Super Mario Bros. U-min.jpg"));
+//     library.add(new Videogame("Ni no Kuni II El Renacer de un Reino", ["aventuras", "RPG"], "Level-5", "Bandai Namco Entertainment", ["PS4"], 12, "Ni no Kuni II Revenant Kingdom-min.jpg"));
+//     library.add(new Videogame("NieR Automata", ["acción", "RPG"], "Platinum Games", "Square Enix", ["PS4"], 18, "NieR Automata-min.jpg"));
+//     library.add(new Videogame("Overwatch", ["acción", "FPS"], "Blizzard Entertainment", "Blizzard Entertainment", ["PC"], 12, "Overwatch-min.png"));
+//     library.add(new Videogame("Pillars of Eternity", ["RPG"], "Obsidian Entertainment", "Paradox Interactive", ["PC"], 16, "Pillars of Eternity-min.jpg"));
+//     library.add(new Videogame("Red Dead Redemption", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS3"], 18, "Red Dead Redemption-min.jpg"));
+//     library.add(new Videogame("Red Dead Redemption 2", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS4"], 18, "Red Dead Redemption 2-min.jpg"));
+//     library.add(new Videogame("Ryse Son of Rome", ["acción", "aventuras"], "Crytek", "Microsoft Game Studios, Deep Silver", ["PC"], 18, "Ryse Son of Rome-min.jpg"));
+//     library.add(new Videogame("Spec Ops The Line", ["acción", "TPS"], "	Yager Development", "2K Games, Take-Two Interactive", ["PC"], 18, "Spec Ops The Line-min.jpg"));
+//     library.add(new Videogame("The Evil Within", ["acción", "survival", "TPS"], "Tango Gameworks", "Bethesda Softworks", ["PS4"], 18, "The Evil Within-min.jpg"));
+//     library.add(new Videogame("Splatoon", ["acción", "TPS"], "Nintendo", "Nintendo", ["Wii U"], 7, "Splatoon-min.jpg"));
+//     library.add(new Videogame("Star Wars Battlefront", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Star Wars Battlefront-min.jpg"));
+//     library.add(new Videogame("Star Wars Battlefront II", ["acción", "FPS"], "DICE", "Electronic Arts", ["PS4"], 18, "Star Wars Battlefront II-min.jpg"));
+//     library.add(new Videogame("Super Mario 3D Land", ["plataformas"], "Nintendo", "Nintendo", ["Nintendo 3DS"], 3, "Super Mario 3D Land-min.jpg"));
+//     library.add(new Videogame("Super Mario 3D World", ["plataformas"], "Nintendo", "Nintendo", ["Wii U"], 3, "Super Mario 3D World-min.jpg"));
+//     library.add(new Videogame("Super Mario Odyssey", ["plataformas"], "Nintendo", "Nintendo", ["Switch"], 7, "Super Mario Odyssey-min.jpg"));
+//     library.add(new Videogame("Super Smash Bros. for Wii U", ["acción", "lucha"], "Sora Ltd., Bandai Namco Studios", "Nintendo", ["Wii U"], 18, "Super Smash Bros. for Wii U-min.jpg"));
+//     library.add(new Videogame("The Last Guardian", ["acción", "aventuras"], "SCE Japan Studio", "Sony Computer Entertainment", ["PS4"], 18, "The Last Guardian-min.jpg"));
+//     library.add(new Videogame("The Last of Us Remastered", ["acción", "survival"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "The Last of Us Remastered-min.jpg"));
+//     library.add(new Videogame("The Legend of Zelda Breath of the Wild", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda Breath of the Wild-min.jpg"));
+//     library.add(new Videogame("The Legend of Zelda The Wind Waker HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda The Wind Waker HD-min.jpg"));
+//     library.add(new Videogame("The Legend of Zelda Twilight Princess HD", ["acción", "aventuras", "puzles"], "Nintendo", "Nintendo", ["Wii U"], 12, "The Legend of Zelda Twilight Princess HD-min.jpg"));
+//     library.add(new Videogame("The Order 1886", ["acción", "TPS"], "Ready at Dawn, SCE Santa Monica Studio", "Sony Computer Entertainment", ["PS4"], 18, "The Order 1886-min.jpg"));
+//     library.add(new Videogame("The Witcher Enhanced Edition", ["acción", "aventuras", "RPG"], "CD Project RED", "Atari", ["PC"], 18, "The Witcher Enhanced Edition-min.jpg"));
+//     library.add(new Videogame("The Witcher 2 Assassins of Kings", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 2 Assassins of Kings-min.jpg"));
+//     library.add(new Videogame("The Witcher 3 Wild Hunt", ["acción", "aventuras", "RPG"], "CD Project RED", "Bandai Namco Entertainment", ["PC"], 18, "The Witcher 3 Wild Hunt-min.jpg"));
+//     library.add(new Videogame("The Wonderful 101", ["acción", "aventuras"], "Platinum Games", "Nintendo", ["Wii U"], 12, "The Wonderful 101-min.jpg"));
+//     library.add(new Videogame("This War of Mine", ["acción", "aventuras"], "11 bit studios", "Deep Silver", ["PC", "PS4"], 12, "This War of Mine-min.jpg"));
+//     library.add(new Videogame("Tom Clancy's Splinter Cell Blacklist", ["acción", "infiltración", "TPS"], "Ubisoft", "Ubisoft", ["PC", "Wii U"], 18, "Tom Clancy's Splinter Cell Blacklist-min.jpg"));
+//     library.add(new Videogame("Uncharted El Tesoro de Drake", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted Drake's Fortune-min.jpg"));
+//     library.add(new Videogame("Uncharted 2 El Reino de los Ladrones", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 2 Among Thieves-min.jpg"));
+//     library.add(new Videogame("Uncharted 3 La Traición de Drake", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 3 Drake's Deception-min.jpg"));
+//     library.add(new Videogame("Uncharted 4 El Desenlace del Ladrón", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted 4 A Thief's End-min.jpg"));
+//     library.add(new Videogame("Uncharted EL Legado Perdido", ["acción", "aventuras", "TPS"], "Naughty Dog", "Sony Computer Entertainment", ["PS4"], 18, "Uncharted The Lost Legacy-min.png"));
+//     library.add(new Videogame("Until Dawn", ["acción", "aventuras", "survival"], "Supermassive Games", "Sony Computer Entertainment", ["PS4"], 18, "Until Dawn-min.jpg"));
+//     library.add(new Videogame("Valiant Hearts The Great War", ["aventuras"], "Ubisoft Montpellier", "Ubisoft", ["PS4"], 12, "Valiant Hearts The Great War-min.jpg"));
+//     library.add(new Videogame("Watch Dogs", ["acción", "aventuras"], "Ubisoft", "Ubisoft", ["PC"], 18, "Watch Dogs-min.jpg"));
+//     library.add(new Videogame("Wolfenstein The New Order", ["acción", "FPS"], "	MachineGames", "Bethesda Softworks", ["PS4"], 18, "Wolfenstein The New Order-min.jpg"));
+//     library.add(new Videogame("Zombi U", ["acción", "survival"], "Ubisoft Montpellier", "Ubisoft", ["Wii U"], 18, "Zombi-min.jpg"));
+//     library.add(new Videogame("Pikmin 3", ["aventuras", "RTS"], "Nintendo", "Nintendo", ["Wii U"], 7, "Pikmin 3-min.jpg"));
+//     library.add(new Videogame("Grand Theft Auto V", ["acción", "aventuras"], "Rockstar Games", "Take-Two Interactive", ["PS4"], 18, "Grand Theft Auto V-min.jpg"));
+//     library.add(new Videogame("Hyrule Warriors", ["acción", "aventuras"], "Omega Force, Team Ninja", "Koei Tecmo", ["Wii U"], 12, "Hyrule Warriors-min.jpg"));
+//     library.add(new Videogame("Life is Strange", ["aventuras"], "Dontnod Entertainment", "Square Enix", ["PS4"], 16, "Life is Strange-min.jpg"));
+//     library.add(new Videogame("Mafia III", ["acción", "aventuras", "TPS"], "Hangar 13", "2K Games", ["PS4"], 18, "Mafia III-min.jpg"));
+//     library.add(new Videogame("Mario & Luigi Viaje al centro de Bowser", ["aventuras", "plataformas", "puzles", "RPG"], "AlphaDream", "Nintendo", ["Nintendo 3DS"], 3, "Mario & Luigi Bowser's Inside Story-min.jpg"));
+//     library.add(new Videogame("Mario Kart 7", ["carreras"], "Nintendo", "Nintendo", ["Nintendo 3DS"], 3, "Mario Kart 7-min.jpg"));
+//     library.add(new Videogame("Mario Kart 8", ["carreras"], "Nintendo", "Nintendo", ["Wii U"], 3, "Mario Kart 8-min.jpg"));
+// }
 
 // Se muestra la biblioteca
 printLibrary();
